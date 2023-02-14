@@ -6,14 +6,14 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/02/13 22:15:00 by jgermany         ###   ########.fr        #
+#    Updated: 2023/02/14 18:36:16 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 CC = cc
-CCFL = -Wall -Wextra -Werror
+# CCFL = -Wall -Wextra -Werror
 
 # SOURCES = $()
 # OBJECTS = $(SOURCES: .c=.o)
