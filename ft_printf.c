@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/13 15:43:38 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:47:55 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 // int	ft_printf(const char *format, ...)
 // {
-// 	// Bouffone
+// 	// Buffone
 // }
 
