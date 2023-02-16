@@ -69,11 +69,22 @@ As stated before the format of conversions support flags
 * precision modifier
 * length modifier -->
 
+* \- - dash sign: The converted value (%d, %i... %c, %s, %u, %p, %x?) is to be
+left adjusted on the field  boundary. (The default is right justification.) The
+converted value is padded on the right with blanks, rather than on the left 
+with blanks or zeros. **A - overrides a 0 if both are given.**
+* 0 - zero: The value should be zero padded. For %d, %i, %u, %x, %X conversions, 
+the converted value is padded on the left with zeros rather than blanks. 
+**If the 0 and - flags both appear, the 0 flag is ignored.** 
+**If a precision is given with a numeric conversion (d, i, u, x, and X)**,
+**the 0 flag is ignored.** For other conversions, the behavior is undefined.
+* XXXXXX - verif
+
 * \# - pound sign: the value should be converted to another form. As far we're 
 concerned for (%x, %X) conversions, a nonzero result has the string "0x" (or 
 "0X" for X conversions) prepended to it .
-* ' ' - space: a blank should be left before a positive number (or empty 
-string (WTF?)) produced by a signed conversion (%d, %i).
+* ' ' - space: a blank should be left before a **positive number** (or empty 
+string<sup>WTF?</sup>) produced by a signed conversion (%d, %i).
 * \+ - plus sign: A sign (+ or -) should always be placed before a number 
 produced by a signed conversion (%d, %i). By default, a sign is used only for 
 negative numbers. **A + overrides a space if both are used.**
