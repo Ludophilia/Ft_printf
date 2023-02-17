@@ -86,8 +86,7 @@ concerned for (%x, %X) conversions, a nonzero result has the string "0x" (or
 * ' ' - space: a blank should be left before a **positive number** (or empty 
 string<sup>WTF?</sup>) produced by a signed conversion (%d, %i).
 * \+ - plus sign: A sign (+ or -) should always be placed before a number 
-produced by a signed conversion (%d, %i). By default, a sign is used only for 
-negative numbers. **A + overrides a space if both are used.**
+produced by a signed conversion (%d, %i). By default, a sign is used only for negative numbers. **A + overrides a space if both are used.**
 
 ## Test material
 	hon hon hon baguette non non non merci je prefere le vin
