@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:43:04 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/17 18:25:54 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:28:32 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void	integer_specifier1(int do_it)
 	printf("%s'% i,% d'\n",
 		"\t-B10, Space with a pos number:\n\t\x20", -42, -42);
 	printf("%s'% i,% d'\n",
-		"\t+B10, Space with a pos number:\n\t\x20", 42, 42);
-	printf("%s'% i,% d'\n",
 		"\t-B8, Space with a pos number:\n\t\x20", -052, -052);
+	printf("%s'% i,% d'\n",
+		"\t+B10, Space with a pos number:\n\t\x20", 42, 42);
 	// printf("\tString, Space with a pos number:\n\t\x20'% d'\n", "");
 	printf("					\n");
 	printf("%s'%+i,%+d'\n",
