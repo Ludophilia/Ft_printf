@@ -53,17 +53,31 @@ void	character_specifier(int do_it)
 		return ;
 	printf("Character specifiers and flags:\n");
 	printf("%s'%c'\n", 
-		"\tB16 Normal:\n\t\x20", 0x41);
-	// printf("%s'%c'\n", 
-		// "\tString Normal:\n\t\x20", "a"); /* warning: format 
-		// specifies type 'int' but the argument has type 'char *' [-Wformat]
+		"\tB16I Normal:\n\t\x20", 0x41); // -> (0x41)16 is (65)10
+	printf("%s'%c'\n", 
+		"\tB10I Normal:\n\t\x20", 65);
+	printf("%s'%c'\n", 
+		"\t-B10I Normal:\n\t\x20", -175); // -> -175 is 81 after 
+		// unsigned char conversion
+	printf("%s'%c'\n", 
+		"\t-B8I Normal:\n\t\x20", -0276); // -> (-0276)8 is (66)10 after
+		// unsigned char conversion
+	printf("%s'%c'\n", 
+		"\t-B10FL Normal:\n\t\x20", 3.14); // Produces a warning that blocks
+		// execution with -Werror : format specifies type 'int' but the argument
+		// has type 'double'. Undefined behavior?
+	printf("%s'%c'\n",
+		"\tSTR Normal:\n\t\x20", "a"); // warning: format 
+		// specifies type 'int' but the argument has type 'char *'. 
+		// Undefined behavior?
 	printf("						\n");
 	printf("%s'%-c'\n",
-		"\tB16 Left justified:\n\t\x20", 0x41);
+		"\tB16I Left justified:\n\t\x20", 0x41);
 	printf("						\n");
-	// printf("\tB16 Zero Padding(4):\n\t\x20'%04c'\n", 0x41); // Undefined
-		// behavior
-	// printf("						\n");
+	printf("%s'%04c'\n",
+		"\tB16I Zero Padding + Len(4):\n\t\x20", 0x41); // flag 0 is undefinded 
+		// behavior with c conversion specifier.
+	printf("						\n");
 }
 
 void	string_specifier(int do_it)
@@ -196,13 +210,14 @@ void	just_pourcent(int do_it)
 int	main(void)
 {
 	// integer_specifier2(1);
-	just_format(1);
+
+	// just_format(1);
 	character_specifier(1);
-	string_specifier(1);
-	integer_specifier1(1);
-	unsigned_specifier(1);
-	pointer_specifier(1);
-	hexadecimal_specifier(1);
-	just_pourcent(1);
+	// string_specifier(1);
+	// integer_specifier1(1);
+	// unsigned_specifier(1);
+	// pointer_specifier(1);
+	// hexadecimal_specifier(1);
+	// just_pourcent(1);
 	return (0);
 }

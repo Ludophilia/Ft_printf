@@ -27,9 +27,10 @@ to hexadecimal number
 Each arg beyond the format str is used in the format str according to the 
 following rules:
 
-* a conversion specifier (ex: %c) in the format str at a position N will 
-be replaced by the argument ~~of the same type~~ **converted** (if possible ?) 
-at position N in the va_list. 
+* a conversion specification (ex: %c) in the format str at a position N will 
+be replaced by the argument ~~of the same type~~ **converted** (if possible ?) at position N in the va_list.
+
+**PLEASE CHECK AGAIN THIS SHIT**
 
 <!-- * A mismatch or an absence of match between a type specifier in
 the format str and the positional arg will generate: 
@@ -44,13 +45,17 @@ the format str and the positional arg will generate:
 There are different types of conversion specification. Their format is
 habitually as follow : 
 	
-`%[flag...][min. field width][precision][length]conversion_specifier`
+`%[flag][,flag...][field width][precision][length]conversion_specifier`
 
-#### Conversions specifiers
+#### Conversions specifier
 
 Here are the conversion specifiers that will be implemented:
 
-* %c : ~~character placeholder~~ IMPROVE THIS
+* %c : Character placeholder. If no l length modifier is present, the
+**int argument** is converted to an **unsigned char**, and the resulting 
+character is written.
+
+**PLEASE CHECK AGAIN THIS SHIT BELOW**
 * %s : C character string placeholder (so null terminated ?)
 
 * %d : signed integer placeholder
@@ -63,12 +68,12 @@ Here are the conversion specifiers that will be implemented:
 
 * %% : prints %
 
-#### Flags
+#### Flag
 
 Here are the flags that will be treated for this exercice:
 
 * \- (dash sign):
-	* The converted value is to be left adjusted on the field oundary. 
+	* The converted value is to be left adjusted on the field boundary. 
 	The default is right justification. The converted value is padded on the 
 	right with blanks, rather than on the left with blanks or zeros.
 	* For ~~%d, %i, %u, %x, %X~~ ~~%c, %s, %p?~~
@@ -107,6 +112,24 @@ Here are the flags that will be treated for this exercice:
 	* Dynamics with ' ':
 		* A '+' overrides a ' ' space if both are used.
 
+#### Field width
+
+* \* (star sign):
+	* The min field width is an optional non-zero digit string specifying
+	a minimum field width. (e.g : %10d) If the converted value has fewer 
+	characters than the field width, it will be padded with **spaces** on the 
+	left. Instead of a decimal digit string one may write "*" or "*m$" (e.g.: 
+	%*d or %*2$d) to specify that the field width is given in the next argument,
+	or in the m-th argument, respectively, which must be of type int.
+	In no case does a nonexistent or small field width cause truncation of a 
+	field; if the result of a conversion is wider than the field width, the 
+	field is expanded to contain the conversion result.
+	* For d, i, u, x, and X conversions. And c, s, p too?
+	* Dynamics with '-':
+		* If the converted value has fewer characters than the field width,
+		it will be padded with **spaces** on the right. A negative field width
+		is taken as a '-' flag followed by a positive field width.
+
 #### Precision
 
 * . (dot sign):
@@ -122,24 +145,6 @@ Here are the flags that will be treated for this exercice:
 	* Dynamics with '0' and '-':
 		* '.' override '0' if used with a numeric conversion (d, i, u, x, and X)
 		* (Interactions with '-' ?)
-
-#### Field width
-
-* \* (star sign):
-	* The min field width is an optional non zero digit string specifying
-	a minimum field width. (e.g : %10d) If the converted value has fewer 
-	characters than the field width, it will be padded with **spaces** on the 
-	left. Instead of a decimal digit string one may write "*" or "*m$" (e.g.: 
-	%*d or %*2$d) to specify that the field width is given in the next argument,
-	or in the m-th argument, respectively, which must be of type int.
-	In no case does a nonexistent or small field width cause truncation of a 
-	field; if the result of a conversion is wider than the field width, the 
-	field is expanded to contain the conversion result.
-	* For d, i, u, x, and X conversions. And c, s, p too?
-	* Dynamics with '-':
-		* If the converted value has fewer characters than the field width,
-		it will be padded with **spaces** on the right. A negative field width
-		is taken as a '-' flag followed by a positive field width.
 
 #### Synthesis
 
