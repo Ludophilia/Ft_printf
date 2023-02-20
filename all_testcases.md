@@ -28,15 +28,11 @@ Each arg beyond the format str is used in the format str according to the
 following rules:
 
 * a conversion specification (ex: %c) in the format str at a position N will 
-be replaced by the argument ~~of the same type~~ **converted** (if possible ?) at position N in the va_list.
-
-**PLEASE CHECK AGAIN THIS SHIT**
-
-<!-- * A mismatch or an absence of match between a type specifier in
-the format str and the positional arg will generate: 
-	* an error (really ? example plz)
-	* an undefined behavior (really ? example plz)
-	* or a type conversion in some case (eg from integer to unsigned integer) -->
+be replaced by the argument at position N in the va_list of the a required type,
+**converted**. The matching between the positions of a specification and 
+position of arguments (ex: spec 3 match 1st argument) can be controlled.
+* A mismatch or an absence of match between a type specifier in
+the format str and the positional arg will generate a warning and/or an error.
 
 ### Conversion specification
 
@@ -53,10 +49,17 @@ Here are the conversion specifiers that will be implemented:
 
 * %c : Character placeholder. If no l length modifier is present, the
 **int argument** is converted to an **unsigned char**, and the resulting 
-character is written.
+character is written on stdout.
+* %s : C character string placeholder. Reminder: C character string are null
+terminated. If no l length modifier is present: the **const char * argument** is 
+expected to be a pointer to an array of character type. Characters from the 
+array are written up to (but not including) a terminating null byte ('\0'); 
+**if a precision is specified**, no more than the number specified
+are written and no null byte need be present; **if the precision is not** 
+**specified, or greater than the size of the array**, the array 
+must contain a terminating null byte.
 
 **PLEASE CHECK AGAIN THIS SHIT BELOW**
-* %s : C character string placeholder (so null terminated ?)
 
 * %d : signed integer placeholder
 * %i : signed integer placeholder
@@ -94,7 +97,8 @@ Here are the flags that will be treated for this exercice:
 
 * \# (pound sign): 
 	* the value should be converted to another form. As far we're concerned for 
-	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X conversions) prepended to it.
+	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X 
+	conversions) prepended to it.
 	* For %x, %X
 
 * ' ' (space):
