@@ -100,12 +100,12 @@ void	character_specifier_err(int do_it)
 	printf("											"
 		   "										  \n");
 	printf("%s'%c'\n", 
-		"\t-B10FL Normal:\n\t\x20", 3.14); // Produces a warning that blocks
+		"\t-B10FL Wrong type:\n\t\x20", 3.14); // Produces a warning that blocks
 		// execution with -Werror : format specifies type 'int' but the argument
 		// has type 'double'. Undefined behavior?
 	printf("%s'%c'\n",
-		"\tSTR Normal:\n\t\x20", "a"); // warning: format specifies type 'int'
-		// but the argument has type 'char *'. // Undefined behavior?
+		"\tSTR Wrong type:\n\t\x20", "a"); // warning: format specifies type 
+		// 'int' but the argument has type 'char *'. // Undefined behavior?
 	printf("											"
 		   "										  \n");
 	printf("%s'%04c'\n",
@@ -133,12 +133,12 @@ void	string_specifier(int do_it)
 		// affects the str length. Min length width affects how many characters
 		// are rendered AT MINIMUM.
 	printf("											"
-		   "										  \n");
+		   "											\n");
 	printf("%s'%s'%1s''\n",
-		"\tSTR(9) with 1 of min field width:\n\t\x20", "je souis\x20",
+		"\tSTR(9) Min Field Length(1):\n\t\x20", "je souis\x20",
 		"fresh af");
 	printf("%s'%s'%20s''\n",
-		"\tSTR(9) with 20 of min field width:\n\t\x20", "je souis\x20",
+		"\tSTR(9) Min Field Length(20):\n\t\x20", "je souis\x20",
 		"fresh af"); // 9/20 spots occuped, str is right justified.
 	printf("											"
 		   "										  	\n");
@@ -146,7 +146,7 @@ void	string_specifier(int do_it)
 		"\tSTR(9) Left justified:\n\t\x20", "je souis\x20", "fresh af");
 		// Does nothing
 	printf("%s'%s'%-20s''\n",
-		"\tSTR(9) with 20 of min field width, left justified:\n\t\x20", 
+		"\tSTR(9) Left justified + Min Field Length(20):\n\t\x20", 
 		"je souis\x20", "fresh af");
 		// 9/20 spots occuped, str is left justified.
 	printf("											"
@@ -177,15 +177,15 @@ void	string_specifier_err(int do_it)
 	printf("											"
 		   "										 	\n");
 	printf("%s'%s'%s''\n",
-		"\tB10I Normal:\n\t\x20", "je souis\x20", 42); // warning: format 
+		"\tB10I Wrong type:\n\t\x20", "je souis\x20", 42); // warning: format 
 		// specifies type 'char *' but the argument has type 'int'. And it's
 		// segfaults...
 	printf("%s'%s'%s''\n",
-		"\t-B10FL Normal:\n\t\x20", "je souis\x20", -3.14); // warning: format 
+		"\t-B10FL Wrong type:\n\t\x20", "je souis\x20", -3.14); // warning: format 
 		// specifies type 'char *' but the argument has type 'int'. And it's
 		// segfaults...
 	printf("%s'%s'%s''\n",
-		"\tCR Normal:\n\t\x20", "je souis\x20", 'C'); // warning: format 
+		"\tCR Wrong type:\n\t\x20", "je souis\x20", 'C'); // warning: format 
 		// specifies type 'char *' but the argument has type 'int'. And it's
 		// segfaults...	
 	printf("											"
@@ -193,55 +193,114 @@ void	string_specifier_err(int do_it)
 }
 */
 
-void	integer_specifier1(int do_it)
+void	integer_specifier(int do_it)
 {
 	if (!do_it)
 		return ;
 	printf("Integer specifiers and flags:\n");
 	printf("%s'%i,%d'\n",
-		"\t-B10, Normal:\n\t\x20", -42, -42);
+		"\t-B10I, Normal:\n\t\x20", -42, -42);
 	printf("%s'%i,%d'\n",
-		"\t+B10, Normal:\n\t\x20", 42, 42);
+		"\t+B10I, Normal:\n\t\x20", 42, 42);
 	printf("%s'%i,%d'\n", 
-		"\t+B16, Normal:\n\t\x20", 0x2a, 0x2A);
-	// printf("%s'%i, %d'\n", 
-		// "\tB10 Float, Normal:\n\t\x20", 42.7, 42.7); //  warning: format
-	// specifies type 'int' but the argument has type 'double' [-Wformat]
-	printf("					\n");
-	printf("%s'%-i,%-d'\n",
-		"\t-B10, Left justified:\n\t\x20", -42, -42);
-	printf("%s'%-i,%-d'\n",
-		"\t+B10, Left justified:\n\t\x20", 42, 42);
-	printf("					\n");
+		"\t+B16I, Normal:\n\t\x20", 0x2a, 0x2A);
+	printf("											"
+		   "										 	\n");
 	printf("%s'% i,% d'\n",
-		"\t-B10, Space with a pos number:\n\t\x20", -42, -42);
+		"\t-B10I, Space +:\n\t\x20", -42, -42);
 	printf("%s'% i,% d'\n",
-		"\t-B8, Space with a pos number:\n\t\x20", -052, -052);
+		"\t-B8I, Space +:\n\t\x20", -052, -052);
 	printf("%s'% i,% d'\n",
-		"\t+B10, Space with a pos number:\n\t\x20", 42, 42);
-	// printf("\tString, Space with a pos number:\n\t\x20'% d'\n", "");
-	printf("					\n");
+		"\t+B10I, Space +:\n\t\x20", 42, 42);
+	printf("											"
+		   "										 	\n");
 	printf("%s'%+i,%+d'\n",
-		"\t-B10, +/- Sign:\n\t\x20", -42, -42);
+		"\t-B10I, +/- Sign:\n\t\x20", -42, -42);
 	printf("%s'%+i,%+d'\n",
-		"\t+B10, +/- Sign:\n\t\x20", 42, 42);
-	printf("					\n");
+		"\t+B10I, +/- Sign:\n\t\x20", 42, 42);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%-i,%-d'\n",
+		"\t-B10I, Left justified:\n\t\x20", -42, -42); // Useless
+	printf("%s'%-i,%-d'\n",
+		"\t+B10I, Left justified:\n\t\x20", 42, 42); // Useless
+	printf("											"
+		   "										 	\n");
+	printf("%s'%1i,%1d'\n",
+		"\t-B10I, Min Field Length(1):\n\t\x20", -42, -42);
+	printf("%s'%4i,%4d'\n",
+		"\t-B10I, Min Field Length(4): \n\t\x20", -42, -42);
+	printf("%s'%10i,%10d'\n",
+		"\t+B10I, Min Field Length(10):\n\t\x20", 42, 42);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%-1i,%-1d'\n",
+		"\t-B10I, Min Field Length(1) + Left justified:\n\t\x20",
+		-42, -42);
+	printf("%s'%-4i,%-4d'\n",
+		"\t-B10I, Min Field Length(4) + Left justified: \n\t\x20",
+		-42, -42);
+	printf("%s'%-10i,%-10d'\n",
+		"\t+B10I, Min Field Length(5) + Left justified:\n\t\x20",
+		42, 42);
+	printf("											"
+		   "										 	\n");	
 	printf("%s'%0i,%0d'\n",
-		"\t-B10, Zero padding(0):\n\t\x20", -42, -42);
+		"\t-B10I, Zero padding:\n\t\x20", -42, -42);
 	printf("%s'%01i,%01d'\n",
-		"\t-B10, Zero padding(1):\n\t\x20", -42, -42);
+		"\t-B10I, Zero padding + Min Field Length(1)\n\t\x20",
+		-42, -42);
 	printf("%s'%04i,%04d'\n",
-		"\t-B10, Zero padding(4):\n\t\x20", -42, -42);
-	printf("%s'%05i,%05d'\n",
-		"\t+B10, Zero padding(5):\n\t\x20", 42, 42);
-	// printf("%s'%05-i,%05-d'\n",
-	// 	"\t-B10, Zero padding(5), Left justified:\n\t\x20", -42, -42); 
-	// 	// 0 is ignored when - is present.
-	printf("%s'%-05i,%-05d'\n",
-		"\t+B10, Zero padding(5), Left justified:\n\t\x20", 42, 42); 
-		// 0 is ignored when - is present.
-	printf("					\n");
+		"\t-B10I, Zero padding + Min Field Length(4)\n\t\x20",
+		-42, -42);
+	printf("%s'%010i,%010d'\n",
+		"\t+B10I, Zero padding + Min Field Length(10):\n\t\x20",
+		42, 42);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%.i,%.d'\n",
+		"\t-B10I, Precision(0):\n\t\x20", -42, -42); 
+		// Set 0 as the minimum nb digit to appear. Does nothing, here.
+	printf("%s'%.1i,%.1d'\n",
+		"\t-B10I, Precision(1):\n\t\x20", -42, -42); 
+		// Set 1 as the minimum nb digit to appear. Does nothing, here.
+	printf("%s'%.10i,%.10d'\n",
+		"\t-B10I, Precision(10):\n\t\x20", -42, -42);
+		// Set 10 as the minimum nb digit to appear. // Adds 8 zeros before 42.
+	printf("											"
+		   "										 	\n");
 }
+
+/*
+void	integer_specifier_err(int do_it)
+{
+	if (!do_it)
+		return ;
+	printf("Integer specifiers err:\n");
+	printf("%s'%i, %d'\n", 
+		"\tB10 Float, Wrong type:\n\t\x20", 42.7, 42.7); //  warning: format
+	// specifies type 'int' but the argument has type 'double' [-Wformat]
+	printf("%s'%i, %d'\n", 
+		"\tSTR(0), Wrong type:\n\t\x20", "", ""); //  warning: format
+	// specifies type 'int' but the argument has type 'char *' [-Wformat]
+	printf("											   "
+	   	   "										 	\n");
+	printf("%s'%-01i,%01d'\n",
+		"\t-B10I, Zero padding + Left Justified + Min Field Length(1)\n\t\x20",
+		-42, -42); // warning: flag '0' is ignored when flag '-' is present 
+		// [-Wformat]
+	printf("%s'%-04i,%04d'\n",
+		"\t-B10I, Zero padding + Left Justified + Min Field Length(4)\n\t\x20",
+		-42, -42); // warning: flag '0' is ignored when flag '-' is present 
+		// [-Wformat]
+	printf("%s'%-010i,%-010d'\n",
+		"\t+B10I, Zero padding + Left Justified + Min Field Length(10):\n\t\x20",
+		42, 42); // warning: flag '0' is ignored when flag '-' is present
+		// [-Wformat]
+	printf("											"
+		   "										 	\n");
+}
+*/
 
 void	unsigned_specifier(int do_it)
 {
@@ -312,7 +371,8 @@ int	main(void)
 	// character_specifier_err(1);
 	string_specifier(1);
 	// string_specifier_err(1);
-	// integer_specifier1(1);
+	integer_specifier(1);
+	// integer_specifier_err(1);
 	// unsigned_specifier(1);
 	// pointer_specifier(1);
 	// hexadecimal_specifier(1);

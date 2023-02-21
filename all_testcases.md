@@ -58,19 +58,21 @@ array are written up to (but not including) a terminating null byte ('\0');
 are written and no null byte need be present; **if the precision is not** 
 **specified, or greater than the size of the array**, the array must contain a
 terminating null byte.
+* %d, %i : Signed integer placeholder. The **int argument** is converted to
+**signed decimal notation** (base 10, signed). The precision, if any, gives 
+the minimum number of digits that must appear; if the converted value 
+requires fewer digits, it is **padded on the left with zeros**. The default 
+precision is 1. When 0 is printed with an explicit precision 0, the output is 
+empty.
+* %u : unsigned integer placeholder. The **unsigned int** argument is converted 
+to **unsigned decimal (base 10)** notation. The letters abcdef are used for x
+conversions; the letters ABCDEF are used for X conversions. The **precision**, 
+if any, gives the **minimum number of digits** that must appear; if the 
+converted value requires fewer digits, it is padded on the left with zeros.
+The default precision is 1. When 0 is printed with an explicit precision 0, 
+the output is empty.
 
 **PLEASE CHECK AGAIN THIS SHIT BELOW**
-
-* %d : signed integer placeholder
-* %i : signed integer placeholder
-* %d, %i : Signed integer placeholder. The **int argument** is converted to
-signed decimal notation (base 10, signed). The precision, if any, gives <u>the
-minimum number of digits that must appear</u>; if the converted value requires 
-fewer digits, it is padded on the left with zeros. The default precision is 1.
-When 0 is printed with an explicit precision 0, the output is empty.
-
-
-* %u : unsigned integer placeholder
 
 * %p : (void *) pointer placeholder (hexadecimal, lowercase, starts with 0x)
 * %x : hexadecimal placeholder (a to f are lowercase)
@@ -147,12 +149,11 @@ Here are the flags that will be treated for this exercice:
 	* A dot sign followed by an optional decimal digit string 
 	(e.g: %.5d or %.d). This gives the minimum number of digits to appear 
 	for d, i, u, x, and X conversions. Instead of a decimal digit string one 
-	may write "*"
-	or "*m$" (e.g.: %.*d or %.2$d) to specify that the precision is given 
-	in **the next argument**, or in the **m-th argument**, respectively, which
-	must be of type int. If the precision is given as just '.', the precision 
-	is taken to be zero. A negative precision is taken as if the precision were 
-	omitted.
+	may write "*" or "*m$" (e.g.: %.*d or %.2$d) to specify that the precision 
+	is given in **the next argument**, or in the **m-th argument**, 
+	respectively, which must be of type int. If the precision is given as just
+	'.', the precision is taken to be zero. A negative precision is taken as 
+	if the precision were omitted.
 	* For d, i, u, x, and X conversions.
 	* Dynamics with '0' and '-':
 		* '.' override '0' if used with a numeric conversion (d, i, u, x, and X)
