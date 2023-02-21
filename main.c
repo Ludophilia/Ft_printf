@@ -278,7 +278,7 @@ void	integer_specifier_err(int do_it)
 		return ;
 	printf("Integer specifiers err:\n");
 	printf("%s'%i, %d'\n", 
-		"\tB10 Float, Wrong type:\n\t\x20", 42.7, 42.7); //  warning: format
+		"\tB10 FL, Wrong type:\n\t\x20", 42.7, 42.7); //  warning: format
 	// specifies type 'int' but the argument has type 'double' [-Wformat]
 	printf("%s'%i, %d'\n", 
 		"\tSTR(0), Wrong type:\n\t\x20", "", ""); //  warning: format
@@ -308,16 +308,118 @@ void	unsigned_specifier(int do_it)
 		return ;
 	printf("Unsigned Integer specifiers and flags:\n");
 	printf("%s'%u,%d'\n",
-		"\t-B10, Normal:\n\t\x20", -22, -22);
+		"\t-B10I, Normal:\n\t\x20", -22, -22);
 	printf("%s'%u,%d'\n",
-		"\t+B10, Normal:\n\t\x20", 22, 22);
-	printf("					\n");
+		"\t+B10I, Normal:\n\t\x20", 22, 22);
+	printf("%s'%u,%d'\n",
+		"\t+B16UI, Normal:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
+	printf("%s'%u,%d'\n",
+		"\t+B8UI, Normal:\n\t\x20", 037777777013, 037777777013);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%2u,%2d'\n",
+		"\t+B10UI, Min Field Length(2):\n\t\x20", 2294966795U, 2294966795U);
+	printf("%s'%12u,%12d'\n",
+		"\t+B16UI, Min Field Length(12):\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
+	printf("%s'%20u,%20d'\n",
+		"\t+B8UI, Min Field Length(20):\n\t\x20", 037772154013, 037777777013);
+	printf("											"
+		   "										 	\n");
 	printf("%s'%-u,%-d'\n",
-		"\t-B10, Left justified:\n\t\x20", -22, -22);
-	printf("%s'%-u,%-d'\n",
-		"\t+B10, Left justified:\n\t\x20", 22, 22);
-	printf("					\n");
+		"\t+B10I, Left justified:\n\t\x20", 22, 22);
+	printf("%s'%-2u,%-2d'\n",
+		"\t+B10UI, Left justified + Min Field Length(13):\n\t\x20",
+		2294966795U, 2294966795U);
+	printf("%s'%-13u,%-13d'\n",
+		"\t+B10UI, Left justified + Min Field Length(13):\n\t\x20",
+		2294966795U, 2294966795U);
+	printf("%s'%-19u,%-19d'\n",
+		"\t+B16UI, Left justified + Min Field Length(19):\n\t\x20", 
+		0xFFFFFFFF, 0xFFFFFFFF);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%.2u,%.2d'\n",
+		"\t+B10UI, Precision(2):\n\t\x20", 2294966795U, 2294966795U);
+	printf("%s'%.12u,%.12d'\n",
+		"\t+B16UI, Precision(12):\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
+	printf("%s'%.20u,%.20d'\n",
+		"\t+B8UI, Precision(20):\n\t\x20", 037772154013, 037777777013);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%25.20u,%25.20d'\n",
+		"\t+B10UI, Min Field Length(25) + Precision(20):\n\t\x20", 
+		2294966795U, 2294966795U);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%0u,%0d'\n",
+		"\t+B10UI, Zero padding:\n\t\x20", 
+		2294966795U, 2294966795U);
+	printf("%s'%010u,%010d'\n",
+		"\t+B10UI, Zero padding + Min Field Length(10):\n\t\x20", 
+		2294966795U, 2294966795U);
+	printf("%s'%015u,%015d'\n",
+		"\t+B10UI, Zero padding + Min Field Length(15):\n\t\x20", 
+		2294966795U, 2294966795U);
+	printf("%s'%025u,%025d'\n",
+		"\t+B10UI, Zero padding + Min Field Length(25):\n\t\x20", 
+		2294966795U, 2294966795U);
+	printf("											"
+		   "										 	\n");
 }
+
+/*
+void	unsigned_specifier_err(int do_it)
+{
+	if (!do_it)
+		return ;
+	printf("Unsigned Integer errors:\n");
+	printf("%s'%u,%d'\n",
+		"\t+STR(13), Wrong type:\n\t\x20", "037777777013", "037777777013");
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'char *'
+	printf("%s'%u,%d'\n",
+		"\t+FL, Wrong type:\n\t\x20", 69.69, 69.69);
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'double'
+	printf("%s'%u,%d'\n",
+		"\t+I*, Wrong type:\n\t\x20", (int[3]){1, 2, 3}, (int[3]){1, 2, 3});
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'int *'
+	printf("											"
+		   "										 	\n");
+	printf("%s'% u,% d'\n",
+		"\t-B10I, Broken Space +:\n\t\x20", -42, -42); 
+	printf("%s'% u,% d'\n",
+		"\tB8I, Broken Space +:\n\t\x20", 052, 052); // Does nothing
+		/  warning: flag ' ' results in undefined behavior with 'u' conversion 
+		// specifier [-Wformat]
+	printf("%s'% u,% d'\n",
+		"\t+B16UI, Broken Space +:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // Does nothing
+		//  warning: flag ' ' results in undefined behavior with 'u' conversion 
+		// specifier [-Wformat]
+	printf("											"
+		   "										 	\n");
+	printf("%s'%+u,%+d'\n",
+		"\t+B10UI, +/- Sign:\n\t\x20", 2294966795U, 2294966795U); // does nothing
+		// warning: flag '+' results in undefined behavior with 'u' 
+		// conversion specifier [-Wformat]
+	printf("%s'%+u,%+d'\n",
+		"\t+B16UI, +/- Sign:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // does nothing
+		// warning: flag '+' results in undefined behavior with 'u' 
+		// conversion specifier [-Wformat]
+	printf("%s'%+u,%+d'\n",
+		"\t+B8UI, +/- Sign:\n\t\x20", 037772154013, 037777777013); // does nothing
+		// warning: flag '+' results in undefined behavior with 'u' 
+		// conversion specifier [-Wformat]
+	printf("											"
+		   "										 	\n");
+	printf("%s'%025.20u,%025.20d'\n",
+		"\t+B10UI, Zero padding + Min Field Length(25) + Precision(20):\n\t\x20", 
+		2294966795U, 2294966795U); // Zero padding is ignored when precision
+	printf("											"
+		   "										 	\n");
+}
+*/
 
 void	pointer_specifier(int do_it)
 {
@@ -361,6 +463,14 @@ void	just_pourcent(int do_it)
 		"\tJust pourcent:\n\t\x20");
 }
 
+// TREATED
+	// flags: ' ' '#' '+' '0' '-'
+	// options: min length, precision
+
+// NOT TREATED
+	// flags:   
+	// options: 
+
 int	main(void)
 {
 	// integer_specifier2(1);
@@ -373,7 +483,8 @@ int	main(void)
 	// string_specifier_err(1);
 	integer_specifier(1);
 	// integer_specifier_err(1);
-	// unsigned_specifier(1);
+	unsigned_specifier(1);
+	// unsigned_specifier_err(1);
 	// pointer_specifier(1);
 	// hexadecimal_specifier(1);
 	// just_pourcent(1);
