@@ -72,14 +72,14 @@ void	character_specifier(int do_it)
 		return ;
 	printf("Character specifiers and flags:\n");
 	printf("%s'%c'\n", 
-		"\tB16I Normal:\n\t\x20", 0x41); // -> (0x41)16 is (65)10
+		"\tB16I standard %c specifier:\n\t\x20", 0x41); // -> (0x41)16 is (65)10
 	printf("%s'%c'\n", 
-		"\tB10I Normal:\n\t\x20", 65);
+		"\tB10I standard %c specifier:\n\t\x20", 65);
 	printf("%s'%c'\n", 
-		"\t-B10I Normal:\n\t\x20", -175); // -> -175 is 81 after 
+		"\t-B10I standard %c specifier:\n\t\x20", -175); // -> -175 is 81 after 
 		// unsigned char conversion
 	printf("%s'%c'\n", 
-		"\t-B8I Normal:\n\t\x20", -0276); // -> (-0276)8 is (66)10 after
+		"\t-B8I standard %c specifier:\n\t\x20", -0276); // -> (-0276)8 is (66)10 after
 		// unsigned char conversion
 	printf("											"
 		   "										  \n");
@@ -122,9 +122,9 @@ void	string_specifier(int do_it)
 		return ;
 	printf("String specifier and flags:\n");
 	printf("%s'%s'%s''\n",
-		"\tSTR(8) Normal:\n\t\x20", "je souis\x20", "travail");
+		"\tSTR(8) standard %s specifier:\n\t\x20", "je souis\x20", "travail");
 	printf("%s'%s'%s''\n",
-		"\tSTR(0) Normal:\n\t\x20", "je souis\x20", "");
+		"\tSTR(0) standard %s specifier:\n\t\x20", "je souis\x20", "");
 	printf("											"
 		   "										  \n");
 	printf("%s'%s'%.2s''\n",
@@ -199,11 +199,11 @@ void	integer_specifier(int do_it)
 		return ;
 	printf("Integer specifiers and flags:\n");
 	printf("%s'%i,%d'\n",
-		"\t-B10I, Normal:\n\t\x20", -42, -42);
+		"\t-B10I, standard %i,%d specifier:\n\t\x20", -42, -42);
 	printf("%s'%i,%d'\n",
-		"\t+B10I, Normal:\n\t\x20", 42, 42);
+		"\t+B10I, standard %i,%d specifier:\n\t\x20", 42, 42);
 	printf("%s'%i,%d'\n", 
-		"\t+B16I, Normal:\n\t\x20", 0x2a, 0x2A);
+		"\t+B16I, standard %i,%d specifier:\n\t\x20", 0x2a, 0x2A);
 	printf("											"
 		   "										 	\n");
 	printf("%s'% i,% d'\n",
@@ -308,13 +308,13 @@ void	unsigned_specifier(int do_it)
 		return ;
 	printf("Unsigned Integer specifiers and flags:\n");
 	printf("%s'%u,%d'\n",
-		"\t-B10I, Normal:\n\t\x20", -22, -22);
+		"\t-B10I, standard %u specifier:\n\t\x20", -22, -22);
 	printf("%s'%u,%d'\n",
-		"\t+B10I, Normal:\n\t\x20", 22, 22);
+		"\t+B10I, standard %u specifier:\n\t\x20", 22, 22);
 	printf("%s'%u,%d'\n",
-		"\t+B16UI, Normal:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
+		"\t+B16UI, standard %u specifier:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
 	printf("%s'%u,%d'\n",
-		"\t+B8UI, Normal:\n\t\x20", 037777777013, 037777777013);
+		"\t+B8UI, standard %u specifier:\n\t\x20", 037777777013, 037777777013);
 	printf("											"
 		   "										 	\n");
 	printf("%s'%2u,%2d'\n",
@@ -426,11 +426,56 @@ void	pointer_specifier(int do_it)
 	if (!do_it)
 		return ;
 	printf("Pointers specifier and flags:\n");
-	int	*mf = malloc(1 * sizeof(int));
-	printf("%s'%p'\n", 
-		"\tPointer, Normal:\n\t\x20", mf);
-	free(mf);
-	printf("					\n");
+	void	*p;
+	printf("%s'%p'\n",
+		"\tvoid * PTR, standard %p specifier:\n\t\x20", p);
+	printf("%s'%p'\n",
+		"\tvoid * from B16ULI, standard %p specifier:\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("%s'%p'\n",
+		"\tvoid * from B8I, standard %p specifier:\n\t\x20",
+		(void *)010);
+	printf("%s'%p'\n",
+		"\tvoid * from B10I, standard %p specifier:\n\t\x20",
+		(void *)4242);
+	printf("%s'%p'\n",
+		"\tvoid * from B16I, standard %p specifier:\n\t\x20",
+		(void *)0xFFFF);
+
+
+	printf("												"
+		   "										 		\n");
+}
+
+void	pointer_specifier_err(int do_it)
+{
+	if (!do_it)
+		return ;
+	printf("Pointers specifier errs:\n");
+	printf("%s'%p'\n",
+		"\tB10I, wrong type, standard %p specifier:\n\t\x20",
+		256); // still displays the value correct in hex
+		//  warning: format specifies type 'void *' but the argument 
+		// has type 'int'
+	printf("%s'%p'\n",
+		"\tB16I, wrong type, standard %p specifier:\n\t\x20",
+		0xEFF); // still displays the value correct in hex
+		//  warning: format specifies type 'void *' but the argument
+		// has type 'int'
+	void	*p;
+	printf("%s'%p'\n",
+		"\tPTRUL, wrong type, standard %p specifier:\n\t\x20", (uintptr_t)p); 
+		// The value returned matches the hexadecimal one printed by %p.
+		// warning: format specifies type 'void *' but the argument has type
+		// 'uintptr_t' (aka 'unsigned long')
+	printf("%s'%p'\n",
+		"\tB16ULI, wrong type, standard %p specifier:\n\t\x20",
+		((uintptr_t){ 0x1000UL })); // The value 
+		// returned matches the hexadecimal one printed by %p.
+		// warning: format specifies type 'void *' but the argument has type
+		// 'uintptr_t' (aka 'unsigned long')
+	printf("												"
+		   "										 		\n");
 }
 
 void	hexadecimal_specifier(int do_it)
@@ -463,11 +508,11 @@ void	just_pourcent(int do_it)
 		"\tJust pourcent:\n\t\x20");
 }
 
-// TREATED
+// NOT TREATED
 	// flags: ' ' '#' '+' '0' '-'
 	// options: min length, precision
 
-// NOT TREATED
+//  TREATED
 	// flags:   
 	// options: 
 
@@ -485,7 +530,8 @@ int	main(void)
 	// integer_specifier_err(1);
 	unsigned_specifier(1);
 	// unsigned_specifier_err(1);
-	// pointer_specifier(1);
+	pointer_specifier(1);
+	pointer_specifier_err(1);
 	// hexadecimal_specifier(1);
 	// just_pourcent(1);
 	return (0);

@@ -47,10 +47,10 @@ habitually as follow :
 
 Here are the conversion specifiers that will be implemented:
 
-* %c : Character placeholder. If no l length modifier is present, the
+* %c: Character placeholder. If no l length modifier is present, the
 **int argument** is converted to an **unsigned char**, and the resulting 
 character is written on stdout.
-* %s : C character string placeholder. Reminder: C character string are null
+* %s: C character string placeholder. Reminder: C character string are null
 terminated. If no l length modifier is present: the **const char * argument** is 
 expected to be a pointer to an array of character type. Characters from the 
 array are written up to (but not including) a terminating null byte ('\0'); 
@@ -58,13 +58,13 @@ array are written up to (but not including) a terminating null byte ('\0');
 are written and no null byte need be present; **if the precision is not** 
 **specified, or greater than the size of the array**, the array must contain a
 terminating null byte.
-* %d, %i : Signed integer placeholder. The **int argument** is converted to
+* %d, %i: Signed integer placeholder. The **int argument** is converted to
 **signed decimal notation** (base 10, signed). The precision, if any, gives 
 the minimum number of digits that must appear; if the converted value 
 requires fewer digits, it is **padded on the left with zeros**. The default 
 precision is 1. When 0 is printed with an explicit precision 0, the output is 
 empty.
-* %u : unsigned integer placeholder. The **unsigned int** argument is converted 
+* %u: unsigned integer placeholder. The **unsigned int** argument is converted 
 to **unsigned decimal (base 10)** notation. The letters abcdef are used for x
 conversions; the letters ABCDEF are used for X conversions. The **precision**, 
 if any, gives the **minimum number of digits** that must appear; if the 
@@ -72,9 +72,12 @@ converted value requires fewer digits, it is padded on the left with zeros.
 The default precision is 1. When 0 is printed with an explicit precision 0, 
 the output is empty.
 
+
+* %p: (void *) pointer placeholder (hexadecimal, lowercase, starts with 0x)
+
+
 **PLEASE CHECK AGAIN THIS SHIT BELOW**
 
-* %p : (void *) pointer placeholder (hexadecimal, lowercase, starts with 0x)
 * %x : hexadecimal placeholder (a to f are lowercase)
 * %X : hexadecimal placeholder (A to F are uppercase)
 
