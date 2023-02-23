@@ -71,17 +71,16 @@ if any, gives the **minimum number of digits** that must appear; if the
 converted value requires fewer digits, it is padded on the left with zeros.
 The default precision is 1. When 0 is printed with an explicit precision 0, 
 the output is empty.
-
-
-* %p: (void *) pointer placeholder (hexadecimal, lowercase, starts with 0x)
-
-
-**PLEASE CHECK AGAIN THIS SHIT BELOW**
-
-* %x : hexadecimal placeholder (a to f are lowercase)
-* %X : hexadecimal placeholder (A to F are uppercase)
-
-* %% : prints %
+* %p: (void *) pointer placeholder. The **void *** pointer argument is printed 
+in **hexadecimal** (as if by %#x or %#lx).
+* %x, %X : hexadecimal placeholder. The **unsigned int** argument is converted
+to **unsigned hexadecimal** (x and X) notation. The letters abcdef are used 
+for x conversions; the letters ABCDEF are used for X conversions. 
+The precision, if any, gives the minimum number of digits that must appear; 
+if the converted value requires fewer digits, it is padded on the left with 
+zeros. The default precision is 1. When 0 is printed with an explicit 
+precision 0, the output is empty.
+* %% : A '%' is written. No argument is converted.
 
 #### Flag
 
@@ -123,7 +122,7 @@ Here are the flags that will be treated for this exercice:
 * \+ (plus sign):
 	* A sign (+ or -) should always be placed before a number produced by a 
 	signed conversion (%d, %i). By default, a sign is used only for negative 
-	numbers. 
+	numbers.
 	* For %d, %i
 	* Dynamics with ' ':
 		* A '+' overrides a ' ' space if both are used.

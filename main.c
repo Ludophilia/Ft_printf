@@ -178,15 +178,15 @@ void	string_specifier_err(int do_it)
 		   "										 	\n");
 	printf("%s'%s'%s''\n",
 		"\tB10I Wrong type:\n\t\x20", "je souis\x20", 42); // warning: format 
-		// specifies type 'char *' but the argument has type 'int'. And it's
+		// specifies type 'char *' but the argument has type 'int'. And it
 		// segfaults...
 	printf("%s'%s'%s''\n",
-		"\t-B10FL Wrong type:\n\t\x20", "je souis\x20", -3.14); // warning: format 
-		// specifies type 'char *' but the argument has type 'int'. And it's
-		// segfaults...
+		"\t-B10FL Wrong type:\n\t\x20", "je souis\x20", -3.14); // warning:  
+		// format specifies type 'char *' but the argument has type 'int'. And 
+		// it segfaults...
 	printf("%s'%s'%s''\n",
 		"\tCR Wrong type:\n\t\x20", "je souis\x20", 'C'); // warning: format 
-		// specifies type 'char *' but the argument has type 'int'. And it's
+		// specifies type 'char *' but the argument has type 'int'. And it
 		// segfaults...	
 	printf("											"
 		   "										 	\n");
@@ -423,32 +423,64 @@ void	unsigned_specifier_err(int do_it)
 
 void	pointer_specifier(int do_it)
 {
+	void	*p0;
+	int		*p1;
+	char	*p2;
+
 	if (!do_it)
 		return ;
 	printf("Pointers specifier and flags:\n");
-	void	*p;
 	printf("%s'%p'\n",
-		"\tvoid * PTR, standard %p specifier:\n\t\x20", p);
+		"\tvoid* PTR, standard %p specifier:\n\t\x20", p0);
 	printf("%s'%p'\n",
-		"\tvoid * from B16ULI, standard %p specifier:\n\t\x20",
+		"\tint* PTR, standard %p specifier:\n\t\x20", p1);
+	printf("%s'%p'\n",
+		"\tchar* PTR, standard %p specifier:\n\t\x20", p2);
+	printf("%s'%p'\n",
+		"\tvoid* from B16ULI, standard %p specifier:\n\t\x20",
 		(void *)(uintptr_t)0x1000UL);
 	printf("%s'%p'\n",
-		"\tvoid * from B8I, standard %p specifier:\n\t\x20",
+		"\tvoid* from B8I, standard %p specifier:\n\t\x20",
 		(void *)010);
 	printf("%s'%p'\n",
-		"\tvoid * from B10I, standard %p specifier:\n\t\x20",
+		"\tvoid* from B10I, standard %p specifier:\n\t\x20",
 		(void *)4242);
 	printf("%s'%p'\n",
-		"\tvoid * from B16I, standard %p specifier:\n\t\x20",
+		"\tvoid* from B16I, standard %p specifier:\n\t\x20",
 		(void *)0xFFFF);
-
-
+	printf("												"
+		   "										 		\n");
+	printf("%s'%1p'\n",
+		"\tvoid* from B16ULI, Min Field Length(1):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("%s'%7p'\n",
+		"\tvoid* from B16ULI, Min Field Length(7):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("%s'%15p'\n",
+		"\tvoid* from B16ULI, Min Field Length(15):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%-1p'\n",
+		"\tvoid* from B16ULI, Left Aligned + Min Field Length(1):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("%s'%-7p'\n",
+		"\tvoid* from B16ULI, Left Aligned + Min Field Length(7):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+	printf("%s'%-15p'\n",
+		"\tvoid* from B16ULI, Left Aligned + Min Field Length(15):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
 	printf("												"
 		   "										 		\n");
 }
 
+/*
 void	pointer_specifier_err(int do_it)
 {
+	void	*p0;
+	int		*p1;
+	char	*p2;
+
 	if (!do_it)
 		return ;
 	printf("Pointers specifier errs:\n");
@@ -476,7 +508,72 @@ void	pointer_specifier_err(int do_it)
 		// 'uintptr_t' (aka 'unsigned long')
 	printf("												"
 		   "										 		\n");
+	printf("%s'%0p'\n",
+		"\tvoid* PTR, zero filled:\n\t\x20", p0); // 
+		// displays the right value but raises a warning 
+		// flag '0' results in undefined behavior with 'p' conversion specifier
+	printf("%s'%01p'\n",
+		"\tvoid* from B16ULI, Zero filled + Min Field Length(1):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// does nothing but raises a warning 
+		// flag '0' results in undefined behavior with 'p' conversion specifier
+	printf("%s'%07p'\n",
+		"\tvoid* from B16ULI, Zero filled + Min Field Length(7):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// 0x at the left, then 1 zero, then 1000.
+		// flag '0' results in undefined behavior with 'p' conversion specifier
+	printf("%s'%015p'\n",
+		"\tvoid* from B16ULI, Zero filled + Min Field Length(15):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// 0x at the left, then 9 zeros, then 1000.
+		// flag '0' results in undefined behavior with 'p' conversion specifier	
+	printf("												"
+		   "										 		\n");
+	printf("%s'%.1p'\n",
+		"\tvoid* from B16ULI, Precision(1):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// 1 number minimum
+		// precision used with 'p' conversion specifier, resulting in undefined 
+		// behavior
+	printf("%s'%.7p'\n",
+		"\tvoid* from B16ULI, Precision(7):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// 1000 is 4 numbers so it will zero filled with 3 zeros. 
+		// 0x prefix is still at the extreme left and not being taken account.
+		// precision used with 'p' conversion specifier, resulting in undefined
+		// behavior 
+	printf("%s'%.15p'\n",
+		"\tvoid* from B16ULI, Precision(15):\n\t\x20",
+		(void *)(uintptr_t)0x1000UL);
+		// 1000 is 4 numbers so it will zero filled with 11 zeros
+		// 0x prefix is still at the extreme left and not being taken account.
+		// precision used with 'p' conversion specifier, resulting in undefined 
+		// behavior 
+	printf("												"
+		   "										 		\n");
+	printf("%s'% p'\n",
+		"\tchar* PTR, Space for + prefix:\n\t\x20", p2); 
+		// does nothing
+		// displays the right value but raises a warning 
+		// flag ' ' results in undefined behavior with 'p' conversion specifier
+	printf("												"
+		   "										 		\n");
+	printf("%s'%#p'\n",
+		"\tchar* PTR, 0x prefix:\n\t\x20", p2); // 
+		// does nothing, no additionnal 0x 
+		// displays the right value but raises a warning 
+		// flag '#' results in undefined behavior with 'p' conversion specifier
+	printf("												"
+		   "										 		\n");
+	printf("%s'%+p'\n",
+		"\tvoid* PTR, +/- prefix:\n\t\x20", p0); // 
+		// does nothing
+		// displays the right value but raises a warning 
+		// flag '+' results in undefined behavior with 'p' conversion specifier
+	printf("												"
+		   "										 		\n");
 }
+*/
 
 void	hexadecimal_specifier(int do_it)
 {
@@ -500,6 +597,13 @@ void	hexadecimal_specifier(int do_it)
 	printf("					\n");
 }
 
+void	hexadecimal_specifier_err(int do_it)
+{
+	if (!do_it)
+		return ;
+	// HELLO_HELLO_HELLO
+}
+
 void	just_pourcent(int do_it)
 {
 	if (!do_it)
@@ -508,31 +612,31 @@ void	just_pourcent(int do_it)
 		"\tJust pourcent:\n\t\x20");
 }
 
-// NOT TREATED
+//  NOT TREATED
 	// flags: ' ' '#' '+' '0' '-'
-	// options: min length, precision
+	// options: min length,
 
 //  TREATED
-	// flags:   
-	// options: 
+	// flags:  
+	// options:  precision
 
 int	main(void)
 {
 	// integer_specifier2(1);
-
-	format_string(1);
-	// format_string_err(1);
-	character_specifier(1);
-	// character_specifier_err(1);
-	string_specifier(1);
-	// string_specifier_err(1);
-	integer_specifier(1);
-	// integer_specifier_err(1);
-	unsigned_specifier(1);
+	// format_string(1);
+	// // format_string_err(1);
+	// character_specifier(1);
+	// // character_specifier_err(1);
+	// string_specifier(1);
+	// // string_specifier_err(1);
+	// integer_specifier(1);
+	// // integer_specifier_err(1);
+	// unsigned_specifier(1);
 	// unsigned_specifier_err(1);
-	pointer_specifier(1);
-	pointer_specifier_err(1);
-	// hexadecimal_specifier(1);
+	// pointer_specifier(1);
+	// pointer_specifier_err(1);
+	hexadecimal_specifier(1);
+	// hexadecimal_specifier_err(1);
 	// just_pourcent(1);
 	return (0);
 }
