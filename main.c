@@ -79,8 +79,8 @@ void	character_specifier(int do_it)
 		"\t-B10I standard %c specifier:\n\t\x20", -175); // -> -175 is 81 after 
 		// unsigned char conversion
 	printf("%s'%c'\n", 
-		"\t-B8I standard %c specifier:\n\t\x20", -0276); // -> (-0276)8 is (66)10 after
-		// unsigned char conversion
+		"\t-B8I standard %c specifier:\n\t\x20", -0276); // -> (-0276)8 is 
+		// (66)10 after unsigned char conversion
 	printf("											"
 		   "										  \n");
 	printf("%s'%-c'\n",
@@ -394,9 +394,9 @@ void	unsigned_specifier_err(int do_it)
 		/  warning: flag ' ' results in undefined behavior with 'u' conversion 
 		// specifier [-Wformat]
 	printf("%s'% u,% d'\n",
-		"\t+B16UI, Broken Space +:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // Does nothing
-		//  warning: flag ' ' results in undefined behavior with 'u' conversion 
-		// specifier [-Wformat]
+		"\t+B16UI, Broken Space +:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // Does 
+		// nothing warning: flag ' ' results in undefined behavior with 'u' 
+		// conversion specifier [-Wformat]
 	printf("											"
 		   "										 	\n");
 	printf("%s'%+u,%+d'\n",
@@ -581,28 +581,123 @@ void	hexadecimal_specifier(int do_it)
 		return ;
 	printf("Hexadecimal specifier and flags:\n");
 	printf("%s'%x,%X'\n", 
-		"\t-B16, Normal:\n\t\x20", -0xab2F, -0xab2F);
+		"\t-B8I, %x standard specifier:\n\t\x20", -052, -052);
+		// Number is converted to unsigned int via signed 2 complements then
+		// converted to hex
 	printf("%s'%x,%X'\n", 
-		"\t+B16, Normal:\n\t\x20", 0xab2F, 0xab2F);
-	printf("					\n");
-	printf("%s'%-x,%-X'\n",
-		"\t-B16, Left justified:\n\t\x20", -0xab2F, -0xab2F);
-	printf("%s'%-x,%-X'\n",
-		"\t+B16, Left justified:\n\t\x20", 0xab2F, 0xab2F);
-	printf("					\n");
+		"\t+B16I, %x standard specifier:\n\t\x20", 0xab2F, 0xab2F);
+	printf("%s'%x,%X'\n", 
+		"\t+B10U, %x standard specifier:\n\t\x20", 42U, 42U);
+	printf("												"
+		   "										 		\n");
 	printf("%s'%#x,%#X'\n",
-		"\t-B16, Alt form:\n\t\x20", -0xab2F, -0xab2F);
-	printf("%s'%#x,%#X'\n",
-		"\t-B16, Alt form:\n\t\x20", 0xab2F, 0xab2F);
-	printf("					\n");
+		"\tB16I, 0x prefix:\n\t\x20", 0xab2F, 0xab2F);
+	printf("%s'%#x,%#X'\n", 
+		"\t+B10U, 0x prefix:\n\t\x20", 42U, 42U);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%1x,%1X'\n", 
+		"\t+B10U, Min Length(1):\n\t\x20", 42U, 42U);
+	printf("%s'%4x,%4X'\n", 
+		"\t+B10U, Min Length(4):\n\t\x20", 42U, 42U);
+	printf("%s'%#1x,%#1X'\n",
+		"\t+B10U, Min Length(4) + 0x prefix:\n\t\x20", 42U, 42U);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%-x,%-X'\n", 
+		"\t+B10U, Left Justified:\n\t\x20", 42U, 42U);
+	printf("%s'%-4x,%-4X'\n", 
+		"\t+B10U, Left Justified + Min Length(4):\n\t\x20", 42U, 42U);
+	printf("%s'%-10x,%-10X'\n",
+		"\t+B10U, Left Justified + Min Length(10):\n\t\x20", 42U, 42U);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%#-4x,%#-4X'\n", 
+		"\t+B10U, 0x Prefix + Left Justified + Min Length(4):\n\t\x20", 
+		42U, 42U);
+	printf("%s'%-#10x,%-#10X'\n", 
+		"\t+B10U, 0x Prefix + Left Justified + Min Length(10):\n\t\x20", 
+		42U, 42U);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%0x,%0X'\n", 
+		"\t+B10U, Zero filled:\n\t\x20", 42U, 42U);
+	printf("%s'%04x,%04X'\n", 
+		"\t+B10U, Zero filled + Min Length(4):\n\t\x20", 42U, 42U);
+	printf("%s'%010x,%010X'\n",
+		"\t+B10U, Zero filled + Min Length(10):\n\t\x20", 42U, 42U);
+	printf("%s'%#010x,%#010X'\n",
+		"\t+B10U, 0x prefix + Zero filled + Min Length(10):\n\t\x20",
+		42U, 42U);
+	printf("												"
+		   "										 		\n");
+	printf("%s'%.1x,%.1X'\n", 
+		"\t+B10U, Precision(1):\n\t\x20", 42U, 42U);
+	printf("%s'%.4x,%.4X'\n", 
+		"\t+B10U, Precision(4):\n\t\x20", 42U, 42U);
+	printf("%s'%#.4x,%#.4X'\n", 
+		"\t+B10U, 0x prefix + Precision(4):\n\t\x20", 42U, 42U);
+	printf("												"
+		   "										 		\n");
 }
 
+/*
 void	hexadecimal_specifier_err(int do_it)
 {
 	if (!do_it)
 		return ;
-	// HELLO_HELLO_HELLO
+	printf("Hexadecimal specifier errors:\n");
+	printf("%s'%x,%X'\n", 
+		"\t+B10UL, wrong type, %x standard specifier:\n\t\x20", 16UL, 16UL);
+		// Conversion is done correctly but a warning is raised.
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'unsigned long'
+	printf("%s'%x,%X'\n", 
+		"\tvoid* +B16I, wrong type, %x standard specifier:\n\t\x20",
+		(void *)0xAAA, (void *)0xAAA);
+		// Conversion is done correctly but a warning is raised.
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'void *'
+	printf("%s'%x,%X'\n",
+		"\tint* +B16I, wrong type, %x standard specifier:\n\t\x20",
+		(int *)0xAAA, (int *)0xAAA);
+		// Conversion is done correctly but a warning is raised.
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'int *'
+	printf("%s'%x,%X'\n",
+		"\tSTR(13), wrong type, %x standard specifier:\n\t\x20",
+		"(int *)0xAAA", "(int *)0xAAA)");
+		// A conversion is done but a warning is raised.
+		// warning: format specifies type 'unsigned int' but the argument has
+		// type 'char *'
+	printf("												"
+		   "										 		\n");
+	printf("%s'% x,% X'\n", 
+		"\t+B10U, Space for +:\n\t\x20", 42U, 42U);
+		// No space is added, conversion is done but a warning is raised
+		// warning: flag ' ' results in undefined behavior with 'x' conversion 
+		// specifier
+	printf("%s'%+x,%+X'\n", 
+		"\t+B10U, +/- sign:\n\t\x20", 42U, 42U);
+		// Not sign + is added, conversion is done but a warning is raised
+		// warning: flag '+' results in undefined behavior with 'x' conversion 
+		// specifier
+	printf("												"
+		   "										 		\n");
+	printf("%s'%-010x,%-010X'\n",
+		"\t+B10U, Left Justified + Zero filled + Min Length(10):\n\t\x20", 
+		42U, 42U);
+		// Zero filled is ignored when - is present. So this raises a warning.
+	printf("												"
+		   "										 		\n");
+	printf("%s'%#010.3x,%#010.3X'\n",
+		"\t+B10U, 0x prefix + Zero filled + Precision(3) + Min Length(10):\n\t\x20",
+		42U, 42U); 
+		// Precision and Zero filled clash but no flag is raised
+	printf("												"
+		   "										 		\n");
 }
+*/
 
 void	just_pourcent(int do_it)
 {
@@ -612,13 +707,13 @@ void	just_pourcent(int do_it)
 		"\tJust pourcent:\n\t\x20");
 }
 
-//  NOT TREATED
-	// flags: ' ' '#' '+' '0' '-'
-	// options: min length,
+ // NOT TREATED
+	// flags: ' ' '+' | '#' | '-' '0'
+	// options: min length, precision
 
-//  TREATED
-	// flags:  
-	// options:  precision
+// TREATED
+	// flags:
+	// options:
 
 int	main(void)
 {

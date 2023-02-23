@@ -71,7 +71,7 @@ if any, gives the **minimum number of digits** that must appear; if the
 converted value requires fewer digits, it is padded on the left with zeros.
 The default precision is 1. When 0 is printed with an explicit precision 0, 
 the output is empty.
-* %p: (void *) pointer placeholder. The **void *** pointer argument is printed 
+* %p: (void *) pointer placeholder. The **void \*** pointer argument is printed 
 in **hexadecimal** (as if by %#x or %#lx).
 * %x, %X : hexadecimal placeholder. The **unsigned int** argument is converted
 to **unsigned hexadecimal** (x and X) notation. The letters abcdef are used 
