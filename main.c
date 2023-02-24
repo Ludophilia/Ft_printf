@@ -79,7 +79,7 @@ void	character_specifier(int do_it)
 		   "										 	\n");
 }
 
-/**/
+/*
 void	character_specifier_err(int do_it)
 {
 	if (!do_it)
@@ -193,7 +193,7 @@ void	character_specifier_err(int do_it)
 	printf("											"
 		   "											\n");
 }
-/**/
+*/
 
 void	string_specifier(int do_it)
 {
@@ -201,33 +201,62 @@ void	string_specifier(int do_it)
 		return ;
 	printf("String specifier and flags:\n");
 	printf("%s'%s'%s''\n",
-		"\tSTR(8) standard %s specifier:\n\t\x20", "je souis\x20", "travail");
+		"\tCR[0], standard %s specifier:\n\t\x20",
+		"je souis\x20", "");
 	printf("%s'%s'%s''\n",
-		"\tSTR(0) standard %s specifier:\n\t\x20", "je souis\x20", "");
-	printf("											"
-		   "										  \n");
-	printf("%s'%s'%.2s''\n",
-		"\tSTR(9), Precision(2):\n\t\x20", "je souis\x20", "yesouite");
-		// Write 'ye', but why precision and not min length width ? Precision
-		// affects the str length. Min length width affects how many characters
-		// are rendered AT MINIMUM.
-	printf("											"
-		   "											\n");
+		"\tCR[8], standard %s specifier:\n\t\x20",
+		"je souis\x20", "travail");
+	printf("%s'%s'\n",
+		"\tCR[8], standard %s specifier, misplaced format specifiers:\n\t\x20", 
+		"%s %s %u %p"); 
+		// prints "%s %s %u %p". Format speciers have no effect here.
+	printf("												"
+		   "												\n");
 	printf("%s'%s'%1s''\n",
-		"\tSTR(9) Min Field Length(1):\n\t\x20", "je souis\x20",
-		"fresh af");
-	printf("%s'%s'%20s''\n",
-		"\tSTR(9) Min Field Length(20):\n\t\x20", "je souis\x20",
-		"fresh af"); // 9/20 spots occuped, str is right justified.
+		"\tCR[9] Min Field Length(1):\n\t\x20", 
+		"je souis\x20", "fresh af");
+	printf("%s'%s'%10s''\n",
+		"\tCR[9] Min Field Length(10):\n\t\x20", 
+		"je souis\x20", "fresh af");
+	printf("%s'%s'%16s''\n",
+		"\tCR[9] Min Field Length(16):\n\t\x20", 
+		"je souis\x20", "fresh af");
 	printf("											"
 		   "										  	\n");
 	printf("%s'%s'%-s''\n",
-		"\tSTR(9) Left justified:\n\t\x20", "je souis\x20", "fresh af");
-		// Does nothing
-	printf("%s'%s'%-20s''\n",
-		"\tSTR(9) Left justified + Min Field Length(20):\n\t\x20", 
+		"\tCR[9] Left Justified:\n\t\x20", 
 		"je souis\x20", "fresh af");
-		// 9/20 spots occuped, str is left justified.
+	printf("%s'%s'%-1s''\n",
+		"\tCR[9] Left Justified + Min Field Length(1):\n\t\x20", 
+		"je souis\x20", "fresh af");
+	printf("%s'%s'%-10s''\n",
+		"\tCR[9] Left Justified + Min Field Length(10):\n\t\x20", 
+		"je souis\x20", "fresh af");
+	printf("%s'%s'%-16s''\n",
+		"\tCR[9] Left Justified + Min Field Length(16):\n\t\x20", 
+		"je souis\x20", "fresh af");
+	printf("											"
+		   "										  	\n");
+	printf("%s'%s'%.2s''\n",
+		"\tCR[9], Precision(2):\n\t\x20", 
+		"je souis\x20", "yesouite");
+		// 'je souis 'ye''
+		// Strange...
+	printf("%s'%s'%.4s''\n",
+		"\tCR[9], Precision(4):\n\t\x20", 
+		"je souis\x20", "yesouite");
+		// 'je souis 'yeso''
+		// Strange...
+	printf("%s'%s'%.6s''\n",	
+		"\tCR[9], Precision(6):\n\t\x20", 
+		"je souis\x20", "yesouite");
+		// 'je souis 'yesoui''
+		// Strange...
+	printf("%s'%s'%.10s''\n",
+		"\tCR[9], Precision(10):\n\t\x20", 
+		"je souis\x20", "yesouite");
+		// 'je souis 'yesouite'' and nothing else, no extra characters
+		// Strange...
 	printf("											"
 		   "										  	\n");
 }
@@ -238,37 +267,89 @@ void	string_specifier_err(int do_it)
 	if (!do_it)
 		return ;
 	printf("String specifier errors:\n");
-	printf("%s'%s'\n", 
-		"\tSpecifier-argument Mismatch:\n\t\x20"); // warning: more '%' 
-		// conversions than data arguments. Segfault? (Null)? Undefined 
-		// behavior ?
-	printf("											"
-		   "										 	\n");
 	printf("%s'%s'\n",
-		"\tMisplaced format specifiers:\n\t\x20", "%s %s %u %p"); // prints 
-		// "%s %s %u %p".
+		"\tNO ARGUMENT, standard %s specifier:\n\t\x20");
+		// Prints (Null) raises a warning:
+		// warning: more '%' conversions than data arguments
 	printf("											"
-		   "										 	\n");
-	printf("%s'%s'%020s''\n",
-		"\tSTR(9) zero filled with 20 of min field width:\n\t\x20", 
-		"je souis\x20", "fresh af"); // 9/20 spots occuped, str is right 
-		// justified with 000000 on the left. Undefined behavior.
+		   "										  \n");
+	printf("%s'%s'%s''\n",
+		"\tB10I, Wrong type, standard %s specifier :\n\t\x20", 
+		"je souis\x20", 42); 
+		// Segmentation fault.
+		// warning: format specifies type 'char *' but the argument has type 
+		// 'int'.
+	printf("%s'%s'%s''\n",
+		"\t-B10FL, Wrong type, standard %s specifier:\n\t\x20", 
+		"je souis\x20", -3.14F);  
+		// Segmentation fault.
+		// warning: format specifies type 'char *' but the argument has type 
+		// 'float'.
+	printf("%s'%s'%s''\n",
+		"\tCR, Wrong type, standard %s specifier:\n\t\x20",
+		"je souis\x20", 'C'); 
+		// Segmentation fault.
+		// warning: format specifies type 'char *' but the argument has type 
+		// 'int'.
+	printf("%s'%s'%s''\n",
+		"\t(int *)B16U, Wrong type, standard %s specifier:\n\t\x20",
+		"je souis\x20", (int *)0x1111U); 
+		// Segmentation fault.
+		// warning: format specifies type 'char *' but the argument has type 
+		// 'int *'.
 	printf("											"
-		   "										 	\n");
-	printf("%s'%s'%s''\n",
-		"\tB10I Wrong type:\n\t\x20", "je souis\x20", 42); // warning: format 
-		// specifies type 'char *' but the argument has type 'int'. And it
-		// segfaults...
-	printf("%s'%s'%s''\n",
-		"\t-B10FL Wrong type:\n\t\x20", "je souis\x20", -3.14); // warning:  
-		// format specifies type 'char *' but the argument has type 'int'. And 
-		// it segfaults...
-	printf("%s'%s'%s''\n",
-		"\tCR Wrong type:\n\t\x20", "je souis\x20", 'C'); // warning: format 
-		// specifies type 'char *' but the argument has type 'int'. And it
-		// segfaults...	
+		   "											\n");
+	printf("%s'%s'% s''\n",
+		"\tCR[8], Space for +:\n\t\x20",
+		"je souis\x20", "+travail+");
+		// Prints '+travail+', a warning is raised. No + sign is replaced by 
+		// space, a str is not positive anyway...
+		// warning: flag ' ' results in undefined behavior with 's' conversion 
+		// specifier
+	printf("%s'%s'%+s''\n",
+		"\tCR[8], +/- sign:\n\t\x20",
+		"je souis\x20", "travail");
+		// Prints 'travail', a warning is raised. No + sign is added...
+		// warning: flag '+' results in undefined behavior with 's' conversion 
+		// specifier
+	printf("%s'%s'%#s''\n",
+		"\tCR[8], 0x prefix:\n\t\x20",
+		"je souis\x20", "travail");
+		// Prints 'travail', a warning is raised. No prefix added...
+		// warning: flag '#' results in undefined behavior with 's' conversion 
+		// specifier
+	printf("												"
+		   "												\n");
+	printf("%s'%s'%0s''\n",
+		"\tCR[9] Zero Filled:\n\t\x20", 
+		"je souis\x20", "fresh af");
+		// No need for zero filling, raises a warning
+		// flag '0' results in undefined behavior with 's' conversion specifier
+	printf("%s'%s'%01s''\n",
+		"\tCR[9] Zero Filled + Min Field Length(1):\n\t\x20", 
+		"je souis\x20", "fresh af");
+		// No need for zero filling, raises a warning
+		// flag '0' results in undefined behavior with 's' conversion specifier
+	printf("%s'%s'%010s''\n",
+		"\tCR[9] Zero Filled + Min Field Length(10):\n\t\x20", 
+		"je souis\x20", "fresh af");
+		// Prints 'je souis '00fresh af'', raises a warning
+		// flag '0' results in undefined behavior with 's' conversion specifier 
+	printf("%s'%s'%016s''\n",
+		"\tCR[9] Zero Filled + Min Field Length(16):\n\t\x20", 
+		"je souis\x20", "fresh af");
+		// Prints '00000000fresh af'', raises a warning
+		// flag '0' results in undefined behavior with 's' conversion specifier
 	printf("											"
-		   "										 	\n");
+		   "										  	\n");
+	printf("%s'%s'%-016s''\n",
+		"\tCR[9] Left justified + Zero Filled + Min Field Length(16):\n\t\x20", 
+		"je souis\x20", "fresh af");
+		// Prints 'je souis 'fresh af        '', raises two warnings
+		// flag '0' is ignored when flag '-' is present
+		// flag '0' results in undefined behavior with 's' conversion specifier
+	printf("											"
+		   "											\n");
 }
 */
 
@@ -787,12 +868,12 @@ void	just_pourcent(int do_it)
 }
 
 // SPECIFIERS REVIEW
-	// NOT TREATED: %s %i %d %p %u %x %% 
-	// TREATED: %c
+	// NOT TREATED:  %i %d %p %u %x %% 
+	// TREATED: %c, %s
 
 // FLAGS REVIEW
 	// NOT TREATED: ' ' '+' | '#' | '-' '0'
-	// TREATED:  
+	// TREATED: 
 
 // OPTIONS REVIEW
 	// NOT TREATED: min length, precision
@@ -800,23 +881,22 @@ void	just_pourcent(int do_it)
 
 int	main(void)
 {
-	// integer_specifier2(1);
 	// format_string(1);
-	// // format_string_err(1);
-	character_specifier(1);
-	character_specifier_err(1);
-	// string_specifier(1);
-	// // string_specifier_err(1);
+	// character_specifier(1);
+	string_specifier(1);
 	// integer_specifier(1);
-	// // integer_specifier_err(1);
 	// unsigned_specifier(1);
-	// unsigned_specifier_err(1);
 	// pointer_specifier(1);
-	// pointer_specifier_err(1);
 	// hexadecimal_specifier(1);
-	// hexadecimal_specifier_err(1);
 	// just_pourcent(1);
-	return (0);
+	// ------------------------- //
+	// format_string_err(1);
+	// character_specifier_err(1);
+	// string_specifier_err(0);
+	// integer_specifier_err(1);
+	// unsigned_specifier_err(1);
+	// pointer_specifier_err(1);
+	// hexadecimal_specifier_err(1);
 }
 
 /*

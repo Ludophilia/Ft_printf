@@ -90,7 +90,7 @@ Here are the flags that will be treated for this exercice:
 	* The converted value is to be left adjusted on the field boundary. 
 	The default is right justification. The converted value is padded on the 
 	right with blanks, rather than on the left with blanks or zeros.
-	* For %c, %d, %i, %u, %x, %X. %s, %p ?
+	* For %c, %s, %d, %i, %u, %x, %X. And %p ?
 	* Dynamics with '.' and '0':
 		* A '-' overrides a '0' if both are given. 
 		* (Interactions with '.' ?)
@@ -108,7 +108,7 @@ Here are the flags that will be treated for this exercice:
 
 * \# (pound sign): 
 	* the value should be converted to another form. As far we're concerned for 
-	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X 
+	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X
 	conversions) prepended to it.
 	* For %x, %X
 
@@ -139,7 +139,7 @@ Here are the flags that will be treated for this exercice:
 	In no case does a nonexistent or small field width cause truncation of a 
 	field; if the result of a conversion is wider than the field width, the 
 	field is expanded to contain the conversion result.
-	* For c, d, i, u, x, and X conversions. And s, p too?
+	* For c, s, d, i, u, x, and X conversions. And p too?
 	* Dynamics with '-':
 		* If the converted value has fewer characters than the field width,
 		it will be padded with **spaces** on the right. **A negative field**
@@ -150,13 +150,14 @@ Here are the flags that will be treated for this exercice:
 * . (dot sign):
 	* A dot sign followed by an optional decimal digit string 
 	(e.g: %.5d or %.d). This gives the minimum number of digits to appear 
-	for d, i, u, x, and X conversions. Instead of a decimal digit string one 
-	may write "*" or "*m$" (e.g.: %.*d or %.2$d) to specify that the precision 
+	**for d, i, u, x, and X conversions**. **For s conversions**, it gives the maximum instead. Instead of a decimal digit string one may write 
+	"*" or "*m$" (e.g.: %.*d or %.2$d) to specify that the precision 
 	is given in **the next argument**, or in the **m-th argument**, 
 	respectively, which must be of type int. If the precision is given as just
 	'.', the precision is taken to be zero. A negative precision is taken as 
 	if the precision were omitted.
 	* For d, i, u, x, and X conversions.
+	* For s conversions.
 	* Dynamics with '0' and '-':
 		* '.' override '0' if used with a numeric conversion (d, i, u, x, and X)
 		* (Interactions with '-' ?)
