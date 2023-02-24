@@ -12,45 +12,14 @@
 
 #include "ft_printf.h"
 
-/*
-void	integer_specifier2(int do_it)
-{
-	int a, b, c, d, e, f;
-
-	if (!do_it)
-		return ;
-	printf("Integer specifiers and flags with scanf:\n");
-	printf("\tNormal %%d, Enter Decimal please\n");
-	scanf("\n\t\x20%d", &a);
-	printf("\tNormal %%d, Enter Octal please\n");
-	scanf("\n\t\x20%d", &b);
-	printf("\tNormal %%d, Enter Hex please\n");
-	scanf("\n\t\x20%d", &c);
-	printf("											"
-		   "										  \n");
-	printf("\tNormal %%i, Enter Decimal please\n");
-	scanf("\n\t\x20%i", &d);
-	printf("\tNormal %%i, Enter Octal please\n");
-	scanf("\n\t\x20%i", &e);
-	printf("\tNormal %%i, Enter Hex please\n");
-	scanf("\n\t\x20%i", &f);
-	printf("											"
-		   "										  \n");
-	printf("\tdecimal a = %d, octal b = %d, hex c = %d\n", a, b, c);
-	printf("\tdecimal d = %i, octal e = %i, hex f = %i\n", d, e, f);
-	printf("											"
-		   "										  \n");
-}
-*/
-
 void	format_string(int do_it)
 {
 	if (!do_it)
 		return ;
-	printf("No specifiers and flags:\n");
+	printf("Just format string, no specifiers and flags:\n");
 	printf("\t'Sh***ku I love you! *** motherfuckers!!'\n");
 	printf("											"
-		   "										  \n");
+		   "											\n");
 }
 
 /*
@@ -58,11 +27,12 @@ void	format_string_err(int do_it)
 {
 	if (!do_it)
 		return ;
-	printf("Not enough specifications or args:\n");
-	printf("\t'English ***, do you speak it?'\n", 42); // -> warning, data arg 
-		// not used by format string
+	printf("Just format string, errors:\n");
+	printf("\tUnused specifications:\n");
+	printf("\t\x20'English ***, do you speak it?'\n", 
+		42); // -> warning, data arg not used by format string
 	printf("											"
-		   "										  \n");
+		   "											\n");
 }
 */
 
@@ -72,49 +42,158 @@ void	character_specifier(int do_it)
 		return ;
 	printf("Character specifiers and flags:\n");
 	printf("%s'%c'\n", 
-		"\tB16I standard %c specifier:\n\t\x20", 0x41); // -> (0x41)16 is (65)10
+		"\tCR standard %c specifier:\n\t\x20", 'Q');
 	printf("%s'%c'\n", 
-		"\tB10I standard %c specifier:\n\t\x20", 65);
+		"\tCR16 standard %c specifier:\n\t\x20", '\x41'); // (0x41)16 is (65)10
+	printf("%s'%c'\n",
+		"\tCR8 standard %c specifier:\n\t\x20", '\104');
 	printf("%s'%c'\n", 
-		"\t-B10I standard %c specifier:\n\t\x20", -175); // -> -175 is 81 after 
+		"\tB16I standard %c specifier:\n\t\x20", 0x41); // (0x41)16 is (65)10
+	printf("%s'%c'\n", 
+		"\tB10I standard %c specifier:\n\t\x20", 65); // XXX
+	printf("%s'%c'\n", 
+		"\t-B10I standard %c specifier:\n\t\x20", -175); // -175 is 81 after 
 		// unsigned char conversion
 	printf("%s'%c'\n", 
-		"\t-B8I standard %c specifier:\n\t\x20", -0276); // -> (-0276)8 is 
+		"\t-B8I standard %c specifier:\n\t\x20", -0276); // (-0276)8 is 
 		// (66)10 after unsigned char conversion
 	printf("											"
-		   "										  \n");
-	printf("%s'%-c'\n",
-		"\tB16I Left justified:\n\t\x20", 0x41);
+		   "											\n");
+	printf("%s'%1c'\n", 
+		"\tCR, Min Len Field (1):\n\t\x20", 'Q');
+	printf("%s'%5c'\n", 
+		"\tCR, Min Len Field (5):\n\t\x20", 'Q');
+	printf("%s'%10c'\n", 
+		"\tCR, Min Len Field (10):\n\t\x20", 'Q');
 	printf("											"
-		   "										  \n");
+		   "											\n");
+	printf("%s'%-c'\n",
+		"\tCR, Left justified:\n\t\x20", 'Q');
+	printf("%s'%-1c'\n",
+		"\tCR, Left justified + Min Len Field (1):\n\t\x20", 'Q');
+	printf("%s'%-5c'\n",
+		"\tCR, Left justified + Min Len Field (5):\n\t\x20", 'Q');
+	printf("%s'%-10c'\n",
+		"\tCR, Left justified + Min Len Field (10):\n\t\x20", 'Q');
+	printf("											"
+		   "										 	\n");
 }
 
-/*
+/**/
 void	character_specifier_err(int do_it)
 {
 	if (!do_it)
 		return ;
 	printf("Character specifiers errors:\n");
 	printf("%s'%c'\n", 
-		"\tSpecifier-argument Mismatch:\n\t\x20"); // -> replaced by nothing
-	printf("											"
-		   "										  \n");
+		"\tNO ARGUMENT, standard %c specifier:\n\t\x20"); 
+		// prints nothing
+		// raises a warning: more '%' conversions than data arguments
 	printf("%s'%c'\n", 
-		"\t-B10FL Wrong type:\n\t\x20", 3.14); // Produces a warning that blocks
-		// execution with -Werror : format specifies type 'int' but the argument
-		// has type 'double'. Undefined behavior?
+		"\t-B10F, Wrong type, standard %c specifier:\n\t\x20", 3.14F); 
+		// prints nothing
+		// Produces a warning that blocks execution with -Werror : format 
+		// specifies type 'int' but the argument has type 'double'.
 	printf("%s'%c'\n",
-		"\tSTR Wrong type:\n\t\x20", "a"); // warning: format specifies type 
-		// 'int' but the argument has type 'char *'. // Undefined behavior?
+		"\tSTR, Wrong type, standard %c specifier:\n\t\x20", "a");
+		// prints nothing
+		// warning: format specifies type 'int' but the argument has type 
+		// 'char *'.
+	printf("%s'%c'\n",
+		"\tvoid* B16I, Wrong type, standard %c specifier:\n\t\x20", 
+		(void *)0x1010); 
+		// prints nothing
+		// warning: format specifies type  'int' but the argument has type 
+		// 'void *'. 
+	printf("													"
+		   "										  			\n");
+	printf("%s'% c'\n", 
+		"\tCR, Space for +:\n\t\x20", 'Q');
+		// No space printed. 'Q' is printed but a warning is raised.
+		// warning: flag ' ' results in undefined behavior with 'c' conversion
+		// specifier 
+	printf("%s'%+c'\n", 
+		"\tCR, +/- sign:\n\t\x20", 'Q');
+		// No + or - printed. 'Q' is printed and a warning is raised.
+		// warning: flag '+' results in undefined behavior with 'c' conversion
+		// specifier
 	printf("											"
 		   "										  \n");
-	printf("%s'%04c'\n",
-		"\tB16I Zero Padding + Len(4):\n\t\x20", 0x41); // flag 0 is undefinded 
-		// behavior with c conversion specifier.
+	printf("%s'%#c'\n", 
+		"\tCR, 0x prefix:\n\t\x20", 'Q');
+		// No 0x printed. 'Q' is printed but a warning is raised.
+		// warning: flag '#' results in undefined behavior with 'c' conversion
+		// specifier
 	printf("											"
 		   "										  \n");
+	printf("%s'%.1c'\n", 
+		"\tCR, Precision (1):\n\t\x20", 'Q'); 
+		// Does nothing. No zero or anything else added, just 'Q'
+		// warning: precision used with 'c' conversion specifier, 
+		// resulting in undefined behavior
+	printf("%s'%.5c'\n", 
+		"\tCR, Precision (5):\n\t\x20", 'Q');
+		// Does nothing. No zero or anything else added, just 'Q'
+		// warning: precision used with 'c' conversion specifier, 
+		// resulting in undefined behavior
+	printf("%s'%.10c'\n", 
+		"\tCR, Precision (10):\n\t\x20", 'Q');
+		// Does nothing. No zero or anything else added, just 'Q'
+		// warning: precision used with 'c' conversion specifier, 
+		// resulting in undefined behavior
+	printf("											"
+		   "											\n");
+	printf("%s'%0c'\n",
+		"\tCR, Zero Padding:\n\t\x20", 'Q');
+		// warning: flag '0' results in undefined behavior with 'c' 
+		// conversion specifier
+	printf("%s'%01c'\n",
+		"\tCR, Zero Padding + Min Len Field (1):\n\t\x20", 'Q');
+		// warning: flag '0' results in undefined behavior with 'c' 
+		// conversion specifier
+	printf("%s'%05c'\n",
+		"\tCR, Zero Padding + Min Len Field (5):\n\t\x20", 'Q');
+		// Prints '0000Q', so it works but...
+		// warning: flag '0' results in undefined behavior with 'c' 
+		// conversion specifier
+	printf("%s'%010c'\n",
+		"\tCR, Zero Padding + Min Len Field (10):\n\t\x20", 'Q');
+		// Prints '000000000Q', so it works but...
+		// warning: flag '0' results in undefined behavior with 'c' 
+		// conversion specifier
+	printf("											"
+		   "										  \n");
+	printf("%s'%-0c'\n",
+		"\tCR, Zero Padding + Left justified:\n\t\x20", 'Q');
+		// Prints 'Q'
+		// warning: flag '0' is ignored when flag '-' is present
+		// warning: flag '0' results in undefined behavior with 'c'
+		// conversion specifier
+	printf("%s'%0-1c'\n",
+		"\tCR, Zero Padding + Left justified + Min Len Field (1):\n\t\x20",
+		'Q');
+		// Prints 'Q'	
+		// warning: flag '0' is ignored when flag '-' is present
+		// warning: flag '0' results in undefined behavior with 'c'
+		// conversion specifier
+	printf("%s'%-05c'\n",
+		"\tCR, Zero Padding + Left justified + Min Len Field (5):\n\t\x20",
+		'Q');
+		// Prints 'Q    '
+		// warning: flag '0' is ignored when flag '-' is present
+		// warning: flag '0' results in undefined behavior with 'c'
+		// conversion specifier
+	printf("%s'%0-10c'\n",
+		"\tCR, Zero Padding + Left justified + Min Len Field (10):\n\t\x20",
+		'Q');
+		// Prints 'Q         '
+		// warning: flag '0' is ignored when flag '-' is present
+		// warning: flag '0' results in undefined behavior with 'c'
+		// conversion specifier
+	printf("											"
+		   "											\n");
 }
-*/
+/**/
 
 void	string_specifier(int do_it)
 {
@@ -707,21 +786,25 @@ void	just_pourcent(int do_it)
 		"\tJust pourcent:\n\t\x20");
 }
 
- // NOT TREATED
-	// flags: ' ' '+' | '#' | '-' '0'
-	// options: min length, precision
+// SPECIFIERS REVIEW
+	// NOT TREATED: %s %i %d %p %u %x %% 
+	// TREATED: %c
 
-// TREATED
-	// flags:
-	// options:
+// FLAGS REVIEW
+	// NOT TREATED: ' ' '+' | '#' | '-' '0'
+	// TREATED:  
+
+// OPTIONS REVIEW
+	// NOT TREATED: min length, precision
+	// TREATED: 
 
 int	main(void)
 {
 	// integer_specifier2(1);
 	// format_string(1);
 	// // format_string_err(1);
-	// character_specifier(1);
-	// // character_specifier_err(1);
+	character_specifier(1);
+	character_specifier_err(1);
 	// string_specifier(1);
 	// // string_specifier_err(1);
 	// integer_specifier(1);
@@ -730,8 +813,39 @@ int	main(void)
 	// unsigned_specifier_err(1);
 	// pointer_specifier(1);
 	// pointer_specifier_err(1);
-	hexadecimal_specifier(1);
+	// hexadecimal_specifier(1);
 	// hexadecimal_specifier_err(1);
 	// just_pourcent(1);
 	return (0);
 }
+
+/*
+void	integer_specifier2(int do_it)
+{
+	int a, b, c, d, e, f;
+
+	if (!do_it)
+		return ;
+	printf("Integer specifiers and flags with scanf:\n");
+	printf("\tNormal %%d, Enter Decimal please\n");
+	scanf("\n\t\x20%d", &a);
+	printf("\tNormal %%d, Enter Octal please\n");
+	scanf("\n\t\x20%d", &b);
+	printf("\tNormal %%d, Enter Hex please\n");
+	scanf("\n\t\x20%d", &c);
+	printf("											"
+		   "										  \n");
+	printf("\tNormal %%i, Enter Decimal please\n");
+	scanf("\n\t\x20%i", &d);
+	printf("\tNormal %%i, Enter Octal please\n");
+	scanf("\n\t\x20%i", &e);
+	printf("\tNormal %%i, Enter Hex please\n");
+	scanf("\n\t\x20%i", &f);
+	printf("											"
+		   "										  \n");
+	printf("\tdecimal a = %d, octal b = %d, hex c = %d\n", a, b, c);
+	printf("\tdecimal d = %i, octal e = %i, hex f = %i\n", d, e, f);
+	printf("											"
+		   "										  \n");
+}
+*/

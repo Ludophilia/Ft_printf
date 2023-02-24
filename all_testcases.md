@@ -90,7 +90,7 @@ Here are the flags that will be treated for this exercice:
 	* The converted value is to be left adjusted on the field boundary. 
 	The default is right justification. The converted value is padded on the 
 	right with blanks, rather than on the left with blanks or zeros.
-	* For ~~%d, %i, %u, %x, %X~~ ~~%c, %s, %p?~~
+	* For %c, %d, %i, %u, %x, %X. %s, %p ?
 	* Dynamics with '.' and '0':
 		* A '-' overrides a '0' if both are given. 
 		* (Interactions with '.' ?)
@@ -99,7 +99,7 @@ Here are the flags that will be treated for this exercice:
 	* The value should be zero padded. For %d, %i, %u, %x, %X 
 	conversions, the converted value is padded on the left with zeros rather 
 	than blanks. For other conversions, the behavior is undefined. 
-	* For ~~%d, %i, %u, %x, %X~~
+	* For %d, %i, %u, %x, %X
 	* Dynamics with '.' and '-':
 		* This '0' flag is ignored if:
 			* used with '-' flag
@@ -139,11 +139,11 @@ Here are the flags that will be treated for this exercice:
 	In no case does a nonexistent or small field width cause truncation of a 
 	field; if the result of a conversion is wider than the field width, the 
 	field is expanded to contain the conversion result.
-	* For d, i, u, x, and X conversions. And c, s, p too?
+	* For c, d, i, u, x, and X conversions. And s, p too?
 	* Dynamics with '-':
 		* If the converted value has fewer characters than the field width,
-		it will be padded with **spaces** on the right. A negative field width
-		is taken as a '-' flag followed by a positive field width.
+		it will be padded with **spaces** on the right. **A negative field**
+		width is taken as a '-' flag followed by a positive field width.
 
 #### Precision
 
