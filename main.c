@@ -364,8 +364,17 @@ void	integer_specifier(int do_it)
 		"\t+B10I, standard %i,%d specifier:\n\t\x20", 42, 42);
 	printf("%s'%i,%d'\n", 
 		"\t+B16I, standard %i,%d specifier:\n\t\x20", 0x2a, 0x2A);
+	printf("%s'%i,%d'\n", 
+		"\t+B8U, standard %i,%d specifier:\n\t\x20", 052U, 052U);	
 	printf("											"
 		   "										 	\n");
+
+
+
+
+
+
+
 	printf("%s'% i,% d'\n",
 		"\t-B10I, Space +:\n\t\x20", -42, -42);
 	printf("%s'% i,% d'\n",
@@ -431,18 +440,24 @@ void	integer_specifier(int do_it)
 		   "										 	\n");
 }
 
-/*
+/**/
 void	integer_specifier_err(int do_it)
 {
 	if (!do_it)
 		return ;
 	printf("Integer specifiers err:\n");
 	printf("%s'%i, %d'\n", 
-		"\tB10 FL, Wrong type:\n\t\x20", 42.7, 42.7); //  warning: format
-	// specifies type 'int' but the argument has type 'double' [-Wformat]
+		"\tB10F, Wrong type, standard %i,%d specifier:\n\t\x20", 
+		42.7F, 42.7F);
+		// Prints '0, -97124212'. Raises a warning.
+		// warning: format specifies type 'int' but the argument has type 
+		// 'float'
 	printf("%s'%i, %d'\n", 
-		"\tSTR(0), Wrong type:\n\t\x20", "", ""); //  warning: format
-	// specifies type 'int' but the argument has type 'char *' [-Wformat]
+		"\tCR[0], Wrong type, standard %i,%d specifier:\n\t\x20",
+		"", "");
+		// Prints '83745994, 83745994'. Raises a warning.
+		// warning: format specifies type 'int' but the argument has 
+		// type 'char *'
 	printf("											   "
 	   	   "										 	\n");
 	printf("%s'%-01i,%01d'\n",
@@ -460,7 +475,7 @@ void	integer_specifier_err(int do_it)
 	printf("											"
 		   "										 	\n");
 }
-*/
+/**/
 
 void	unsigned_specifier(int do_it)
 {
@@ -868,7 +883,7 @@ void	just_pourcent(int do_it)
 }
 
 // SPECIFIERS REVIEW
-	// NOT TREATED:  %i %d %p %u %x %% 
+	// NOT TREATED: %i %d %p %u %x %% 
 	// TREATED: %c, %s
 
 // FLAGS REVIEW
@@ -883,8 +898,8 @@ int	main(void)
 {
 	// format_string(1);
 	// character_specifier(1);
-	string_specifier(1);
-	// integer_specifier(1);
+	// string_specifier(1);
+	integer_specifier(1);
 	// unsigned_specifier(1);
 	// pointer_specifier(1);
 	// hexadecimal_specifier(1);
