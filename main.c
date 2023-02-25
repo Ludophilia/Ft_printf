@@ -493,63 +493,87 @@ void	unsigned_specifier(int do_it)
 		return ;
 	printf("Unsigned Integer specifiers and flags:\n");
 	printf("%s'%u,%d'\n",
-		"\t-B10I, standard %u specifier:\n\t\x20", -22, -22);
+		"\t-B10I, standard %u specifier:\n\t\x20",
+		-22, -22);
 	printf("%s'%u,%d'\n",
-		"\t+B10I, standard %u specifier:\n\t\x20", 22, 22);
+		"\t+B10I, standard %u specifier:\n\t\x20",
+		22, 22);
 	printf("%s'%u,%d'\n",
-		"\t+B16UI, standard %u specifier:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
+		"\t+B16U, standard %u specifier:\n\t\x20", 
+		0xFFFFFFFFU, 0xFFFFFFFFU);
 	printf("%s'%u,%d'\n",
-		"\t+B8UI, standard %u specifier:\n\t\x20", 037777777013, 037777777013);
+		"\t+B8U, standard %u specifier:\n\t\x20",
+		037777777013U, 037777777013U);
 	printf("											"
 		   "										 	\n");
 	printf("%s'%2u,%2d'\n",
-		"\t+B10UI, Min Field Length(2):\n\t\x20", 2294966795U, 2294966795U);
-	printf("%s'%12u,%12d'\n",
-		"\t+B16UI, Min Field Length(12):\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
-	printf("%s'%20u,%20d'\n",
-		"\t+B8UI, Min Field Length(20):\n\t\x20", 037772154013, 037777777013);
+		"\t+B10U, Min Field Length(2):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%5u,%5d'\n",
+		"\t+B10U, Min Field Length(5):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%10u,%10d'\n",
+		"\t+B10U, Min Field Length(10):\n\t\x20", 
+		2294U, 2294U);
 	printf("											"
 		   "										 	\n");
 	printf("%s'%-u,%-d'\n",
-		"\t+B10I, Left justified:\n\t\x20", 22, 22);
+		"\t+B10I, Left justified:\n\t\x20", 2294U, 2294U);
 	printf("%s'%-2u,%-2d'\n",
-		"\t+B10UI, Left justified + Min Field Length(13):\n\t\x20",
-		2294966795U, 2294966795U);
-	printf("%s'%-13u,%-13d'\n",
-		"\t+B10UI, Left justified + Min Field Length(13):\n\t\x20",
-		2294966795U, 2294966795U);
-	printf("%s'%-19u,%-19d'\n",
-		"\t+B16UI, Left justified + Min Field Length(19):\n\t\x20", 
-		0xFFFFFFFF, 0xFFFFFFFF);
-	printf("											"
-		   "										 	\n");
-	printf("%s'%.2u,%.2d'\n",
-		"\t+B10UI, Precision(2):\n\t\x20", 2294966795U, 2294966795U);
-	printf("%s'%.12u,%.12d'\n",
-		"\t+B16UI, Precision(12):\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF);
-	printf("%s'%.20u,%.20d'\n",
-		"\t+B8UI, Precision(20):\n\t\x20", 037772154013, 037777777013);
-	printf("											"
-		   "										 	\n");
-	printf("%s'%25.20u,%25.20d'\n",
-		"\t+B10UI, Min Field Length(25) + Precision(20):\n\t\x20", 
-		2294966795U, 2294966795U);
+		"\t+B10U, Left justified + Min Field Length(2):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%-5u,%-5d'\n",
+		"\t+B10U, Left justified + Min Field Length(5):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%-10u,%-10d'\n",
+		"\t+B10U, Left justified + Min Field Length(10):\n\t\x20", 
+		2294U, 2294U);
 	printf("											"
 		   "										 	\n");
 	printf("%s'%0u,%0d'\n",
-		"\t+B10UI, Zero padding:\n\t\x20", 
-		2294966795U, 2294966795U);
-	printf("%s'%010u,%010d'\n",
-		"\t+B10UI, Zero padding + Min Field Length(10):\n\t\x20", 
-		2294966795U, 2294966795U);
-	printf("%s'%015u,%015d'\n",
-		"\t+B10UI, Zero padding + Min Field Length(15):\n\t\x20", 
-		2294966795U, 2294966795U);
-	printf("%s'%025u,%025d'\n",
-		"\t+B10UI, Zero padding + Min Field Length(25):\n\t\x20", 
-		2294966795U, 2294966795U);
+		"\t+B10I, Zero padding:\n\t\x20", 2294U, 2294U);
+	printf("%s'%02u,%02d'\n",
+		"\t+B10U, Zero padding + Min Field Length(2):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%05u,%05d'\n",
+		"\t+B10U, Zero padding + Min Field Length(5):\n\t\x20", 
+		2294U, 2294U);
+		// Adds 1 zero
+	printf("%s'%010u,%-10d'\n",
+		"\t+B10U, Zero padding + Min Field Length(10):\n\t\x20", 
+		2294U, 2294U);
+		// Adds 6 zeros
 	printf("											"
 		   "										 	\n");
+	printf("%s'%.u,%.d'\n",
+		"\t+B10I, Precision(0):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%.2u,%.2d'\n",
+		"\t+B10U, Precision(2):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%.5u,%.5d'\n",
+		"\t+B10U, Precision(5):\n\t\x20", 
+		2294U, 2294U);
+		// Adds 1 zero, same as Zero padding
+	printf("%s'%.10u,%.10d'\n",
+		"\t+B10U, Precision(10):\n\t\x20", 
+		2294U, 2294U);
+		// Adds 6 zeros, same as Zero padding
+	printf("											"
+		   "										 	\n");
+	printf("%s'%10.5u,%10.5d'\n",
+		"\t+B10U, Precision(5) + Min Field Width(10):\n\t\x20", 
+		2294U, 2294U);
+	printf("%s'%5.10u,%5.10d'\n",
+		"\t+B10U, Precision(10) + Min Field Width(5):\n\t\x20", 
+		2294U, 2294U);
+	printf("											"
+		   "										 	\n");
+	printf("%s'%010.5u,%010.5d'\n",
+		"\t+B10U, Zero Padding + Precision(5) + Min Field Width(10):\n\t\x20", 
+		2294U, 2294U);
+		// Prints '     02294,     02294'. No warning raised but
+		// Zero padding is ignored when precision and numeric conversion.
 }
 
 /*
@@ -559,48 +583,74 @@ void	unsigned_specifier_err(int do_it)
 		return ;
 	printf("Unsigned Integer errors:\n");
 	printf("%s'%u,%d'\n",
-		"\t+STR(13), Wrong type:\n\t\x20", "037777777013", "037777777013");
+		"\tCR[13], wrong type, standard %u specifier:\n\t\x20", 
+		"037777777013", "037777777013");
+		// Prints '14239130,14239130' raises a warning.
 		// warning: format specifies type 'unsigned int' but the argument has
 		// type 'char *'
 	printf("%s'%u,%d'\n",
-		"\t+FL, Wrong type:\n\t\x20", 69.69, 69.69);
+		"\t+B10F, wrong type, standard %u specifier:\n\t\x20",
+		69.69F, 69.69F);
+		// Prints '0,1041301682' and raises a warning.
 		// warning: format specifies type 'unsigned int' but the argument has
-		// type 'double'
+		// type 'float'
 	printf("%s'%u,%d'\n",
-		"\t+I*, Wrong type:\n\t\x20", (int[3]){1, 2, 3}, (int[3]){1, 2, 3});
+		"\tI[3], Wrong type, standard %u specifier:\n\t\x20", 
+		(int[3]){1, 2, 3}, (int[3]){1, 2, 3});
+		// Prints '71992156,71992144' and raises a warning.
 		// warning: format specifies type 'unsigned int' but the argument has
 		// type 'int *'
 	printf("											"
 		   "										 	\n");
 	printf("%s'% u,% d'\n",
-		"\t-B10I, Broken Space +:\n\t\x20", -42, -42); 
+		"\t-B10I, Space for +:\n\t\x20",
+		-42, -42);
+		// Prints '4294967254,-42', does not add a space, and raises a warning.
+		// warning: flag ' ' results in undefined behavior with 'u' 
+		// conversion specifier
 	printf("%s'% u,% d'\n",
-		"\tB8I, Broken Space +:\n\t\x20", 052, 052); // Does nothing
-		/  warning: flag ' ' results in undefined behavior with 'u' conversion 
-		// specifier [-Wformat]
-	printf("%s'% u,% d'\n",
-		"\t+B16UI, Broken Space +:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // Does 
-		// nothing warning: flag ' ' results in undefined behavior with 'u' 
-		// conversion specifier [-Wformat]
+		"\t+B16UI, Space for +:\n\t\x20", 
+		0xFFFFFFFF, 0xFFFFFFFF);
+		// Prints '4294967295,-1', does not add a space, and raises a warning.
+		// warning: flag ' ' results in undefined behavior with 'u' 
+		// conversion specifier
+	printf("%s'%+u,%+d'\n",
+		"\t-B10I, +/- sign:\n\t\x20",
+		-42, -42);
+		// Prints '4294967254,-42', does not append a + sign, and raises a 
+		// warning.
+		// warning: flag '+' results in undefined behavior with 'u' 
+		// conversion specifier
+	printf("%s'%+u,%+d'\n",
+		"\t+B16UI, +/- sign:\n\t\x20", 
+		0xFFFFFFFF, 0xFFFFFFFF);
+		// Prints '4294967295,-1', does not append a + sign, and raises a 
+		// warning.	
+		// warning: flag '+' results in undefined behavior with 'u' 
+		// conversion specifier
 	printf("											"
 		   "										 	\n");
-	printf("%s'%+u,%+d'\n",
-		"\t+B10UI, +/- Sign:\n\t\x20", 2294966795U, 2294966795U); // does nothing
-		// warning: flag '+' results in undefined behavior with 'u' 
-		// conversion specifier [-Wformat]
-	printf("%s'%+u,%+d'\n",
-		"\t+B16UI, +/- Sign:\n\t\x20", 0xFFFFFFFF, 0xFFFFFFFF); // does nothing
-		// warning: flag '+' results in undefined behavior with 'u' 
-		// conversion specifier [-Wformat]
-	printf("%s'%+u,%+d'\n",
-		"\t+B8UI, +/- Sign:\n\t\x20", 037772154013, 037777777013); // does nothing
-		// warning: flag '+' results in undefined behavior with 'u' 
-		// conversion specifier [-Wformat]
+	printf("%s'%#u,%#d'\n",
+		"\t-B10I, 0x Prefix:\n\t\x20",
+		-42, -42);
+		// Prints '4294967254,-42', does not append the prefix, and raises 
+		// a warning.
+		// warning: flag '#' results in undefined behavior with 'u' 
+		// conversion specifier
+	printf("%s'%#u,%#d'\n",
+		"\t+B16UI, 0x Prefix:\n\t\x20", 
+		0xFFFFFFFF, 0xFFFFFFFF);
+		// Prints '4294967295,-1', does not append the prefix, and raises a 
+		// warning.
+		// warning: flag '#' results in undefined behavior with 'u' 
+		// conversion specifier
 	printf("											"
 		   "										 	\n");
-	printf("%s'%025.20u,%025.20d'\n",
-		"\t+B10UI, Zero padding + Min Field Length(25) + Precision(20):\n\t\x20", 
-		2294966795U, 2294966795U); // Zero padding is ignored when precision
+	printf("%s'%-010u,%-010d'\n",
+		"\t+B10U, Zero padding + Left justified + Min Field Length(10):\n\t\x20", 
+		2294U, 2294U);
+		// Acts the same way as Left justified alone. Raises a warning.
+		// warning: flag '0' is ignored when flag '-' is present
 	printf("											"
 		   "										 	\n");
 }
@@ -893,24 +943,24 @@ void	just_pourcent(int do_it)
 }
 
 // SPECIFIERS REVIEW
-	// NOT TREATED: %i %d %p %u %x %% 
-	// TREATED: %c, %s
+	// NOT TREATED: %p %x %% 
+	// TREATED: %c, %s, %i, %d, %u
 
 // FLAGS REVIEW
-	// NOT TREATED:   
-	// TREATED:  ' ' '+' | '#' | '-' '0'
+	// NOT ÒTREATED: ' ' '+' | '#' | '-' '0'
+	// TREATED:   
 
 // OPTIONS REVIEW
-	// NOT TREATED:  precision
-	// TREATED: min length,
+	// NOT TREATED: min length, precision
+	// TREATED: 
 
 int	main(void)
 {
 	// format_string(1);
 	// character_specifier(1);
 	// string_specifier(1);
-	integer_specifier(1);
-	// unsigned_specifier(1);
+	// integer_specifier(1);
+	unsigned_specifier(1);
 	// pointer_specifier(1);
 	// hexadecimal_specifier(1);
 	// just_pourcent(1);
