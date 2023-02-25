@@ -368,31 +368,14 @@ void	integer_specifier(int do_it)
 		"\t+B8U, standard %i,%d specifier:\n\t\x20", 052U, 052U);	
 	printf("											"
 		   "										 	\n");
-
-
-
-
-
-
-
 	printf("%s'% i,% d'\n",
-		"\t-B10I, Space +:\n\t\x20", -42, -42);
+		"\t-B10I, Space for +:\n\t\x20", -42, -42);
 	printf("%s'% i,% d'\n",
-		"\t-B8I, Space +:\n\t\x20", -052, -052);
-	printf("%s'% i,% d'\n",
-		"\t+B10I, Space +:\n\t\x20", 42, 42);
-	printf("											"
-		   "										 	\n");
+		"\t+B10I, Space for +:\n\t\x20", 42, 42);
 	printf("%s'%+i,%+d'\n",
 		"\t-B10I, +/- Sign:\n\t\x20", -42, -42);
 	printf("%s'%+i,%+d'\n",
 		"\t+B10I, +/- Sign:\n\t\x20", 42, 42);
-	printf("											"
-		   "										 	\n");
-	printf("%s'%-i,%-d'\n",
-		"\t-B10I, Left justified:\n\t\x20", -42, -42); // Useless
-	printf("%s'%-i,%-d'\n",
-		"\t+B10I, Left justified:\n\t\x20", 42, 42); // Useless
 	printf("											"
 		   "										 	\n");
 	printf("%s'%1i,%1d'\n",
@@ -403,44 +386,52 @@ void	integer_specifier(int do_it)
 		"\t+B10I, Min Field Length(10):\n\t\x20", 42, 42);
 	printf("											"
 		   "										 	\n");
+	printf("%s'%-i,%-d'\n",
+		"\t-B10I, Left justified:\n\t\x20", -42, -42);
+		// Nothing changes as the field is not large enough
 	printf("%s'%-1i,%-1d'\n",
-		"\t-B10I, Min Field Length(1) + Left justified:\n\t\x20",
+		"\t-B10I, Left justified + Min Field Length(1):\n\t\x20",
 		-42, -42);
 	printf("%s'%-4i,%-4d'\n",
-		"\t-B10I, Min Field Length(4) + Left justified: \n\t\x20",
+		"\t-B10I, Left justified + Min Field Length(4): \n\t\x20",
 		-42, -42);
 	printf("%s'%-10i,%-10d'\n",
-		"\t+B10I, Min Field Length(5) + Left justified:\n\t\x20",
+		"\t+B10I, Left justified + Min Field Length(10):\n\t\x20",
 		42, 42);
 	printf("											"
 		   "										 	\n");	
 	printf("%s'%0i,%0d'\n",
 		"\t-B10I, Zero padding:\n\t\x20", -42, -42);
+		// Nothing changes as the field is not large enough
 	printf("%s'%01i,%01d'\n",
 		"\t-B10I, Zero padding + Min Field Length(1)\n\t\x20",
 		-42, -42);
 	printf("%s'%04i,%04d'\n",
-		"\t-B10I, Zero padding + Min Field Length(4)\n\t\x20",
-		-42, -42);
-	printf("%s'%010i,%010d'\n",
-		"\t+B10I, Zero padding + Min Field Length(10):\n\t\x20",
+		"\tB10I, Zero padding + Min Field Length(4)\n\t\x20",
 		42, 42);
+	printf("%s'%010i,%010d'\n",
+		"\tB10I, Zero padding + Min Field Length(10):\n\t\x20",
+		-42, -42);
+		// 7 Zeroes appear between the negative sign and the number.
+		// The sign is taken into the calculation.
 	printf("											"
 		   "										 	\n");
 	printf("%s'%.i,%.d'\n",
 		"\t-B10I, Precision(0):\n\t\x20", -42, -42); 
-		// Set 0 as the minimum nb digit to appear. Does nothing, here.
+		// Set 0 as the minimum nb of digits to appear.
 	printf("%s'%.1i,%.1d'\n",
 		"\t-B10I, Precision(1):\n\t\x20", -42, -42); 
-		// Set 1 as the minimum nb digit to appear. Does nothing, here.
+		// Set 1 as the minimum nb of digits to appear.
 	printf("%s'%.10i,%.10d'\n",
 		"\t-B10I, Precision(10):\n\t\x20", -42, -42);
-		// Set 10 as the minimum nb digit to appear. // Adds 8 zeros before 42.
+		// Set 10 as the minimum nb digit to appear. 
+		// Adds 8 zeros before 42, the presence of a sign or not has no
+		// influence, contrary to Zero Filled + Min Field Width (10).
 	printf("											"
 		   "										 	\n");
 }
 
-/**/
+/*
 void	integer_specifier_err(int do_it)
 {
 	if (!do_it)
@@ -460,22 +451,41 @@ void	integer_specifier_err(int do_it)
 		// type 'char *'
 	printf("											   "
 	   	   "										 	\n");
-	printf("%s'%-01i,%01d'\n",
-		"\t-B10I, Zero padding + Left Justified + Min Field Length(1)\n\t\x20",
-		-42, -42); // warning: flag '0' is ignored when flag '-' is present 
-		// [-Wformat]
-	printf("%s'%-04i,%04d'\n",
-		"\t-B10I, Zero padding + Left Justified + Min Field Length(4)\n\t\x20",
-		-42, -42); // warning: flag '0' is ignored when flag '-' is present 
-		// [-Wformat]
+	printf("%s'%#i,%#d'\n",
+		"\t-B10I, 0x Prefix:\n\t\x20", -42, -42);
+		// Prints '-42' and raises a warning.
+		// warning: flag '#' results in undefined behavior with 'i' (and 'd')
+		//conversion specifier
+	printf("%s'%#i,%#d'\n",
+		"\t+B10I, 0x Prefix:\n\t\x20", 42, 42);
+		// Prints '-42' and raises a warning.
+		// warning: flag '#' results in undefined behavior with 'i' (and 'd')
+		// conversion specifier
+	printf("												"
+		   "										 		\n");
+	printf("%s'%0-i,%0-d'\n",
+		"\t-B10I, Zero padding + Left justified:\n\t\x20", -42, -42);
+		// Same behavior as Left justified. A warning is raised.
+		// warning: flag '0' is ignored when flag '-' is present
+	printf("%s'%-01i,%-01d'\n",
+		"\t-B10I, Zero padding + Left justified + Min Field Length(1):\n\t\x20",
+		-42, -42);
+		// Same behavior as Left justified. A warning is raised.
+		// warning: flag '0' is ignored when flag '-' is present
+	printf("%s'%0-4i,%0-4d'\n",
+		"\t-B10I, Zero padding + Left justified + Min Field Length(4):\n\t\x20",
+		-42, -42);
+		// Same behavior as Left justified. A warning is raised.
+		// warning: flag '0' is ignored when flag '-' is present
 	printf("%s'%-010i,%-010d'\n",
-		"\t+B10I, Zero padding + Left Justified + Min Field Length(10):\n\t\x20",
-		42, 42); // warning: flag '0' is ignored when flag '-' is present
-		// [-Wformat]
+		"\t+B10I, Zero padding + Left justified + Min Field Length(10):\n\t\x20",
+		42, 42);
+		// Same behavior as Left justified. A warning is raised.
+		// warning: flag '0' is ignored when flag '-' is present
 	printf("											"
 		   "										 	\n");
 }
-/**/
+*/
 
 void	unsigned_specifier(int do_it)
 {
@@ -887,12 +897,12 @@ void	just_pourcent(int do_it)
 	// TREATED: %c, %s
 
 // FLAGS REVIEW
-	// NOT TREATED: ' ' '+' | '#' | '-' '0'
-	// TREATED: 
+	// NOT TREATED:   
+	// TREATED:  ' ' '+' | '#' | '-' '0'
 
 // OPTIONS REVIEW
-	// NOT TREATED: min length, precision
-	// TREATED: 
+	// NOT TREATED:  precision
+	// TREATED: min length,
 
 int	main(void)
 {

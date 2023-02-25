@@ -86,32 +86,6 @@ precision 0, the output is empty.
 
 Here are the flags that will be treated for this exercice:
 
-* \- (dash sign):
-	* The converted value is to be left adjusted on the field boundary. 
-	The default is right justification. The converted value is padded on the 
-	right with blanks, rather than on the left with blanks or zeros.
-	* For %c, %s, %d, %i, %u, %x, %X. And %p ?
-	* Dynamics with '.' and '0':
-		* A '-' overrides a '0' if both are given. 
-		* (Interactions with '.' ?)
-	
-* 0 (zero sign):
-	* The value should be zero padded. For %d, %i, %u, %x, %X 
-	conversions, the converted value is padded on the left with zeros rather 
-	than blanks. For other conversions, the behavior is undefined. 
-	* For %d, %i, %u, %x, %X
-	* Dynamics with '.' and '-':
-		* This '0' flag is ignored if:
-			* used with '-' flag
-			* a '.' precision is given with a numeric conversion (d, i, u, x, 
-			and X)
-
-* \# (pound sign): 
-	* the value should be converted to another form. As far we're concerned for 
-	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X
-	conversions) prepended to it.
-	* For %x, %X
-
 * ' ' (space):
 	* a blank should be left before a **positive number** (or empty 
 	string<sup>WTF?</sup>) produced by a signed conversion (%d, %i).
@@ -126,6 +100,32 @@ Here are the flags that will be treated for this exercice:
 	* For %d, %i
 	* Dynamics with ' ':
 		* A '+' overrides a ' ' space if both are used.
+
+* \# (pound sign): 
+	* the value should be converted to another form. As far we're concerned for 
+	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X
+	conversions) prepended to it.
+	* For %x, %X
+
+* \- (dash sign):
+	* The converted value is to be left adjusted on the field boundary. 
+	The default is right justification. The converted value is padded on the 
+	right with blanks, rather than on the left with blanks or zeros.
+	* For %c, %s, %d, %i, %u, %x, %X. And %p?
+	* Dynamics with '.' and '0':
+		* A '-' overrides a '0' if both are given. 
+		* (Interactions with '.' ?)
+	
+* 0 (zero sign):
+	* The value should be zero padded. For %d, %i, %u, %x, %X 
+	conversions, the converted value is padded on the left with zeros rather 
+	than blanks. For other conversions, the behavior is undefined. 
+	* For %d, %i, %u, %x, %X
+	* Dynamics with '.' and '-':
+		* This '0' flag is ignored if:
+			* used with '-' flag
+			* a '.' precision is given with a numeric conversion (d, i, u, x, 
+			and X)
 
 #### Field width
 
@@ -150,7 +150,8 @@ Here are the flags that will be treated for this exercice:
 * . (dot sign):
 	* A dot sign followed by an optional decimal digit string 
 	(e.g: %.5d or %.d). This gives the minimum number of digits to appear 
-	**for d, i, u, x, and X conversions**. **For s conversions**, it gives the maximum instead. Instead of a decimal digit string one may write 
+	**for d, i, u, x, and X conversions**. **For s conversions**, it gives 
+	the maximum instead. Instead of a decimal digit string one may write 
 	"*" or "*m$" (e.g.: %.*d or %.2$d) to specify that the precision 
 	is given in **the next argument**, or in the **m-th argument**, 
 	respectively, which must be of type int. If the precision is given as just
