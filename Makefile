@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/02/14 18:36:16 by jgermany         ###   ########.fr        #
+#    Updated: 2023/02/27 21:56:47 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = cc
 # OBJECTS = $(SOURCES: .c=.o)
 
 test:
-	@$(CC) $(CCFL) main.c && ./a.out
+	@$(CC) $(CCFL) printf_examples.c && ./a.out
 
 
 
