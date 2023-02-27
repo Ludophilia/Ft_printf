@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/10 16:32:01 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/17 01:25:35 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_putchar_fd(char c, int fd)
 {
-	// 
+	if (fd < 0)
+		return ;
+	write (fd, &c, 1);
 }
-

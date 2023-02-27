@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/02 21:54:04 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/16 21:59:49 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_printf(const char *format, ...)
+char	*ft_strchr(const char *s, int c)
 {
-	// 
-}
+	int	i;
 
+	i = -1;
+	while (s[++i])
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+	if (!s[i] && (s[i] == (char)c))
+		return ((char *)s + i);
+	return ((char *)0);
+}

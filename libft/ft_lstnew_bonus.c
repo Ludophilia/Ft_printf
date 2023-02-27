@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/10 17:51:10 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/21 22:05:58 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+t_list	*ft_lstnew(void *content)
 {
-	// 
-}
+	t_list	*node;
 
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
+		return ((t_list *)0);
+	node->content = content;
+	node->next = (t_list *)0;
+	return (node);
+}

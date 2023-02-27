@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/02 21:33:08 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/02 21:42:13 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_printf(const char *format, ...)
+int	ft_toupper(int c)
 {
-	// 
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	return (c);
 }
-

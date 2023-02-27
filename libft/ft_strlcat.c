@@ -1,19 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/02 20:18:59 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/28 23:49:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	// 
-}
+	size_t	dsize;
+	size_t	dpos;
+	size_t	spos;
 
+	dpos = 0;
+	while (size && dst[dpos])
+	{
+		dpos++;
+		size--;
+	}
+	dsize = dpos;
+	spos = 0;
+	while (src[spos])
+	{
+		if (size > 1)
+		{
+			dst[dpos] = src[spos];
+			dpos++;
+			size--;
+		}
+		spos++;
+	}
+	if (size)
+		dst[dpos] = '\x0';
+	return (dsize + spos);
+}

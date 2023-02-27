@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/11 14:44:00 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/23 21:26:35 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	// 
-}
+	t_list	*node;
+	t_list	*next;
 
+	if (!lst)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		next = node->next;
+		ft_lstdelone(node, del);
+		node = next;
+	}
+	*lst = (t_list *)0;
+}

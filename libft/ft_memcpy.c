@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 23:08:26 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/02 13:16:57 by jgermany          #+#    #+#             */
+/*   Updated: 2022/12/28 15:04:04 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	// 
-}
+	size_t	i;
 
+	if (dest == src)
+		return (dest);
+	i = 0;
+	while (i < n)
+	{
+		((char *)dest)[i] = ((char *)src)[i];
+		i++;
+	}
+	return (dest);
+}

@@ -9,17 +9,13 @@
 * the processed format string on stdout(1)
 * the number of characters processed as an int 
 
-## Context
-
-### Overview
+## Overview
 
 printf is a function that takes:
 
 * a format str as its first argument
 * and a variable number of arguments of different types, from character 
 to hexadecimal number
-
-### Rules
 
 Each arg beyond the format str is used in the format str according to the 
 following rules:
@@ -31,16 +27,14 @@ position of arguments (ex: spec 3 match 1st argument) can be controlled.
 * A mismatch or an absence of match between a type specifier in
 the format str and the positional arg will generate a warning and/or an error.
 
-### Conversion specification
-
-#### Overview
+## Conversion specifications
 
 There are different types of conversion specification. Their format is
 habitually as follow : 
 	
 `%[flag][,flag...][field width][precision][length]conversion_specifier`
 
-#### Conversions specifier
+### Conversions specifiers
 
 Here are the conversion specifiers that will be implemented:
 
@@ -79,7 +73,7 @@ zeros. The default precision is 1. When 0 is printed with an explicit
 precision 0, the output is empty.
 * %% : A '%' is written. No argument is converted.
 
-#### Flag
+### Flags
 
 Here are the flags that will be treated for this exercice:
 
@@ -124,7 +118,7 @@ Here are the flags that will be treated for this exercice:
 			* a '.' precision is given with a numeric conversion (d, i, u, x, 
 			and X)
 
-#### Field width
+### Field width
 
 * \* (star sign):
 	* The min field width is an optional non-zero digit string specifying
@@ -142,7 +136,7 @@ Here are the flags that will be treated for this exercice:
 		it will be padded with **spaces** on the right. **A negative field**
 		width is taken as a '-' flag followed by a positive field width.
 
-#### Precision
+### Precision
 
 * . (dot sign):
 	* A dot sign followed by an optional decimal digit string 
@@ -160,7 +154,7 @@ Here are the flags that will be treated for this exercice:
 		* '.' override '0' if used with a numeric conversion (d, i, u, x, and X)
 		* (Interactions with '-' ?)
 
-#### Synthesis
+## Synthesis
 
 In the end, **three things** have to be figured for creating ft_printf:
 1. How each conversion specifier interacts with a literal ? What data will be
