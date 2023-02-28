@@ -5,41 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/02/28 22:30:13 by jgermany         ###   ########.fr        #
+#    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
+#    Updated: 2023/02/28 23:04:34 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-# LFTDR = libft
-# LFT = libft.a
+NAME = main.out
 
 CC = cc
 CCFL = -Wall -Wextra -Werror
 
-AR = ar
-ARFL = -rcs
+MAIN = main.c
 
-SRC = ft_printf.c
-OBJ = $(SRC:.c=.o)
+ROOT = ..
+LFTDR = $(ROOT)/libft
+LFT = $(LFTDR)/libft.a
+LPF = $(ROOT)/libftprintf.a
 
 all: $(NAME)
+	./$<
 
-$(NAME): $(OBJ)
-	$(AR) $(ARFL) $@ $^
+$(NAME): $(LFT) $(LPF)
+	$(CC) $(CCFL) $(MAIN) -lft -lftprintf -L$(ROOT) -L$(LFTDR) -o $@
 
-%.o: %.c
-	$(CC) $(CCFL) -c $<
+$(LFT):
+	make -C $(LFTDR)
 
-# $(LFT): libft/libft.a
-# 	make -C libft
+$(LPF):
+	make -C $(ROOT)
 
 clean:
-	rm -rf $(OBJ)
-
+	make -C $(LFTDR) clean
+	make -C $(ROOT) clean
+	
 fclean: clean
 	rm -rf $(NAME)
+	make -C $(LFTDR) fclean
+	make -C $(ROOT) fclean
 
 re:
 	make fclean
