@@ -1,4 +1,4 @@
-# Printf, for ft_print
+# Printf, for ft_printf
 
 ## Prototype
 
