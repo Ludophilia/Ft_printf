@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/28 22:29:24 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:03:58 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ int	ft_printf(const char *format, ...)
 	// write this program:
 		// one int argument, %i/%d. From an int (42).
 
-	ft_putstr_fd((char *)format, 1);
-	return (0);
+	int	i;
+	
+	i = -1;
+	while (format[++i])
+	{
+		if (format[i] == '%')
+			i += process_specifier(format + i); // returns the offset to 
+			// skip to the part outside %*}
+		else
+			ft_putchar_fd(format[i], 1); // kind of inefficient
+	}
+	// ft_putstr_fd((char *)format, 1);
+	return (0);  // what should be returned?
 }

@@ -5,38 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/03 19:48:16 by jgermany         ###   ########.fr        #
+#    Created: 2023/03/04 14:44:14 by jgermany          #+#    #+#              #
+#    Updated: 2023/03/04 14:54:57 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = main.out
+NAME = variadics.out
 
 CC = cc
 CCFL = -Wall -Wextra -Werror
 
-MAIN = main.c
-MAIN_OB = $(MAIN:.c=.o)
-
-ROOT = ..
-LPF = $(ROOT)/libftprintf.a
-LFTDR = $(ROOT)/libft
+SRCS = variadics.c
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 	./$<
 
-$(NAME): $(LPF) $(MAIN)
-	$(CC) $(CCFL) $(MAIN) -lft -lftprintf -L$(ROOT) -L$(LFTDR) -o $@
+$(NAME): $(SRCS)
+	$(CC) $(CCFL) -o $@ $^
 
-$(LPF):
-	make -C $(ROOT)
+%.o: %.c
+	$(CC) $(CCFL) -c $<
 
 clean:
-	make -C $(ROOT) clean
-	
+	rm -rf $(OBJS)
+
 fclean: clean
 	rm -rf $(NAME)
-	make -C $(ROOT) fclean
 
 re:
 	make fclean

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/28 23:12:01 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:43:04 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	ft_printf("Ça marche frère.\n");
+	ft_printf("Ça marche %% frère.\n");
 }
 
 // Now we have to compile this main.
