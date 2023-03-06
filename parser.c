@@ -6,26 +6,37 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/04 14:32:52 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:10:33 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	process_specifier(char *format)
+#include "ft_printf.h"
+#include "libft/libft.h"
+
+int	process_specifier(char *format, va_list *args)
 {
 	// a function that will analyse the % * part
 	// and do something with it...
-
-	// starts from the first %
 	int	i;
 
 	i = -1;
-	while (format[++i])
+	while (format[++i]) // starts from the first %
 	{
 		if (format[i] == 'd' || format[i] == 'i')
-			; // It's a decimal specifier
-			// take the arg from the va_list
-			// convert it maybe
-			// print it via putnbr or something
+		{
+			ft_putnbr_fd(va_arg(*args, int), 1);
+			break ;
+		}
+		else if (format[i] == 'c')
+		{
+			ft_putchar_fd(va_arg(*args, int), 1);
+			break ;
+		}
+		else if (format[i] == 'u')
+		{
+			ft_putnbr_fd(va_arg(*args, unsigned int), 1);
+			break ;
+		}
 	}
-	// do the conversion from the va_list if necessary...
+	return (i);
 }

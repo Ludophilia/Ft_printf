@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/04 14:03:58 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/06 21:36:48 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,24 @@ int	ft_printf(const char *format, ...)
 		// one int argument, %i/%d. From an int (42).
 
 	int	i;
+	va_list	args;
 	
+	va_start(args, format);
 	i = -1;
 	while (format[++i])
 	{
+		// What am i trying to do?
+			// We iterate on format and have found a '%'
+			// What i'm trying to do is to 
+				// display the number in the va_list with %d.
 		if (format[i] == '%')
-			i += process_specifier(format + i); // returns the offset to 
-			// skip to the part outside %*}
+		{
+			i += process_specifier((char *)format + i, &args);
+		}
 		else
 			ft_putchar_fd(format[i], 1); // kind of inefficient
 	}
 	// ft_putstr_fd((char *)format, 1);
-	return (0);  // what should be returned?
+	va_end(args);
+	return (0b0);  // what should be returned?
 }

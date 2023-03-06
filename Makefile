@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/03 16:49:59 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/06 21:18:27 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,25 @@ CCFL = -Wall -Wextra -Werror
 AR = ar
 ARFL = -rcs
 
-SRC = ft_printf.c
-OBJ = $(SRC:.c=.o)
+SRCS = ft_printf.c parser.c
+OBJS = $(SRCS:.c=.o)
 
 LFTDR = libft
 LFT = $(LFTDR)/libft.a
 
 all: $(LFT) $(NAME)
 
-$(NAME): $(OBJ) 
+$(NAME): $(OBJS) 
 	$(AR) $(ARFL) $@ $^
 
 $(LFT):
-	make -C libft
+	make -C libft all
 
 %.o: %.c
 	$(CC) $(CCFL) -c $<
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJS)
 	make -C $(LFTDR) clean
 
 fclean: clean

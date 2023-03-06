@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:43:26 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/04 16:11:18 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:28:57 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ void	variadics_example(int c, ...)
 {
 	va_list	vstart;
 
-	va_start(vstart, c);
+	va_start(vstart, c); // Set vstart to the start of variable length arg seq.
 	ft_putchar(c);
-	c = va_arg(vstart, int);
+	c = va_arg(vstart, int); // Prints 'o'
+	va_start(vstart, c); // Set vstart to the start of variable length arg seq.
 	while (c)
 	{
-		ft_putchar(c);
-		c = va_arg(vstart, int); // What's the last argument? Does it end while?
+		ft_putchar(c); // Prints 'o' again
+		c = va_arg(vstart, int); // What's the last argument? Does it
+		// end while?
 	}
-	va_end(vstart);
+	va_end(vstart); // Does nothing really. Here for compatibility purposes.
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/03 19:48:16 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/06 21:18:55 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): $(LPF) $(MAIN)
 	$(CC) $(CCFL) $(MAIN) -lft -lftprintf -L$(ROOT) -L$(LFTDR) -o $@
 
 $(LPF):
-	make -C $(ROOT)
+	make -C $(ROOT) all
 
 clean:
 	make -C $(ROOT) clean
