@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/06 21:36:48 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:46:33 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	ft_printf(const char *format, ...)
 	// We will start by a simple case, just to start build the skills to
 	// write this program:
 		// one int argument, %i/%d. From an int (42).
-
 	int	i;
 	va_list	args;
 	
@@ -46,13 +45,11 @@ int	ft_printf(const char *format, ...)
 			// What i'm trying to do is to 
 				// display the number in the va_list with %d.
 		if (format[i] == '%')
-		{
 			i += process_specifier((char *)format + i, &args);
-		}
 		else
 			ft_putchar_fd(format[i], 1); // kind of inefficient
 	}
 	// ft_putstr_fd((char *)format, 1);
 	va_end(args);
-	return (0b0);  // what should be returned?
+	return (0b0); // what should be returned?
 }

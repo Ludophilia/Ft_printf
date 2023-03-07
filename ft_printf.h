@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:49:43 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/06 21:35:00 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:59:03 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *format, ...);
-int	process_specifier(char *format, va_list *args);
+int		ft_printf(const char *format, ...);
+int		process_specifier(char *format, va_list *args);
+void	un_putnbr_fd(unsigned int nb, int fd);
 
 #endif

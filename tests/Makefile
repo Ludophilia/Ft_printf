@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/06 21:18:55 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/07 20:06:20 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,19 @@ ROOT = ..
 LPF = $(ROOT)/libftprintf.a
 LFTDR = $(ROOT)/libft
 
+PFDR = $(ROOT)
+PF = $(ROOT)/parser.c $(ROOT)/ft_printf.c
+
 all: $(NAME)
-	./$<
+	@echo "[DEBUG] Into block all"
+	#./$<
 
-$(NAME): $(LPF) $(MAIN)
-	$(CC) $(CCFL) $(MAIN) -lft -lftprintf -L$(ROOT) -L$(LFTDR) -o $@
+$(NAME): $(MAIN) $(LPF)
+	@echo "[DEBUG] Into block $(NAME)"
+	$(CC) $(CCFL) -o $@ $(MAIN) -lftprintf -L$(ROOT) -lft -L$(LFTDR)
 
-$(LPF):
+$(LPF): $(PF)
+	@echo "[DEBUG] Into block $(PF)"
 	make -C $(ROOT) all
 
 clean:
@@ -41,3 +47,5 @@ fclean: clean
 re:
 	make fclean
 	make all
+
+.PHONY: all clean fclean re

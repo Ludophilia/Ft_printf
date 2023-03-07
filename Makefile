@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/06 21:18:27 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/07 20:40:33 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ LFT = $(LFTDR)/libft.a
 
 all: $(LFT) $(NAME)
 
-$(NAME): $(OBJS) 
-	$(AR) $(ARFL) $@ $^
-
 $(LFT):
 	make -C libft all
+
+$(NAME): $(OBJS) 
+	$(AR) $(ARFL) $@ $^
 
 %.o: %.c
 	$(CC) $(CCFL) -c $<
@@ -46,3 +46,5 @@ fclean: clean
 re:
 	make fclean
 	make all
+
+.PHONY: all clean fclean re

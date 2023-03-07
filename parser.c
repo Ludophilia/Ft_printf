@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/06 22:10:33 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:01:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	process_specifier(char *format, va_list *args)
 {
 	// a function that will analyse the % * part
-	// and do something with it...
+	// and do something with it, for sure...
 	int	i;
 
 	i = -1;

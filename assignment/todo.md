@@ -4,7 +4,7 @@
 ## Create libftprintf.a
 
 - [X] Correct the Makefile that creates libftprintf.a so it builds libft.a too
-- [ ] Problems to rebuild project when update with make -C. What to do?
+- [X] Problems to rebuild project when update with make -C. What to do?
 
 ## Manage a conversion for example
 
@@ -29,3 +29,4 @@
 
 ## Manage the rest basic printf flags
 
+*Well, we're waiting*
