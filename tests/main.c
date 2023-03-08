@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/08 22:43:02 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/08 22:47:19 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	main(void)
 	ft_printf("									"
 			"									\n");
 	ft_printf("%Double pourcent: '%%', Triple pourcent: '%%%'\n"); 
-	// What happens when '%%%' and '%%%%' ? // More complex that it seems...
+	// What happens when '%%%' and '%%%%' ? 
+	// What happens if the % is just placed at a random place of 
+	// More complex that it seems...
 }
 
 // Now we have to compile this main.
