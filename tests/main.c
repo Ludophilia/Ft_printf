@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/08 15:58:39 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/08 22:43:02 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	main(void)
 		0U, 4294967295U);
 	ft_printf("-10 is %u as an unsigned int, -42 is %u, -1 is %u\n",
 		-10, -42, -1);
+	ft_printf("									"
+			"									\n");
+	ft_printf("%Double pourcent: '%%', Triple pourcent: '%%%'\n"); 
+	// What happens when '%%%' and '%%%%' ? // More complex that it seems...
 }
 
 // Now we have to compile this main.
