@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/07 20:06:57 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:58:39 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	main(void)
 	ft_printf("%i as a char is '%c'\n", 0x2A, 42);
 	ft_printf("									"
 			"									\n");
-	ft_printf("%u is UINT_MAX, basically\n", 4294967295U);
+	ft_printf("%u is UINT_MIN and %u is UINT_MAX, basically\n",
+		0U, 4294967295U);
+	ft_printf("-10 is %u as an unsigned int, -42 is %u, -1 is %u\n",
+		-10, -42, -1);
 }
 
 // Now we have to compile this main.

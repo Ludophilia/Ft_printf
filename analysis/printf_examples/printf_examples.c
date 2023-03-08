@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:43:04 by jgermany          #+#    #+#             */
-/*   Updated: 2023/02/27 22:10:16 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:53:11 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -502,10 +502,10 @@ void	unsigned_specifier(int do_it)
 	printf("\x1b[36mUnsigned Integer specifiers and flags:\x1b[0m\n");
 	printf("%s'%u,%d'\n",
 		"\t-B10I, standard %u specifier:\n\t\x20",
-		-22, -22);
+		-42, -42);
 	printf("%s'%u,%d'\n",
 		"\t+B10I, standard %u specifier:\n\t\x20",
-		22, 22);
+		42, 42);
 	printf("%s'%u,%d'\n",
 		"\t+B16U, standard %u specifier:\n\t\x20", 
 		0xFFFFFFFFU, 0xFFFFFFFFU);
@@ -1062,14 +1062,14 @@ void	just_pourcent(int do_it)
 
 int	main(void)
 {
-	format_string(1);
-	character_specifier(1);
-	string_specifier(1);
-	integer_specifier(1);
+	// format_string(1);
+	// character_specifier(1);
+	// string_specifier(1);
+	// integer_specifier(1);
 	unsigned_specifier(1);
-	hexadecimal_specifier(1);
-	pointer_specifier(1);
-	just_pourcent(1);
+	// hexadecimal_specifier(1);
+	// pointer_specifier(1);
+	// just_pourcent(1);
 	// ------------------------- //
 	// format_string_err(1);
 	// character_specifier_err(1);

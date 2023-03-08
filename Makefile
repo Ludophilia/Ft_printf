@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/07 20:40:33 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/08 14:27:09 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CCFL = -Wall -Wextra -Werror
 AR = ar
 ARFL = -rcs
 
-SRCS = ft_printf.c parser.c
+SRCS = ft_printf.c parser.c displayer.c
 OBJS = $(SRCS:.c=.o)
 
 LFTDR = libft
