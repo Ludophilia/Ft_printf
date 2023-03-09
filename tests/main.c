@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/08 22:47:19 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:37:14 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	ft_printf("Ça marche,, mon frère.\n");
+	ft_printf("Ça marche,,, mon frère.\n");
 	ft_printf("Ça marche %d fois frère.\n", 0b101010);
 	ft_printf("Ça marche toujours %i fois frère.\n", 0b101010);
 	ft_printf("Ça marche %d et %i fois frère.\n", (0x2A | 0b1), 44);
@@ -31,10 +31,36 @@ int	main(void)
 		-10, -42, -1);
 	ft_printf("									"
 			"									\n");
-	ft_printf("%Double pourcent: '%%', Triple pourcent: '%%%'\n"); 
-	// What happens when '%%%' and '%%%%' ? 
-	// What happens if the % is just placed at a random place of 
-	// More complex that it seems...
+	ft_printf("-10 is %u as an unsigned int, -42 is %u, -1 is %u\n",
+		-10, -42, -1);
+	ft_printf("									"
+			"									\n");
+	ft_printf("je suis '%s'\n", "travail");
+	ft_printf("je ne suis que %s, je n'ai pas de %s.\n", 
+		"travail", "vie");
+	ft_printf("									"
+			"									\n");
+	ft_printf("42 is %x in hex and %X in HEX\n", 42, 42);
+	ft_printf("Int bounds: min as unsigned = %x, max = %X\n", 
+		-0x7FFFFFFF, 0x80000000);
+	ft_printf("									"
+			"									\n");
+	int	*pi, pj;
+	pi = (int *)(uintptr_t)0x7FFFFFFF;
+	pj = 0;
+	ft_printf("pi = %p, pj = %p\n", pi, pj);
+	ft_printf("									"
+			"									\n");
+	// printf("%Double pourcent: '%%', Triple pourcent: '%%%'\n");
+	// error: more '%' conversions than data arguments (%D is interpreted as arg)
+	// printf("Double pourcent: '%%', Triple pourcent: '%%%'\n");
+	// error: invalid conversion specifier '\x0a' (%') (a % will open a % conversion request)
+	// printf("Double pourcent: '%%', Triple pourcent: '%%%");
+	// // error: incomplete format specifier. Better abandon that Triple pourcent.
+	ft_printf("Double pourcent: '%%', quadruple pourcent: '%%%%'\n");
+	ft_printf("10 pourcent signs in the row: '%%%%%%%%%%'\n");
+	ft_printf("									"
+			"									\n");
 }
 
 // Now we have to compile this main.

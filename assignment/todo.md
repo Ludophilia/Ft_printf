@@ -15,11 +15,10 @@
 
 - [X] Let's try with another specifier: %c
 - [X] Let's try with another specifier: %u
-- [ ] Let's try with another specifier: %s
-- [ ] Let's try with another specifier: %x, %X
-- [ ] Let's try with another specifier: %p
-- [ ] Let's try with another specifier: %%
-
+- [x] Let's try with another specifier: %s
+- [x] Let's try with another specifier: %x, %X
+- [x] Let's try with another specifier: %p
+- [x] Let's try with another specifier: %%
 
 ## Manage one flag for example
 
@@ -31,3 +30,11 @@
 ## Manage the rest basic printf flags
 
 *Well, we're waiting*
+
+## Manage the return type
+
+- [ ] Manage the return type. What should be returned
+
+## Evil test your work
+
+- [ ] Find the different testcases 
