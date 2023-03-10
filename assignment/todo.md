@@ -20,6 +20,10 @@
 - [x] Let's try with another specifier: %p
 - [x] Let's try with another specifier: %%
 
+## Manage the return type
+
+- [ ] Manage the return type. What should be returned
+
 ## Manage one flag for example
 
 - [ ] Think about the general strategy to manage multiple flags
@@ -30,10 +34,6 @@
 ## Manage the rest basic printf flags
 
 *Well, we're waiting*
-
-## Manage the return type
-
-- [ ] Manage the return type. What should be returned
 
 ## Evil test your work
 

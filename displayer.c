@@ -6,13 +6,25 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:07 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/09 20:51:39 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 00:11:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
+
+// I'm not sure about the type of long long. Won't numbers at risk of being 
+// changed by conversion ? Long long is like a big circle containing a smaller
+// one.
+
+// I think i'm going to use wrappers around libft functions so I can count
+// character to return for prints
+// - putchar at minimum (the only function that really prints something) 
+// should take a int * counter that they will modify every
+// time they are called.
+// Naturally, the functions putstr, putnbr will be affected as well by this
+// change...
 void	ll_putnbr_fd(long long int nb, int fd)
 {
 	if (fd < 0)

@@ -7,7 +7,9 @@
 ## Return values
 
 * the processed format string on stdout(1)
-* the number of characters processed as an int 
+* the number of characters printed on stdout as an int (ex: 
+pf("123\n") returns 4, pf("%i\n", 123) returns 4, pf("%4i\n", 123) returns 5
+because an additional whitespace is printed.)
 
 ## Overview
 

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/09 22:40:20 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:51:09 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	process_specifier(char *specifier, va_list *args)
 		{		
 			ft_putstr_fd("0x", 1);
 			ll_putnbr_base_fd(va_arg(*args, uintptr_t), "0123456789abcdef", 1);
-			// may be too much
+			// may be too much, watch out for overflow.
 			break ;
 		}
 		else if (specifier[i] == '%' && specifier[i + 1] == '%')
