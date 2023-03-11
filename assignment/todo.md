@@ -22,7 +22,8 @@
 
 ## Manage the return type
 
-- [ ] Manage the return type. What should be returned
+- [x] Manage the return type. What should be returned ? Number of characters 
+printed on stdout.
 
 ## Manage one flag for example
 

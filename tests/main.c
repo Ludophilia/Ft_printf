@@ -6,11 +6,12 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 00:28:13 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 14:27:02 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "main.h"
 
 void	decimal_specifier(unsigned char do_it)
 {

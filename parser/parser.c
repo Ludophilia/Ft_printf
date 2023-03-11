@@ -6,65 +6,52 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/10 22:51:09 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:09:35 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft/libft.h"
+#include "../printer/printer.h"
+#include "parser.h"
 
-int	process_specifier(char *specifier, va_list *args)
+// It's way too long, and not very clean...
+int	process_specifier(char *specifier, va_list *args, int *ccount_p)
 {
-	// "It's way too long", if you know what I mean (the norm, nothing else)
 	int	i;
+	int	proc;
 
 	i = -1;
-	while (specifier[++i]) // starts from the first %
+	proc = 0;
+	while (specifier[++i])
 	{
 		if (specifier[i] == 'd' || specifier[i] == 'i')
-		{
-			ft_putnbr_fd(va_arg(*args, int), 1);
-			break ;
-		}
+			proc = putnbr_base_cctr(va_arg(*args, int),
+					"0123456789", ccount_p);
 		else if (specifier[i] == 'c')
-		{
-			ft_putchar_fd(va_arg(*args, int), 1);
-			break ;
-		}
+			proc = putchar_cctr(va_arg(*args, int), ccount_p);
 		else if (specifier[i] == 'u')
-		{
-			ll_putnbr_fd(va_arg(*args, unsigned int), 1);
-			break ;
-		}
+			proc = putnbr_base_cctr(va_arg(*args, unsigned int),
+					"0123456789", ccount_p);
 		else if (specifier[i] == 's')
-		{
-			ft_putstr_fd(va_arg(*args, char *), 1);
-			break ;
-		}
-		else if (specifier[i] == 'x' || specifier[i] == 'X')
-		{
-			char	*base16;
-
-			if (specifier[i] == 'x')
-				base16 = "0123456789abcdef";
-			else
-				base16 = "0123456789ABCDEF";
-			ll_putnbr_base_fd(va_arg(*args, unsigned int), base16, 1);
-			break ;
-		}
+			proc = putstr_cctr(va_arg(*args, char *), ccount_p);
+		else if (specifier[i] == 'x')
+			proc = putnbr_base_cctr(va_arg(*args, unsigned int),
+					"0123456789abcdef", ccount_p);
+		else if (specifier[i] == 'X')
+			proc = putnbr_base_cctr(va_arg(*args, unsigned int),
+					"0123456789ABCDEF", ccount_p);
 		else if (specifier[i] == 'p')
 		{		
-			ft_putstr_fd("0x", 1);
-			ll_putnbr_base_fd(va_arg(*args, uintptr_t), "0123456789abcdef", 1);
-			// may be too much, watch out for overflow.
-			break ;
+			proc = putstr_cctr("0x", ccount_p);
+			proc = putnbr_base_cctr(va_arg(*args, uintptr_t),
+					"0123456789abcdef", ccount_p);
 		}
 		else if (specifier[i] == '%' && specifier[i + 1] == '%')
 		{
-			ft_putchar_fd('%', 1);
+			proc = putchar_cctr('%', ccount_p);
 			i++;
-			break ;
 		}
+		if (proc)
+			break ;
 	}
 	return (i);
 }

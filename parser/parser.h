@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 21:49:43 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 14:45:47 by jgermany         ###   ########.fr       */
+/*   Created: 2023/03/11 14:13:27 by jgermany          #+#    #+#             */
+/*   Updated: 2023/03/11 15:17:37 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+#ifndef PARSER_H
 
-# define FT_PRINTF_H
+# define PARSER_H
 
-# include <stdio.h> // should be removed
-// # include <stdlib.h>
 # include <stdarg.h>
+# include <stdint.h>
 
-int		ft_printf(const char *format, ...);
+int		process_specifier(char *specifier, va_list *args, int *ccount_p);
 
 #endif

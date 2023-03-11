@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 21:49:43 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 14:45:47 by jgermany         ###   ########.fr       */
+/*   Created: 2023/03/11 14:23:19 by jgermany          #+#    #+#             */
+/*   Updated: 2023/03/11 14:26:46 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+#ifndef TEST_MAIN_H
 
-# define FT_PRINTF_H
+# define TEST_MAIN_H
 
-# include <stdio.h> // should be removed
-// # include <stdlib.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *format, ...);
+# include <stdint.h>
 
 #endif

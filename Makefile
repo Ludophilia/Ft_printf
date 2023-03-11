@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 14:16:47 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/08 14:27:09 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/11 15:19:17 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ CCFL = -Wall -Wextra -Werror
 AR = ar
 ARFL = -rcs
 
-SRCS = ft_printf.c parser.c displayer.c
+PRS = parser
+PRT = printer
+
+SRCS = ft_printf.c $(PRS)/parser.c $(PRT)/printer.c
 OBJS = $(SRCS:.c=.o)
 
 LFTDR = libft
@@ -32,6 +35,7 @@ $(LFT):
 $(NAME): $(OBJS) 
 	$(AR) $(ARFL) $@ $^
 
+# I want each .o to appaear in their original file
 %.o: %.c
 	$(CC) $(CCFL) -c $<
 
