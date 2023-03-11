@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 20:23:12 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:37:57 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,3 @@ int	main(void)
 	pointer_specifier(0b00000001);
 	pourcent_specifier(0b00000001);
 }
-
-// Now we have to compile this main.
-	// * ft_printf have to be compiled first as libftprintf.a and used as a lib
-	// with this main
-	// * libftprintf.a have to be compiled with libft.a
-	// * libft.a have to be compiled from its sources. 
-	// ...
