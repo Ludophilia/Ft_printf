@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 15:09:35 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:23:27 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	process_specifier(char *specifier, va_list *args, int *ccount_p)
 			proc = putnbr_base_cctr(va_arg(*args, unsigned int),
 					"0123456789ABCDEF", ccount_p);
 		else if (specifier[i] == 'p')
-		{		
+		{
 			proc = putstr_cctr("0x", ccount_p);
 			proc = putnbr_base_cctr(va_arg(*args, uintptr_t),
 					"0123456789abcdef", ccount_p);

@@ -39,3 +39,5 @@ printed on stdout.
 ## Evil test your work
 
 - [ ] Find the different testcases 
+	- [ ] %p
+		- [ ] 0 should return (nil) and not 0x0...

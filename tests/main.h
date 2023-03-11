@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:23:19 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 14:26:46 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:41:03 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define TEST_MAIN_H
 
+# include <stdio.h>
 # include <stdint.h>
 
 #endif
