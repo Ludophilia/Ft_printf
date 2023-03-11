@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 19:10:51 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:31:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,19 @@
 int	ft_printf(const char *format, ...)
 {
 	int		i;
+	int		ccount;
 	va_list	args;
-	int 	ccount;
-	
-	va_start(args, format);
+
 	i = -1;
 	ccount = 0;
+	va_start(args, format);
 	while (format[++i])
 	{
-		// printf("\t[DB]i = %i, format[i] = '%c'\n", i, format[i]);
 		if (format[i] == '%')
-		{
-			// printf("\t[DB]i before process_specifier: %i\n", i);
 			i += process_specifier((char *)format + i, &args, &ccount);
-			// printf("\t[DB]i after process_specifier: %i\n\n", i);
-		}
 		else
-			putchar_cctr(format[i], &ccount); // kind of inefficient
+			putchar_cctr(format[i], &ccount);
 	}
-	// printf("\t[DB]i = %i, i = '%c'\n", i, format[i]);
 	va_end(args);
 	return (ccount);
 }
