@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 15:09:40 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:10:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	ft_printf(const char *format, ...)
 {
-	int	i;
+	int		i;
 	va_list	args;
-	int ccount;
+	int 	ccount;
 	
 	va_start(args, format);
 	i = -1;

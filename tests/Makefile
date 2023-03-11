@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/08 14:26:29 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/11 19:26:40 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,14 @@ MAIN = main.c
 MAIN_OB = $(MAIN:.c=.o)
 
 ROOT = ..
+PADR = $(ROOT)/parser
+PRDR = $(ROOT)/printer
+
 LPF = $(ROOT)/libftprintf.a
 LFTDR = $(ROOT)/libft
 
 PFDR = $(ROOT)
-PF = $(ROOT)/parser.c $(ROOT)/ft_printf.c $(ROOT)/displayer.c
+PF = $(PADR)/parser.c $(ROOT)/ft_printf.c $(PRDR)/printer.c
 
 all: $(NAME)
 	./$<

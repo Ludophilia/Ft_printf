@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:24:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 15:35:35 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:04:59 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	putnbr_base_cctr(long long nb, char *base, int *ccount_p)
 	if (nb >= radix || nb <= -radix)
 		putnbr_base_cctr(nb / radix, base, ccount_p);
 	if (nb < 0 && nb > -radix)
-		ft_putchar_fd('-', ccount_p);
+		putchar_cctr('-', ccount_p);
 	if (nb < 0)
 		nb = -(nb % radix);
 	else
 		nb = (nb % radix);
-	ft_putchar_fd(base[nb], ccount_p);
+	putchar_cctr(base[nb], ccount_p);
 	return (1);
 }
