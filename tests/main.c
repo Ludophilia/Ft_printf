@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/11 20:37:57 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/12 15:18:08 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	pourcent_specifier(unsigned char do_it)
 	// printf("Double pourcent: '%%', Triple pourcent: '%%%'\n");
 	// error: invalid conversion specifier '\x0a' (%') (a % will open a % conversion request)
 	// printf("Double pourcent: '%%', Triple pourcent: '%%%");
-	// // error: incomplete format specifier. Better abandon that Triple pourcent.
+	// error: incomplete format specifier. Better abandon that Triple pourcent.
 	ft_proc = ft_printf("Double pourcent: '%%', quadruple pourcent: '%%%%'\n");
 	proc = printf("Double pourcent: '%%', quadruple pourcent: '%%%%'\n");
 	printf("\tft_proc = %i, proc = %i\n", ft_proc, proc);

@@ -27,10 +27,11 @@ printed on stdout.
 
 ## Manage one flag for example
 
-- [ ] Think about the general strategy to manage multiple flags
-	- [ ] GO the 0b101010 route: bitshifting and bitwise operations... A flag 
-	light up one positional candle in a short or an int
-- [ ]
+- [x] Think about the general strategy to manage multiple flags
+-	[ ] First try, is it enough?
+- [ ] Implement this strategy and test it with one flag at minimum.
+	- [ ] Parser.c, repair the system that produces the offset before even
+	continuing on that.
 
 ## Manage the rest basic printf flags
 
@@ -41,3 +42,11 @@ printed on stdout.
 - [ ] Find the different testcases 
 	- [ ] %p
 		- [ ] 0 should return (nil) and not 0x0...
+	- [ ] flags
+		- [ ] multiple times the same flag ? Rep: no effect.
+			  - [ ] multiple times the same flag but no conversion specifier ? 
+			  each flag printed once.
+		- [ ] negative precision ? How is atoi affected?
+		- [ ] negative precision ? How is 
+	- [ ] %
+		- [ ] % alone is printed on stdout?
