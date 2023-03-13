@@ -31,15 +31,15 @@ printed on stdout.
 -	[ ] First try, is it enough?
 - [ ] Implement this strategy and test it with one flag at minimum.
 
-## Manage the parsing system 
-	- [ ] Parser.c, repair the system that produces the offset before even
-	continuing thinking about processing the flags.
-	- [ ] Improve the parsing system so it can manage the cases where a
-	specification is miswritten.
-
 ## Manage the rest basic printf flags
 
-*Well, we're waiting*
+- [ ] *...*
+
+## Manage the parsing system 
+- [x] Parser.c, repair the system that produces the offset before even
+continuing thinking about processing the flags.
+- [ ] Improve the parsing system so it can manage the cases where a
+specification is miswritten.
 
 ## Evil test your work
 

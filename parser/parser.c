@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/13 18:27:31 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:53:39 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int	proc_conv(char *spec, va_list *args, t_flag *flags, int *ccount)
 	int	i;
 	
 	i = 0;
-	(void)flags; // GET THIS SHIT OFF HERE!!!!
+	// How will the flags and options will affect putchar_cctr and the rest??
+	// - ...
+	(void)flags; // <GET THIS SHIT OFF MEEEE!!!!
 	if (spec[i] == 'd' || spec[i] == 'i')
 		putnbr_base_cctr(va_arg(*args, int), BASE10, ccount);
 	else if (spec[i] == 'u')
