@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/12 15:18:08 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:27:09 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,28 @@ void	decimal_specifier(unsigned char do_it)
 	printf("\tft_proc = %i, proc = %i\n", ft_proc, proc);
 	printf("										"
 		"										\n");
+}
+
+void	decimal_specifier_flg(unsigned char do_it)
+{
+	// int	ft_proc, proc;
+
+	if (!do_it)
+		return ;
+	ft_printf("Ça marche '% d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%+d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%5d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%-d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%-5d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%.5d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%0d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%05d' fois frère.\n", 0b101010);
+	// ft_printf("Ça marche '%-05d' fois frère.\n", 0b101010); // Should NOT work
+	printf("										"
+		"											\n");
+	// ft_printf("Ça marche '%#d' fois frère.\n", 0b101010);
+	// ft_printf("Ça marche '%5.5d' fois frère.\n", 0b101010);
+	// ft_printf("Ça marche '%5.5+d' fois frère.\n", 0b101010);
 }
 
 void	character_specifier(unsigned char do_it)
@@ -143,11 +165,12 @@ void	pourcent_specifier(unsigned char do_it)
 
 int	main(void)
 {
-	decimal_specifier(0b00000001);
-	character_specifier(0b00000001);
-	unsigned_specifier(0b00000001);
-	string_specifier(0b00000001);
-	hexa_specifier(0b00000001);
-	pointer_specifier(0b00000001);
-	pourcent_specifier(0b00000001);
+	decimal_specifier(1);
+	decimal_specifier_flg(0);
+	character_specifier(1);
+	unsigned_specifier(1);
+	string_specifier(1);
+	hexa_specifier(1);
+	pointer_specifier(1);
+	pourcent_specifier(1);
 }

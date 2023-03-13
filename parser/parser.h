@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:13:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/12 21:55:50 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:25:37 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdlib.h>
+# include <stdio.h> // REMOVE IT
 
 typedef struct s_flag
 {
@@ -36,6 +37,6 @@ typedef struct s_flag
 int		proc_flags(char *spec, t_flag *flags);
 int 	proc_options(char *spec, t_flag *flags);
 int		proc_conv(char *spec, va_list *args, t_flag *flags, int *ccount);
-int		proc_specif(char *spec, va_list *args, t_flag *flags, int *ccount);
+int		proc_specif(char *spec, va_list *args, int *ccount);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/12 18:26:41 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:27:22 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ int	ft_printf(const char *format, ...)
 	//			will be defined in process_specification (parser level)
 	//			as every specification has its own set of flags...
 	
-	//		- 'd' 'u' 'p'... still triggers the consumption of one element of
+	//		- 'd' 'u' 'p'... still triggers the consumptio n of one element of
 	//		va_list, its conversion, and its printing on stdout. Obviously,
 	//		this time, the printing is influenced by the flags and over options
 	//		...
 	//  
 	while (format[++i])
 	{
-		if (format[i] == '%')
-			i += process_specif((char *)format + i + 1, &args, &ccount);
+		if (format[i] == '%') // if the % spec does not work? Why not do:
+			// if (format[i] == '%' && proc_specif) ? If proc_specif returns 0
+			// that means that it should be ignored 
+			i += proc_specif((char *)format + i + 1, &args, &ccount);
 		else
 			putchar_cctr(format[i], &ccount);
 	}

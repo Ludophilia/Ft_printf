@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 22:31:17 by jgermany          #+#    #+#              #
-#    Updated: 2023/03/11 19:26:40 by jgermany         ###   ########.fr        #
+#    Updated: 2023/03/13 16:07:44 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ PF = $(PADR)/parser.c $(ROOT)/ft_printf.c $(PRDR)/printer.c
 
 all: $(NAME)
 	./$<
+
+mtest: $(NAME)
+	valgrind ./$<
 
 $(NAME): $(MAIN) $(LPF)
 	$(CC) $(CCFL) -o $@ $(MAIN) -lftprintf -L$(ROOT) -lft -L$(LFTDR)
