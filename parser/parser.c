@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/13 18:53:39 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:07:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,26 @@ int	proc_conv(char *spec, va_list *args, t_flag *flags, int *ccount)
 	i = 0;
 	// How will the flags and options will affect putchar_cctr and the rest??
 	// - ...
-	(void)flags; // <GET THIS SHIT OFF MEEEE!!!!
+	//(void)flags; // <GET THIS SHIT OFF MEEEE!!!!
+	flags->conv_t = spec[i];
 	if (spec[i] == 'd' || spec[i] == 'i')
-		putnbr_base_cctr(va_arg(*args, int), BASE10, ccount);
+		putnbr_base(va_arg(*args, int), B10, flags, ccount); // flags arg missing
 	else if (spec[i] == 'u')
-		putnbr_base_cctr(va_arg(*args, unsigned int), BASE10, ccount);
+		putnbr_base(va_arg(*args, unsigned int), B10, flags, ccount); // flags arg missing
 	else if (spec[i] == 'c')
-		putchar_cctr(va_arg(*args, int), ccount);
+		putchar_cctr(va_arg(*args, int), ccount); // flags arg missing
 	else if (spec[i] == '%')
-		putchar_cctr('%', ccount);
+		putchar_cctr('%', ccount); // flags arg missing
 	else if (spec[i] == 's')
-		putstr_cctr(va_arg(*args, char *), ccount);
+		putstr_cctr(va_arg(*args, char *), ccount); // flags arg missing
 	else if (spec[i] == 'x')
-		putnbr_base_cctr(va_arg(*args, unsigned int), BASE16L, ccount);
+		putnbr_base(va_arg(*args, unsigned int), B16L, flags, ccount); // flags arg missing
 	else if (spec[i] == 'X')
-		putnbr_base_cctr(va_arg(*args, unsigned int), BASE16U, ccount);
+		putnbr_base(va_arg(*args, unsigned int), B16U, flags, ccount); // flags arg missing
 	else if (spec[i] == 'p')
 	{
 		putstr_cctr("0x", ccount); // Soooooooon my son, you'll disappear.
-		putnbr_base_cctr(va_arg(*args, uintptr_t), BASE16L, ccount);
+		putnbr_base(va_arg(*args, uintptr_t), B16L, flags, ccount); // flags arg missing
 	}
 	i++; // if spec in "diuc%sxXp" i++. this guard makes i = 1 only if the 
 	// right specifier appeared.

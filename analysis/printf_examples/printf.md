@@ -94,7 +94,7 @@ Here are the flags that will be treated for this exercice:
 	* Dynamics with ' ':
 		* A '+' overrides a ' ' space if both are used.
 
-* \# (pound sign): 
+* \# (pound sign):
 	* the value should be converted to another form. As far we're concerned for 
 	(%x, %X) conversions, a nonzero result has the string "0x" (or "0X" for X
 	conversions) prepended to it.

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 00:58:49 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/13 18:27:09 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:16:39 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	decimal_specifier_flg(unsigned char do_it)
 		return ;
 	ft_printf("Ça marche '% d' fois frère.\n", 0b101010);
 	ft_printf("Ça marche '%+d' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%+d' fois frère.\n", -0b101010);
+	ft_printf("Ça marche '%+i' fois frère.\n", 0b101010);
+	ft_printf("Ça marche '%+i' fois frère.\n", -0b101010);
 	ft_printf("Ça marche '%5d' fois frère.\n", 0b101010);
 	ft_printf("Ça marche '%-d' fois frère.\n", 0b101010);
 	ft_printf("Ça marche '%-5d' fois frère.\n", 0b101010);
@@ -163,14 +166,21 @@ void	pourcent_specifier(unsigned char do_it)
 			"									\n");
 }
 
-int	main(void)
+void regular_cases(unsigned char do_it)
 {
+	if (!do_it)
+		return ;
 	decimal_specifier(1);
-	decimal_specifier_flg(0);
 	character_specifier(1);
 	unsigned_specifier(1);
 	string_specifier(1);
 	hexa_specifier(1);
 	pointer_specifier(1);
 	pourcent_specifier(1);
+}
+
+int	main(void)
+{
+	regular_cases(0);
+	decimal_specifier_flg(1);
 }

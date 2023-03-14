@@ -28,7 +28,6 @@ printed on stdout.
 ## Manage one flag for example
 
 - [x] Think about the general strategy to manage multiple flags
--	[ ] First try, is it enough?
 - [ ] Implement this strategy and test it with one flag at minimum.
 
 ## Manage the rest basic printf flags

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:43:04 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/08 15:53:11 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:41:05 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,9 +377,13 @@ void	integer_specifier(int do_it)
 	printf("%s'% i,% d'\n",
 		"\t-B10I, Space for +:\n\t\x20", -42, -42);
 	printf("%s'% i,% d'\n",
+		"\tB10I, Space for +:\n\t\x20", 0, 0);
+	printf("%s'% i,% d'\n",
 		"\t+B10I, Space for +:\n\t\x20", 42, 42);
 	printf("%s'%+i,%+d'\n",
 		"\t-B10I, +/- Sign:\n\t\x20", -42, -42);
+	printf("%s'%+i,%+d'\n",
+		"\t+B10I, +/- Sign:\n\t\x20", 0, 0);
 	printf("%s'%+i,%+d'\n",
 		"\t+B10I, +/- Sign:\n\t\x20", 42, 42);
 	printf("											"
@@ -1065,8 +1069,8 @@ int	main(void)
 	// format_string(1);
 	// character_specifier(1);
 	// string_specifier(1);
-	// integer_specifier(1);
-	unsigned_specifier(1);
+	integer_specifier(1);
+	// unsigned_specifier(1);
 	// hexadecimal_specifier(1);
 	// pointer_specifier(1);
 	// just_pourcent(1);

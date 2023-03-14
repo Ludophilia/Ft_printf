@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:13:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/03/13 16:25:37 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:19:22 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define PARSER_H
 
-# define BASE10 "0123456789"
-# define BASE16U "0123456789ABCDEF"
-# define BASE16L "0123456789abcdef"
+# define B10 "0123456789"
+# define B16U "0123456789ABCDEF"
+# define B16L "0123456789abcdef"
 
 # include <stdarg.h>
 # include <stdint.h>
@@ -25,6 +25,7 @@
 
 typedef struct s_flag
 {
+	unsigned int	conv_t: 7;
 	unsigned int	space_f: 1;
 	unsigned int	plus_f: 1;
 	unsigned int	pound_f: 1;
