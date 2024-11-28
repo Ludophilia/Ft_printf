@@ -2,6 +2,6 @@
 # \#TESTS
 *.o
 *.a
-x??
+test??
 .vscode
 ft_printf
