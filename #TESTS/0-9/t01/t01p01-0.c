@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t00.c                                              :+:      :+:    :+:   */
+/*   t01p01-0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/28 17:44:09 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:44:02 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define DEBUG 0
+#ifndef DEBUG
+# define DEBUG 0
+#endif
 
-void	test_null(void)
+int	test_empty_str_output0(void)
 {
-	int	ret[2];
+	int			ret[2];
+	const char	*format;
 
-	ret[0] = ft_printf(NULL);
-	ret[1] = printf(NULL);
+	format = "\0";
+	ret[0] = printf(format);
 	if (DEBUG
-		&& printf("ft_printf -> %i\n", ret[0])
-		&& printf("printf -> %i\n", ret[1]))
+			&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret[1]))
 		;
-	assert(ret[0] == ret[1]);
-	printf("\033[1m00.\033[0m\tNULL check...\t\033[1;32m[OK]\033[0m\n");
+	return (1);
 }
 
 int	main(void)
 {
-	test_null();
+	if (test_empty_str_output0() == 1)
+		return (0);
+	return (1);
 }

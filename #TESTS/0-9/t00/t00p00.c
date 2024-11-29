@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t01.c                                              :+:      :+:    :+:   */
+/*   t00p00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/28 17:56:13 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/11/29 15:30:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 #include <stdio.h>
 #include <assert.h>
 
-#define DEBUG 0
-#define NB "01"
-#define TITLE "NULL check"
+#ifndef DEBUG
+# define DEBUG 0
+#endif
+// #define NB "00-00"
+// #define TITLE "null check, return values"
+// #define OK_STATUS "[OK]"
 
-void	test_null(void)
+int	test_null(void)
 {
 	int	ret[2];
 
@@ -29,10 +33,13 @@ void	test_null(void)
 		&& printf("printf -> %i\n", ret[1]))
 		;
 	assert(ret[0] == ret[1]);
-	printf("\033[1m"NB".\033[0m\t"TITLE"...\t\033[1;32m[OK]\033[0m\n");
+	// printf("\033[1m"NB"\033[0m\t"TITLE"\t\t\033[1;32m"OK_STATUS"\033[0m\n");
+	return (1);
 }
 
 int	main(void)
 {
-	test_null();
+	if (test_null() == 1)
+		return (0);
+	return (1);
 }

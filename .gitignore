@@ -1,7 +1,7 @@
-# \#ASSIGNMENT
-# \#TESTS
+.vscode
+
 *.o
 *.a
-test??
-.vscode
+
+t??p??
 ft_printf
