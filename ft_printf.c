@@ -6,12 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/28 17:48:32 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:21:22 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 // %c Prints a single character.
 // %s Prints a string (as defined by the common C convention).
@@ -22,9 +21,6 @@
 // %x Prints a number in hexadecimal (base 16) lowercase format.
 // %X Prints a number in hexadecimal (base 16) uppercase format.
 // %% Prints a percent sign.
-
-// empty str
-// stand str, without % specifier
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
