@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 15:37:04 by jegerman          #+#    #+#              #
-#    Updated: 2024/11/28 15:58:09 by jegerman         ###   ########.fr        #
+#    Updated: 2024/12/03 16:36:47 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ AR := ar
 CFLAGS := -Wall -Wextra -Werror
 ARFLAGS := rcs
 
+LFT_DIR := libft
+
 SRCS_MAN := ft_printf.c
 
 OBJS_MAN := $(SRCS_MAN:.c=.o)
@@ -25,6 +27,7 @@ OBJS_MAN := $(SRCS_MAN:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS_MAN)
+	make -sC $(LFT_DIR) && mv $(LFT_DIR)/libft.a ./$@
 	$(AR) $(ARFLAGS) $@ $^
 
 clean:
