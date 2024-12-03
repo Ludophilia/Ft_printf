@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/29 17:21:22 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:13:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@
 // %x Prints a number in hexadecimal (base 16) lowercase format.
 // %X Prints a number in hexadecimal (base 16) uppercase format.
 // %% Prints a percent sign.
+
+void	ft_putchar_cc(const char c, int *count)
+{
+	write(1, &c, 1);
+	++(*count);
+}
+
+void	process_specifier(const char *c, va_list args, int *i, int *count)
+{
+	if (*c == 'c')
+	{
+		ft_putchar_cc(va_arg(args, int), count);
+		*i += 2;
+	}
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
@@ -30,16 +46,17 @@ int	ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	i = -1;
+	i = 0;
 	count = 0;
-	while (format[++i])
+	while (format[i])
 	{
 		if (format[i] != '%')
 		{
-			write(1, format + i, 1);
-			++count;
+			ft_putchar_cc(format[i], &count);
+			++i;
 		}
-		// va_args(args, type);
+		else
+			process_specifier(format + i + 1, args, &i, &count);
 	}
 	va_end(args);
 	return (count);

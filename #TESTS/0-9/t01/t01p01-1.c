@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/29 14:45:04 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:27:16 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 
 int	test_empty_str_output1(void)
 {
-	int			ret[2];
+	int			ret;
 	const char	*format;
 
 	format = "\0";
-	ret[0] = ft_printf(format);
+	ret = ft_printf(format);
 	if (DEBUG
-			&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret[1]))
+			&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

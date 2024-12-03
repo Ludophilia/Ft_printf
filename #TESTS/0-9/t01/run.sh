@@ -44,7 +44,7 @@ NAME1="t01p01-1" ; SRCS1="t01p01-1.c" ; OUT1="file1"
 $CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF 2> /dev/null
 $CC $CFLAGS -o $NAME1 $SRCS1 $LFTPF 2> /dev/null
 
-./$NAME0 > $OUT0 && ./$NAME0 > $OUT1
+./$NAME0 > $OUT0 && ./$NAME1 > $OUT1
 diff $OUT0 $OUT1
 if [ $? -ne 0 ]; then exit 1;
 else printf "\033[1m$NB\033[0m\t$TITLE\t\t\033[1;32m$OK_STATUS\033[0m\n"; fi
