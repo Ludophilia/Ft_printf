@@ -20,7 +20,7 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="%%c specifiers"
+MAIN_TITLE="%%c specifier"
 TEST_NB="03"
 
 make -sC $LFTPF_DIR

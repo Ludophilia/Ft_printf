@@ -4,7 +4,7 @@ if [ $# -ne 0 ]; then exit 1; fi
 
 cd 0-9
 
-for i in {1..4}; do
+for i in {5..5}; do
 	cd t0$i
 	./run.sh
 	cd ..

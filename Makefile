@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 15:37:04 by jegerman          #+#    #+#              #
-#    Updated: 2024/12/03 16:36:47 by jegerman         ###   ########.fr        #
+#    Updated: 2024/12/04 15:36:54 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ ARFLAGS := rcs
 LFT_DIR := libft
 
 SRCS_MAN := ft_printf.c
+SRCS_MAN += printer.c
+SRCS_MAN += processor.c
 
 OBJS_MAN := $(SRCS_MAN:.c=.o)
 
