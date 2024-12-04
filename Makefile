@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 15:37:04 by jegerman          #+#    #+#              #
-#    Updated: 2024/12/04 15:36:54 by jegerman         ###   ########.fr        #
+#    Updated: 2024/12/04 18:22:44 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ $(NAME): $(OBJS_MAN)
 	$(AR) $(ARFLAGS) $@ $^
 
 clean:
+	make -C$(LFT_DIR) clean
 	rm -f $(OBJS_MAN)
 
 fclean: clean
