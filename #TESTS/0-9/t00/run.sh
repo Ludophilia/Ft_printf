@@ -19,7 +19,7 @@ make -sC $LFTPF_DIR
 
 # FIRST TEST
 
-NB="01-00"
+NB="00-00"
 TITLE="Null check, return values"
 OK_STATUS="[OK]"
 NAME0="t00p00" ; SRCS0="t00p00.c"
