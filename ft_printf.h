@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/04 17:29:32 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:57:32 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,23 @@ typedef struct s_nbr
 	unsigned long	magn;
 }	t_nbr;
 
+typedef union u_usl
+{
+	unsigned long	u;
+	long			s;
+}	t_usl;
+
 typedef struct s_meta
 {
 	const char	*type;
 	va_list		args;
 	int			*i;
-	int			*count;
+	int			count;
 }	t_meta;
 
-void	ft_putchar_cc(const char c, int *count);
-void	ft_putstr_cc(const char *str, int *count);
-void	ft_putnbr_base_cc(t_nbr *nbr, char *digits, int *count);
+int		ft_putchar_cc(const char c, t_meta *meta);
+int		ft_putstr_cc(const char *str, t_meta *meta);
+int		ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta);
 
 void	process_specifier(const char *c, t_meta *meta);
 
