@@ -12,7 +12,6 @@ CC="cc"
 CFLAGS="-Wall -Wextra -Werror"
 # unset CFLAGS
 
-LFTPF_DIR="../../.."
 LFTPF="$LFTPF_DIR/libftprintf.a"
 
 CFLAGS+=" -I$LFTPF_DIR"
@@ -51,11 +50,16 @@ PART_NB="01"
 SUB_TITLE="$MAIN_TITLE - output comparison"
 NB="$TEST_NB-$PART_NB"
 
-NAME0="t${TEST_NB}p$PART_NB-0"; SRCS0="t${TEST_NB}p$PART_NB-0.c"; OUT0="file0"
-NAME1="t${TEST_NB}p$PART_NB-1"; SRCS1="t${TEST_NB}p$PART_NB-1.c"; OUT1="file1"
+SRCS0="t${TEST_NB}p$PART_NB.c"; 
 
-$CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF \
-	&& $CC $CFLAGS -o $NAME1 $SRCS1 $LFTPF
+NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
+OUT0="orig"; OUT1="ft"
+
+MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
+MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
+
+$CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF \
+	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF
 
 ./$NAME0 > $OUT0 && ./$NAME1 > $OUT1
 

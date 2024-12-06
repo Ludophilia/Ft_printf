@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t02p01-0.c                                         :+:      :+:    :+:   */
+/*   t03.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 14:37:35 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/06 16:50:44 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
+#ifndef T03_H
 
-#ifndef DEBUG
-# define DEBUG 0
+# define T03_H
+
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
+
 #endif
-
-int	test_format_str_without_spec_output_comparison(const char *format)
-{
-	int	ret;
-
-	ret = printf(format);
-	if (DEBUG
-			&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
-}

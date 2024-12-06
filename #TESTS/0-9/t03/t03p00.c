@@ -6,18 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 15:38:21 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:40:07 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
-#include <stdarg.h>
-
-#ifndef DEBUG
-# define DEBUG 0
-#endif
+#include "t03.h"
 
 int	test_format_str_with_c_specifier_return_value_t0(void)
 {

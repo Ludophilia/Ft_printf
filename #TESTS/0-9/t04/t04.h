@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t02p01-main.c                                      :+:      :+:    :+:   */
+/*   t04.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:31:19 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 14:40:03 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/06 16:50:39 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef T04_H
 
-int	main(void)
-{
-	int	test_format_str_without_spec_output_comparison(const char *);
+# define T04_H
 
-	if (test_format_str_without_spec_output_comparison("0")
-		&& test_format_str_without_spec_output_comparison("0123456789")
-		&& test_format_str_without_spec_output_comparison(
-			"012345678901234567890123456789012345678901"))
-		return (0);
-	return (1);
-}
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
+
+#endif

@@ -6,21 +6,15 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/11/29 17:05:47 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:39:54 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
-
-#ifndef DEBUG
-# define DEBUG 0
-#endif
+#include "t02.h"
 
 int	test_format_str_without_specifier_return_value(const char *format)
 {
-	int			ret[2];
+	int	ret[2];
 
 	ret[0] = ft_printf(format);
 	ret[1] = printf(format);

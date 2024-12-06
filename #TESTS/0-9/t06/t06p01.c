@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:49:18 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	test_format_str_with_ptr_specifier_return_value_t2(void)
 	int			ret;
 	char		*format;
 
-	format = "%d%i";
-	ret = printf(format, -2147483648, 2147483647);
+	format = "%i%d";
+	ret = PRINTF(format, -1, 0);
 	if (DEBUG
 		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 			;
@@ -56,8 +56,8 @@ int	test_format_str_with_ptr_specifier_return_value_t3(void)
 	int			ret;
 	char		*format;
 
-	format = "%d%d";
-	ret = PRINTF(format, -2147483648, -500);// -10, 0, 10, 42, 2147483647);
+	format = "%i%d%i%d%i%d%i";
+	ret = PRINTF(format, -42, -2147483648, -10, 0, 10, 42, 2147483647);
 	if (DEBUG
 		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 			;
@@ -71,7 +71,7 @@ int	test_format_str_with_ptr_specifier_return_value_t4(void)
 
 	format = "\r%d\xa%i\xb%d\t%i\n%d\x7f%i.%d?%i";
 	ret = PRINTF(format, -2147483648, -500, -10, 0, 10, 42, 2147483647,
-		2147483647l + 1);
+			2147483647l + 1);
 	if (DEBUG
 		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
@@ -83,10 +83,8 @@ int	main(void)
 	if (test_format_str_with_ptr_specifier_return_value_t0()
 		&& test_format_str_with_ptr_specifier_return_value_t1()
 		&& test_format_str_with_ptr_specifier_return_value_t2()
-		&& test_format_str_with_ptr_specifier_return_value_t3())
+		&& test_format_str_with_ptr_specifier_return_value_t3()
+		&& test_format_str_with_ptr_specifier_return_value_t4())
 		return (0);
-		// && test_format_str_with_ptr_specifier_return_value_t3()
-		// && test_format_str_with_ptr_specifier_return_value_t4())
-		// return (0);
 	return (1);
 }

@@ -12,7 +12,6 @@ CC="cc"
 CFLAGS="-Wall -Wextra -Werror"
 # unset CFLAGS
 
-LFTPF_DIR="../../.."
 LFTPF="$LFTPF_DIR/libftprintf.a"
 
 CFLAGS+=" -I$LFTPF_DIR"
@@ -51,9 +50,11 @@ PART_NB="01"
 SUB_TITLE="$MAIN_TITLE - output comparison"
 NB="$TEST_NB-$PART_NB"
 
+SRCS0="t${TEST_NB}p$PART_NB.c";
+
 NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
-SRCS0="t${TEST_NB}p$PART_NB.c"; 
-OUT0="orig"; OUT1="ft"
+
+OUT0="orig"; OUT1="ft";
 
 MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
 MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
@@ -69,6 +70,7 @@ if [ $? -ne 0 ]; then
 	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;41m$KO\033[0m\n"
 	exit 1;
 else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
+
 rm -f $NAME0 $NAME1 $OUT0 $OUT1
 
 exit 0

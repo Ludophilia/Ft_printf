@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t01p01-1.c                                         :+:      :+:    :+:   */
+/*   t02p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 14:27:16 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:43:01 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
+#include "t02.h"
 
-#ifndef DEBUG
-# define DEBUG 0
-#endif
-
-int	test_empty_str_output1(void)
+int	test_format_str_without_spec_output_comparison(const char *format)
 {
-	int			ret;
-	const char	*format;
+	int	ret;
 
-	format = "\0";
-	ret = ft_printf(format);
+	ret = PRINTF(format);
 	if (DEBUG
-			&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
 
 int	main(void)
 {
-	if (test_empty_str_output1() == 1)
+	if (test_format_str_without_spec_output_comparison("0")
+		&& test_format_str_without_spec_output_comparison("0123456789")
+		&& test_format_str_without_spec_output_comparison(
+			"012345678901234567890123456789012345678901"))
 		return (0);
 	return (1);
 }

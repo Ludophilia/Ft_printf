@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t01p01-0.c                                         :+:      :+:    :+:   */
+/*   t02.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 14:27:12 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/06 16:50:48 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
+#ifndef T02_H
 
-#ifndef DEBUG
-# define DEBUG 0
+# define T02_H
+
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
+
 #endif
-
-int	test_empty_str_output0(void)
-{
-	int			ret;
-	const char	*format;
-
-	format = "\0";
-	ret = printf(format);
-	if (DEBUG
-			&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
-}
-
-int	main(void)
-{
-	if (test_empty_str_output0() == 1)
-		return (0);
-	return (1);
-}

@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t05p01-1.c                                         :+:      :+:    :+:   */
+/*   t05p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/05 14:38:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:48:10 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
-#include <stdarg.h>
-
-#ifndef DEBUG
-# define DEBUG 0
-#endif
+#include "t05.h"
 
 int	test_format_str_with_ptr_specifier_return_value_t0(void)
 {
@@ -25,9 +18,9 @@ int	test_format_str_with_ptr_specifier_return_value_t0(void)
 	char	*format;
 
 	format = "%p";
-	ret = ft_printf(format, NULL);
+	ret = PRINTF(format, NULL);
 	if (DEBUG
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -38,9 +31,9 @@ int	test_format_str_with_ptr_specifier_return_value_t1(void)
 	char		*format;
 
 	format = "%p";
-	ret = ft_printf(format, (void *)0xf);
+	ret = PRINTF(format, (void *)0xf);
 	if (DEBUG
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -51,9 +44,9 @@ int	test_format_str_with_ptr_specifier_return_value_t2(void)
 	char		*format;
 
 	format = "%p";
-	ret = ft_printf(format, (void *)0x10);
+	ret = PRINTF(format, (void *)0x10);
 	if (DEBUG
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -64,9 +57,9 @@ int	test_format_str_with_ptr_specifier_return_value_t3(void)
 	char		*format;
 
 	format = "%p%p%p%p";
-	ret = ft_printf(format, (void *)0x1, NULL, -1, -16);
+	ret = PRINTF(format, (void *)0x1, NULL, -1, -16);
 	if (DEBUG
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -77,10 +70,10 @@ int	test_format_str_with_ptr_specifier_return_value_t4(void)
 	char		*format;
 
 	format = "Whyarethose... %pointing%pthings%pthat%pimportant%p!";
-	ret = ft_printf(format, "c", NULL,
-		"\001\x80\x7f franchement", "   \n", "");
+	ret = PRINTF(format, "c", NULL,
+			"\001\x80\x7f franchement", "   \n", "");
 	if (DEBUG
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

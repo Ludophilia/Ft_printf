@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t06.h                                              :+:      :+:    :+:   */
+/*   t01p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/06 16:50:29 by jegerman         ###   ########.fr       */
+/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/06 16:42:49 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T06_H
+#include "t01.h"
 
-# define T06_H
+int	test_empty_str_output0(void)
+{
+	int			ret;
+	const char	*format;
 
-# include "ft_printf.h"
-# include <stdio.h>
-# include <assert.h>
-# include <stdarg.h>
+	format = "\0";
+	ret = PRINTF(format);
+	if (DEBUG
+		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
+		;
+	return (1);
+}
 
-#endif
+int	main(void)
+{
+	if (test_empty_str_output0())
+		return (0);
+	return (1);
+}

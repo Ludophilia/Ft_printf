@@ -6,18 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/03 18:11:36 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:45:12 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
-#include <stdarg.h>
-
-#ifndef DEBUG
-# define DEBUG 0
-#endif
+#include "t04.h"
 
 int	test_format_str_with_str_specifier_return_value_t0(void)
 {
@@ -90,9 +83,9 @@ int	test_format_str_with_str_specifier_return_value_t4(void)
 
 	format = "oh%soooooouh%scomme%sc'est   %sbizarre%s!";
 	ret[0] = printf(format, "c", NULL,
-		"\001\x80\x7f franchement", "   \n", "");
+			"\001\x80\x7f franchement", "   \n", "");
 	ret[1] = ft_printf(format, "c", NULL,
-		"\001\x80\x7f franchement", "   \n", "");
+			"\001\x80\x7f franchement", "   \n", "");
 	if (DEBUG
 		&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret[0])
 		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret[1]))
