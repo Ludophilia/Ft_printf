@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/07 13:28:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:06:53 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	process_specifier(const char *c, t_meta *meta)
 		process_character_specifier(meta);
 	else if (*meta->type == 's' || *meta->type == '%')
 		process_string_specifier(meta);
-	else if (*meta->type == 'p' || *meta->type == 'i' || *meta->type == 'd')
+	else if (*meta->type == 'p' || *meta->type == 'i' || *meta->type == 'd'
+		|| *meta->type == 'u' || *meta->type == 'x' || *meta->type == 'X')
 		process_number_specifier(meta);
 }

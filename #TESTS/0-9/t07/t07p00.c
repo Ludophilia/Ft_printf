@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t06p00.c                                           :+:      :+:    :+:   */
+/*   t07p00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/07 13:50:33 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:07:31 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t06.h"
+#include "t07.h"
 
-int	test_format_str_with_decimal_specifier_return_value_t0(void)
+int	test_format_str_with_unsigned_specifier_return_value_t0(void)
 {
 	int			ret[2];
 	char		*format;
 
-	format = "%d";
+	format = "%u";
 	ret[0] = printf(format, 0);
 	ret[1] = ft_printf(format, 0);
 	if (DEBUG
@@ -28,14 +28,14 @@ int	test_format_str_with_decimal_specifier_return_value_t0(void)
 	return (1);
 }
 
-int	test_format_str_with_decimanl_specifier_return_value_t1(void)
+int	test_format_str_with_unsigned_specifier_return_value_t1(void)
 {
 	int			ret[2];
 	char		*format;
 
-	format = "%i";
-	ret[0] = printf(format, 0);
-	ret[1] = ft_printf(format, 0);
+	format = "%u%u%u%u%u%u";
+	ret[0] = printf(format, 0, 10, 1000, 1001, 0xFFFFFFFF, 0xFFFFFFFFl + 2);
+	ret[1] = ft_printf(format, 0, 10, 1000, 1001, 0xFFFFFFFF, 0xFFFFFFFFl + 2);
 	if (DEBUG
 		&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret[0])
 		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret[1]))
@@ -44,28 +44,12 @@ int	test_format_str_with_decimanl_specifier_return_value_t1(void)
 	return (1);
 }
 
-int	test_format_str_with_decimanl_specifier_return_value_t2(void)
+int	test_format_str_with_unsigned_specifier_return_value_t2(void)
 {
 	int			ret[2];
 	char		*format;
 
-	format = "%d%i%d%i%d%i%d";
-	ret[0] = printf(format, -2147483648, -500, -10, 0, 10, 42, 2147483647);
-	ret[1] = ft_printf(format, -2147483648, -500, -10, 0, 10, 42, 2147483647);
-	if (DEBUG
-		&& dprintf(2, "printf(\"%s\", ...) -> %i\n", format, ret[0])
-		&& dprintf(2, "ft_printf(\"%s\", ...) -> %i\n", format, ret[1]))
-		;
-	assert(ret[0] == ret[1]);
-	return (1);
-}
-
-int	test_format_str_with_decimanl_specifier_return_value_t3(void)
-{
-	int			ret[2];
-	char		*format;
-
-	format = "\r%d\xa%i\xb%d\t%i\n%d\x7f%i.%d?%i";
+	format = "\r%u\xa%u\xb%u\t%u\n%u\x7f%u.%u?%u";
 	ret[0] = printf(format, -2147483648, -500, -10, 0, 10, 42, 2147483647,
 			2147483647l + 1);
 	ret[1] = ft_printf(format, -2147483648, -500, -10, 0, 10, 42, 2147483647,
@@ -80,10 +64,8 @@ int	test_format_str_with_decimanl_specifier_return_value_t3(void)
 
 int	main(void)
 {
-	if (test_format_str_with_decimal_specifier_return_value_t0()
-		&& test_format_str_with_decimanl_specifier_return_value_t1()
-		&& test_format_str_with_decimanl_specifier_return_value_t2()
-		&& test_format_str_with_decimanl_specifier_return_value_t3())
-		return (0);
-	return (1);
+	test_format_str_with_unsigned_specifier_return_value_t0();
+	test_format_str_with_unsigned_specifier_return_value_t1();
+	test_format_str_with_unsigned_specifier_return_value_t2();
+	return (0);
 }

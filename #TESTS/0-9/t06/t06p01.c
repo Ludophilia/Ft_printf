@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/06 16:49:18 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:39:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t06.h"
 
-int	test_format_str_with_ptr_specifier_return_value_t0(void)
+int	test_format_str_with_decimanl_specifier_return_value_t0(void)
 {
 	int			ret;
 	char		*format;
@@ -25,7 +25,7 @@ int	test_format_str_with_ptr_specifier_return_value_t0(void)
 	return (1);
 }
 
-int	test_format_str_with_ptr_specifier_return_value_t1(void)
+int	test_format_str_with_decimanl_specifier_return_value_t1(void)
 {
 	int			ret;
 	char		*format;
@@ -38,7 +38,7 @@ int	test_format_str_with_ptr_specifier_return_value_t1(void)
 	return (1);
 }
 
-int	test_format_str_with_ptr_specifier_return_value_t2(void)
+int	test_format_str_with_decimanl_specifier_return_value_t2(void)
 {
 	int			ret;
 	char		*format;
@@ -51,7 +51,7 @@ int	test_format_str_with_ptr_specifier_return_value_t2(void)
 	return (1);
 }
 
-int	test_format_str_with_ptr_specifier_return_value_t3(void)
+int	test_format_str_with_decimanl_specifier_return_value_t3(void)
 {
 	int			ret;
 	char		*format;
@@ -64,7 +64,7 @@ int	test_format_str_with_ptr_specifier_return_value_t3(void)
 	return (1);
 }
 
-int	test_format_str_with_ptr_specifier_return_value_t4(void)
+int	test_format_str_with_decimanl_specifier_return_value_t4(void)
 {
 	int			ret;
 	char		*format;
@@ -80,11 +80,11 @@ int	test_format_str_with_ptr_specifier_return_value_t4(void)
 
 int	main(void)
 {
-	if (test_format_str_with_ptr_specifier_return_value_t0()
-		&& test_format_str_with_ptr_specifier_return_value_t1()
-		&& test_format_str_with_ptr_specifier_return_value_t2()
-		&& test_format_str_with_ptr_specifier_return_value_t3()
-		&& test_format_str_with_ptr_specifier_return_value_t4())
+	if (test_format_str_with_decimanl_specifier_return_value_t0()
+		&& test_format_str_with_decimanl_specifier_return_value_t1()
+		&& test_format_str_with_decimanl_specifier_return_value_t2()
+		&& test_format_str_with_decimanl_specifier_return_value_t3()
+		&& test_format_str_with_decimanl_specifier_return_value_t4())
 		return (0);
 	return (1);
 }
