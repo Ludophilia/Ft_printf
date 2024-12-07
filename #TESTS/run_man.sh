@@ -8,10 +8,10 @@ export LFTPF_DIR="../../..";
 
 # TESTING
 
-cd 0-9
+cd p0
 
-for i in {0..7}; do
-	cd t0$i
+for i in {00..10}; do
+	cd t$i
 	./run.sh
 	cd ..
 done
