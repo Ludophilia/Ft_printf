@@ -6,21 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/05 16:01:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:29:23 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// %p The void * pointer argument has to be printed in hexadecimal format.
-// %u Prints an unsigned decimal (base 10) number.
-// %x Prints a number in hexadecimal (base 16) lowercase format.
-// %X Prints a number in hexadecimal (base 16) uppercase format.
-
-// %d Prints a decimal (base 10) number.
-// %i Prints an integer in base 10.
-
-// %% Prints a percent sign.
 
 int	ft_printf(const char *format, ...)
 {
