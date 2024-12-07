@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/07 17:08:48 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:36:38 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	process_string_specifier(t_meta *meta)
 	*meta->i += 2;
 }
 
-#include <stdio.h>
-
 static void	process_number_specifier(t_meta *meta)
 {
 	t_usl			tmp;
@@ -48,9 +46,6 @@ static void	process_number_specifier(t_meta *meta)
 		tmp.s = va_arg(meta->args, int);
 	else if (*meta->type == 'u' || *meta->type == 'x' || *meta->type == 'X')
 		tmp.u = va_arg(meta->args, unsigned int);
-	// printf("tmp.u = %lu\n", tmp.u);
-
-	
 	if (*meta->type == 'p' || *meta->type == 'u' || *meta->type == 'x'
 		|| *meta->type == 'X')
 		nbr = (t_nbr){.sign = 0, .magn = tmp.u};
@@ -58,8 +53,6 @@ static void	process_number_specifier(t_meta *meta)
 		nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
 	else if ((*meta->type == 'd' || *meta->type == 'i') && tmp.s >= 0)
 		nbr = (t_nbr){.sign = 0, .magn = tmp.s};
-
-	// printf("magnitude = %lu\n", nbr.magn);
 	if (*meta->type == 'p' || *meta->type == 'x')
 		ft_putnbr_base_cc(&nbr, BASE16_LW, meta);
 	else if (*meta->type == 'd' || *meta->type == 'i' || *meta->type == 'u')

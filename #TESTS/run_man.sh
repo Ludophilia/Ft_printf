@@ -6,14 +6,18 @@ if [ $# -ne 0 ]; then exit 1; fi
 
 export LFTPF_DIR="../../..";
 
-# TESTING
+# MANDATORY PART
 
 cd p0
 
-for i in {00..10}; do
+for i in {00..11}; do
 	cd t$i
 	./run.sh
 	cd ..
 done
+
+cd ..
+
+# BONUS PART
 
 exit 0
