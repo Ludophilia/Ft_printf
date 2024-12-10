@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   t11.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 13:16:57 by jgermany          #+#    #+#             */
-/*   Updated: 2022/12/28 15:04:04 by jgermany         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/07 17:46:05 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef T11_H
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
+# define T11_H
 
-	if (dest == src)
-		return (dest);
-	i = 0;
-	while (i < n)
-	{
-		((char *)dest)[i] = ((char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
+
+#endif
