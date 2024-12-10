@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 15:37:04 by jegerman          #+#    #+#              #
-#    Updated: 2024/12/04 18:22:44 by jegerman         ###   ########.fr        #
+#    Updated: 2024/12/10 12:35:57 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,17 @@ AR := ar
 CFLAGS := -Wall -Wextra -Werror
 ARFLAGS := rcs
 
-LFT_DIR := libft
+SRCS_DIR := srcs
+INCL_DIR := includes
+LIB_DIR  := libs
 
-SRCS_MAN := ft_printf.c
-SRCS_MAN += printer.c
-SRCS_MAN += processor.c
+CFLAGS := -I$(INCL_DIR)
+
+LFT_DIR := $(LIB_DIR)/libft
+
+SRCS_MAN := $(SRCS_DIR)/ft_printf.c
+SRCS_MAN += $(SRCS_DIR)/printer.c
+SRCS_MAN += $(SRCS_DIR)/processor.c
 
 OBJS_MAN := $(SRCS_MAN:.c=.o)
 

@@ -13,8 +13,10 @@ CFLAGS="-Wall -Wextra -Werror"
 unset CFLAGS
 
 LFTPF="$LFTPF_DIR/libftprintf.a"
+INCL_DIR="$LFTPF_DIR/includes"
 
 CFLAGS+=" -I$LFTPF_DIR"
+CFLAGS+=" -I$INCL_DIR"
 CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
