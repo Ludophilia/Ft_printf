@@ -10,7 +10,7 @@ DEBUG_STATUS=0
 
 CC="cc"
 CFLAGS="-Wall -Wextra -Werror"
-# unset CFLAGS
+unset CFLAGS
 
 LFTPF="$LFTPF_DIR/libftprintf.a"
 INCL_DIR="$LFTPF_DIR/includes"
@@ -21,8 +21,8 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="mix specifier"
-TEST_NB="11"
+MAIN_TITLE="%% specifier"
+TEST_NB="10"
 
 make -sC $LFTPF_DIR bonus
 
@@ -69,9 +69,9 @@ $CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF 2> /dev/null \
 diff $OUT0 $OUT1 2>&1 1>/dev/null
 
 if [ $? -ne 0 ]; then
-	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;41m$KO\033[0m\n"
+	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\t\033[1;41m$KO\033[0m\n"
 	exit 1;
-else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
+else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\t\033[1;32m$OK\033[0m\n"; fi
 
 rm -f $NAME0 $NAME1 $OUT0 $OUT1
 

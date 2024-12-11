@@ -21,8 +21,8 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="mix specifier"
-TEST_NB="11"
+MAIN_TITLE="%%i and %%d specifier"
+TEST_NB="06"
 
 make -sC $LFTPF_DIR bonus
 
@@ -39,11 +39,11 @@ NB="$TEST_NB-$PART_NB"
 
 NAME0="t${TEST_NB}p$PART_NB" ; SRCS0="t${TEST_NB}p$PART_NB.c"
 
-$CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF 2> /dev/null
+$CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF #2> /dev/null
 
 ./$NAME0 > /dev/null
 if [ $? -ne 0 ]; then exit 1;
-else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\t\033[1;32m$OK\033[0m\n"; fi
+else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
 rm -f $NAME0
 
 # SECOND TEST
@@ -61,8 +61,8 @@ OUT0="orig"; OUT1="ft";
 MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
 MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
 
-$CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF 2> /dev/null \
-	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF 2> /dev/null
+$CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF \
+	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF
 
 ./$NAME0 > $OUT0 && ./$NAME1 > $OUT1
 

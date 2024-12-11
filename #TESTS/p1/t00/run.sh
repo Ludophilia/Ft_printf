@@ -1,0 +1,48 @@
+#! /bin/bash
+
+if [ $# -ne 0 ]; then exit 1; fi
+
+# PRE-COMPILATION
+
+OK="[OK]"
+KO="[KO]"
+DEBUG_STATUS=0
+
+CC="cc"
+CFLAGS="-Wall -Wextra -Werror"
+unset CFLAGS
+
+LFTPF="$LFTPF_DIR/libftprintf.a"
+INCL_DIR="$LFTPF_DIR/includes"
+
+CFLAGS+=" -I$LFTPF_DIR"
+CFLAGS+=" -I$INCL_DIR"
+CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
+
+# PRE-TESTING
+
+MAIN_TITLE="Null check"
+TEST_NB="00"
+
+make -sC $LFTPF_DIR bonus
+
+if [ $? -ne 0 ]; then
+	printf "Something went wrong with the Makefile";
+	exit 1;
+fi
+
+# FIRST TEST
+
+PART_NB="00"
+SUB_TITLE="$MAIN_TITLE - return values"
+NB="$TEST_NB-$PART_NB"
+
+NAME0="t${TEST_NB}p$PART_NB" ; SRCS0="t${TEST_NB}p$PART_NB.c"
+
+$CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF 2> /dev/null
+
+./$NAME0 > /dev/null
+
+if [ $? -ne 0 ]; then exit 1;
+else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\t\033[1;32m$OK\033[0m\n"; fi
+rm -f $NAME0

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/10 17:34:05 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:50:40 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	process_character_specifier(t_meta *meta)
 	if (*meta->type == '%')
 		c = '%';
 	ft_putchar_cc(c, meta);
-	*meta->i += 2;
+	*meta->i += 1;
 }
 
 static void	process_string_specifier(t_meta *meta)
@@ -32,7 +32,7 @@ static void	process_string_specifier(t_meta *meta)
 	if (str == NULL)
 		str = "(null)";
 	ft_putstr_cc(str, meta);
-	*meta->i += 2;
+	*meta->i += 1;
 }
 
 static void	process_number_specifier(t_meta *meta)
@@ -59,14 +59,12 @@ static void	process_number_specifier(t_meta *meta)
 		ft_putnbr_base_cc(&nbr, BASE10, meta);
 	else if (*meta->type == 'X')
 		ft_putnbr_base_cc(&nbr, BASE16_UP, meta);
-	*meta->i += 2;
+	*meta->i += 1;
 }
 
 void	process_specifier(const char *c, t_meta *meta)
 {
-
 	meta->type = c;
-
 	if (*meta->type == 'c' || *meta->type == '%')
 		process_character_specifier(meta);
 	else if (*meta->type == 's')
@@ -75,6 +73,5 @@ void	process_specifier(const char *c, t_meta *meta)
 		|| *meta->type == 'u' || *meta->type == 'x' || *meta->type == 'X')
 		process_number_specifier(meta);
 	else
-		*meta->i += 2;
-
+		*meta->i += 1;
 }

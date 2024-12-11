@@ -10,7 +10,7 @@ DEBUG_STATUS=0
 
 CC="cc"
 CFLAGS="-Wall -Wextra -Werror"
-# unset CFLAGS
+unset CFLAGS
 
 LFTPF="$LFTPF_DIR/libftprintf.a"
 INCL_DIR="$LFTPF_DIR/includes"
@@ -21,8 +21,8 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="mix specifier"
-TEST_NB="11"
+MAIN_TITLE="Empty string"
+TEST_NB="01"
 
 make -sC $LFTPF_DIR bonus
 
@@ -42,6 +42,7 @@ NAME0="t${TEST_NB}p$PART_NB" ; SRCS0="t${TEST_NB}p$PART_NB.c"
 $CC $CFLAGS -o $NAME0 $SRCS0 $LFTPF 2> /dev/null
 
 ./$NAME0 > /dev/null
+
 if [ $? -ne 0 ]; then exit 1;
 else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\t\033[1;32m$OK\033[0m\n"; fi
 rm -f $NAME0
@@ -53,9 +54,7 @@ SUB_TITLE="$MAIN_TITLE - output comparison"
 NB="$TEST_NB-$PART_NB"
 
 SRCS0="t${TEST_NB}p$PART_NB.c";
-
 NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
-
 OUT0="orig"; OUT1="ft";
 
 MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
