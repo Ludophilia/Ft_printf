@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 14:36:18 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:08:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 # define BASE16_LW "0123456789abcdef"
 # define BASE16_UP "0123456789ABCDEF"
 
-# define FLG_DASH (1 << 0)
-# define FLG_ZERO (1 << 1)
-# define FLG_PREC (1 << 2)
-
-# define FLG_FIEL (1 << 3)
-
-# define FLG_POUN (1 << 4)
-# define FLG_SPAC (1 << 5)
-# define FLG_PLUS (1 << 6)
+# define FLG_DASH 0b1
+# define FLG_ZERO 0b10
+# define FLG_PREC 0b100
+# define FLG_FIEL 0b1000
+# define FLG_POUN 0b10000
+# define FLG_SPAC 0b100000
+# define FLG_PLUS 0b1000000
 
 # include <stdarg.h>
 # include <unistd.h>

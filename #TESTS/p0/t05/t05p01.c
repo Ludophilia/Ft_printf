@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/06 16:48:10 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:05:16 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	test_format_str_with_ptr_specifier_return_value_t4(void)
 	char		*format;
 
 	format = "Whyarethose... %pointing%pthings%pthat%pimportant%p!";
-	ret = PRINTF(format, "c", NULL,
-			"\001\x80\x7f franchement", "   \n", "");
+	ret = PRINTF(format, (void *)0x12345678, NULL,
+			(void *)0x345789, (void *)0x222222b, (void *)0xdef12347d);
 	if (DEBUG
 		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
 		;

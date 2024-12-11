@@ -48,29 +48,29 @@ rm -f $NAME0
 
 # SECOND TEST
 
-# PART_NB="01"
-# SUB_TITLE="$MAIN_TITLE - output comparison"
-# NB="$TEST_NB-$PART_NB"
+PART_NB="01"
+SUB_TITLE="$MAIN_TITLE - output comparison"
+NB="$TEST_NB-$PART_NB"
 
-# SRCS0="t${TEST_NB}p$PART_NB.c";
-# NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
-# OUT0="orig"; OUT1="ft";
+SRCS0="t${TEST_NB}p$PART_NB.c";
+NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
+OUT0="orig"; OUT1="ft";
 
-# MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
-# MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
+MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
+MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
 
-# $CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF \
-# 	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF
+$CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF \
+	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF
 
-# ./$NAME0 > $OUT0 && ./$NAME1 > $OUT1
+./$NAME0 > $OUT0 && ./$NAME1 > $OUT1
 
-# diff $OUT0 $OUT1 2>&1 1>/dev/null
+diff $OUT0 $OUT1 2>&1 1>/dev/null
 
-# if [ $? -ne 0 ]; then
-# 	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;41m$KO\033[0m\n"
-# 	exit 1;
-# else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
+if [ $? -ne 0 ]; then
+	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;41m$KO\033[0m\n"
+	exit 1;
+else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
 
-# rm -f $NAME0 $NAME1 $OUT0 $OUT1
+rm -f $NAME0 $NAME1 $OUT0 $OUT1
 
-# exit 0
+exit 0

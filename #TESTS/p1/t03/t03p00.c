@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 15:27:27 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:45:34 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	test_format_str_with_c_specifier_return_value_t2(void)
 int	main(void)
 {
 	test_format_str_with_c_specifier_return_value_t0();
-	// test_format_str_with_c_specifier_return_value_t1();
-	// test_format_str_with_c_specifier_return_value_t2();
+	test_format_str_with_c_specifier_return_value_t1();
+	test_format_str_with_c_specifier_return_value_t2();
 	return (0);
 }
