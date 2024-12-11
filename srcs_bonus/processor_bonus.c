@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 13:50:40 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:22:11 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	process_character_specifier(t_meta *meta)
 {
 	int	c;
 
-	if (*meta->type == 'c')
+	if (is_type(meta, CV_CHR))
 		c = va_arg(meta->args, int);
-	if (*meta->type == '%')
+	if (is_type(meta, CV_PRC))
 		c = '%';
 	ft_putchar_cc(c, meta);
 	*meta->i += 1;
@@ -40,24 +40,23 @@ static void	process_number_specifier(t_meta *meta)
 	t_usl			tmp;
 	t_nbr			nbr;
 
-	if (*meta->type == 'p')
+	if (is_type(meta, CV_PTR))
 		tmp.u = va_arg(meta->args, unsigned long);
-	else if (*meta->type == 'd' || *meta->type == 'i')
+	else if (is_type(meta, CV_INT))
 		tmp.s = va_arg(meta->args, int);
-	else if (*meta->type == 'u' || *meta->type == 'x' || *meta->type == 'X')
+	else if (is_type(meta, CV_UINT | CV_HEX))
 		tmp.u = va_arg(meta->args, unsigned int);
-	if (*meta->type == 'p' || *meta->type == 'u' || *meta->type == 'x'
-		|| *meta->type == 'X')
+	if (is_type(meta, CV_PTR | CV_UINT | CV_HEX))
 		nbr = (t_nbr){.sign = 0, .magn = tmp.u};
-	else if ((*meta->type == 'd' || *meta->type == 'i') && tmp.s < 0)
+	else if (is_type(meta, CV_INT) && tmp.s < 0)
 		nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
-	else if ((*meta->type == 'd' || *meta->type == 'i') && tmp.s >= 0)
+	else if (is_type(meta, CV_INT) && tmp.s >= 0)
 		nbr = (t_nbr){.sign = 0, .magn = tmp.s};
-	if (*meta->type == 'p' || *meta->type == 'x')
+	if (is_type(meta, CV_PTR | CV_HEXL))
 		ft_putnbr_base_cc(&nbr, BASE16_LW, meta);
-	else if (*meta->type == 'd' || *meta->type == 'i' || *meta->type == 'u')
+	else if (is_type(meta, CV_INT | CV_UINT))
 		ft_putnbr_base_cc(&nbr, BASE10, meta);
-	else if (*meta->type == 'X')
+	else if (is_type(meta, CV_PTR | CV_HEXU))
 		ft_putnbr_base_cc(&nbr, BASE16_UP, meta);
 	*meta->i += 1;
 }
@@ -65,12 +64,11 @@ static void	process_number_specifier(t_meta *meta)
 void	process_specifier(const char *c, t_meta *meta)
 {
 	meta->type = c;
-	if (*meta->type == 'c' || *meta->type == '%')
+	if (is_type(meta, CV_CHR | CV_PRC))
 		process_character_specifier(meta);
-	else if (*meta->type == 's')
+	else if (is_type(meta, CV_STR))
 		process_string_specifier(meta);
-	else if (*meta->type == 'p' || *meta->type == 'i' || *meta->type == 'd'
-		|| *meta->type == 'u' || *meta->type == 'x' || *meta->type == 'X')
+	else if (is_type(meta, CV_HEX | CV_INT | CV_PTR | CV_UINT))
 		process_number_specifier(meta);
 	else
 		*meta->i += 1;

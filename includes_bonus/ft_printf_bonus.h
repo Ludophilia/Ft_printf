@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 16:08:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:16:35 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ typedef union u_usl
 	long			s;
 }	t_usl;
 
+typedef enum e_type
+{
+	CV_INT = 0b1,
+	CV_HEX = 0b10,
+	CV_HEXL = 0b100,
+	CV_HEXU = 0b1000,
+	CV_UINT = 0b10000,
+	CV_PTR = 0b100000,
+	CV_STR = 0b1000000,
+	CV_CHR = 0b10000000,
+	CV_PRC = 0b100000000
+}	t_type;
+
 typedef struct s_meta
 {
 	const char		*type;
@@ -60,6 +73,8 @@ typedef struct s_meta
 int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
 int		ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta);
+
+bool	is_type(t_meta *meta, enum e_type type);
 
 void	process_specifier(const char *c, t_meta *meta);
 

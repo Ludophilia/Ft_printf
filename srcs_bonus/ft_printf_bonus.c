@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 15:37:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:19:50 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 // NEXT TESTS
 // - Errors 
 // - %c with - and width
-// - 
 
 int	ft_printf(const char *format, ...)
 {
