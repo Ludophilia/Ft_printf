@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 14:49:19 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:59:56 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,16 @@ int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
 int		ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta);
 
+void	print_filler(bool zfill, t_meta *meta);
+
+void	process_specifier(const char *c, t_meta *meta);
+
 int		set_type(const char *c, t_meta *meta);
 bool	is_valid_flg(char c);
 bool	is_valid_conv(char c);
 
-void	process_specifier(const char *c, t_meta *meta);
+int		has_flags(unsigned int flags, t_meta *meta);
+int		has_flag(unsigned int flags, t_meta *meta);
 
 int		is_valid_specif(const char *spec, t_meta *meta);
 
