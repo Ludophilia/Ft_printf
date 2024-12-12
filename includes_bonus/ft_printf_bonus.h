@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 18:16:35 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:49:19 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 # define BASE16_LW "0123456789abcdef"
 # define BASE16_UP "0123456789ABCDEF"
 
-# define FLG_DASH 0b1
-# define FLG_ZERO 0b10
-# define FLG_PREC 0b100
-# define FLG_FIEL 0b1000
-# define FLG_POUN 0b10000
-# define FLG_SPAC 0b100000
-# define FLG_PLUS 0b1000000
-
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -33,6 +25,30 @@
 # include <stdbool.h>
 
 # include "../libs/libft/libft.h"
+
+typedef enum e_flg
+{
+	FLG_DASH = (1 << 0),
+	FLG_ZERO = (1 << 1),
+	FLG_PREC = (1 << 2),
+	FLG_FIEL = (1 << 3),
+	FLG_POUN = (1 << 4),
+	FLG_SPAC = (1 << 5),
+	FLG_PLUS = (1 << 6)
+}	t_flg;
+
+typedef enum e_type
+{
+	CV_INT = (1 << 7),
+	CV_HEX = (1 << 8),
+	CV_HEXL = (1 << 9),
+	CV_HEXU = (1 << 10),
+	CV_UINT = (1 << 11),
+	CV_PTR = (1 << 12),
+	CV_STR = (1 << 13),
+	CV_CHR = (1 << 14),
+	CV_PRC = (1 << 15)
+}	t_type;
 
 typedef struct s_nbr
 {
@@ -46,23 +62,9 @@ typedef union u_usl
 	long			s;
 }	t_usl;
 
-typedef enum e_type
-{
-	CV_INT = 0b1,
-	CV_HEX = 0b10,
-	CV_HEXL = 0b100,
-	CV_HEXU = 0b1000,
-	CV_UINT = 0b10000,
-	CV_PTR = 0b100000,
-	CV_STR = 0b1000000,
-	CV_CHR = 0b10000000,
-	CV_PRC = 0b100000000
-}	t_type;
-
 typedef struct s_meta
 {
-	const char		*type;
-	unsigned char	flags;
+	unsigned int	flags;
 	int				field_v;
 	int				prec_v;
 	va_list			args;
@@ -74,7 +76,9 @@ int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
 int		ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta);
 
-bool	is_type(t_meta *meta, enum e_type type);
+int		set_type(const char *c, t_meta *meta);
+bool	is_valid_flg(char c);
+bool	is_valid_conv(char c);
 
 void	process_specifier(const char *c, t_meta *meta);
 

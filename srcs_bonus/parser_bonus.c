@@ -6,26 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/11 16:10:18 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:24:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-
-bool	is_valid_flg(char c)
-{
-	if (c == '-' || c == '0' || c == '#' || c == ' ' || c == '+')
-		return (1);
-	return (0);
-}
-
-bool	is_valid_conv(char c)
-{
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
-		|| c == 'u' || c == 'x' || c == 'X' || c == '%')
-		return (1);
-	return (0);
-}
 
 static int	proc_flags(const char *spec, t_meta *meta)
 {
@@ -77,6 +62,7 @@ int	is_valid_specif(const char *spec, t_meta *meta)
 {
 	int	i;
 
+	meta->flags = 0;
 	i = proc_flags(spec, meta);
 	i += proc_width_options(spec, meta);
 	if (spec[i] && is_valid_conv(spec[i]))
