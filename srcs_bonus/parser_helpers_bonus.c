@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:26:51 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 17:19:46 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:37:02 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ bool	is_valid_conv(char c)
 	return (0);
 }
 
-int	has_flags(unsigned int flags, t_meta *meta)
+int	flags(unsigned int flags, t_meta *meta)
 {
 	return ((meta->flags & (flags)) == (flags));
 }
 
-int	has_flag(unsigned int flags, t_meta *meta)
+int	flag(unsigned int flags, t_meta *meta)
 {
 	return (meta->flags & (flags));
 }
