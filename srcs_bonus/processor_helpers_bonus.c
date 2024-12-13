@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t01p01.c                                           :+:      :+:    :+:   */
+/*   processor_helpers_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 13:52:39 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/13 14:53:34 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/13 14:56:58 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t01.h"
+#include "ft_printf_bonus.h"
 
-int	test_empty_str_output0(void)
+int	flags(unsigned int flags, t_meta *meta)
 {
-	int			ret;
-	const char	*format;
-
-	format = "\0";
-	ret = PRINTF(format);
-	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
+	return ((meta->flags & (flags)) == (flags));
 }
 
-int	main(void)
+int	not_flags(unsigned int flags, t_meta *meta)
 {
-	if (test_empty_str_output0())
-		return (0);
-	return (1);
+	return ((meta->flags & (flags)) == 0);
+}
+
+int	flag(unsigned int flags, t_meta *meta)
+{
+	return (meta->flags & (flags));
 }

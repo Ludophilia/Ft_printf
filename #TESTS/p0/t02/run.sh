@@ -53,8 +53,8 @@ SRCS0="t${TEST_NB}p$PART_NB.c";
 NAME0="t${TEST_NB}p$PART_NB-0"; NAME1="t${TEST_NB}p$PART_NB-1";
 OUT0="orig"; OUT1="ft";
 
-MACR_FLG0="-DPRINTF=printf -DPRINTF_STR=\"printf\""
-MACR_FLG1="-DPRINTF=ft_printf -DPRINTF_STR=\"ft_printf\""
+MACR_FLG0="-DPRINTF=printf -DDBG_PF_NAME=\"printf\""
+MACR_FLG1="-DPRINTF=ft_printf -DDBG_PF_NAME=\"ft_printf\""
 
 $CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF 2> /dev/null \
 	&& $CC $CFLAGS $MACR_FLG1 -o $NAME1 $SRCS0 $LFTPF 2> /dev/null

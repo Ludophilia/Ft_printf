@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t11.h                                              :+:      :+:    :+:   */
+/*   t12p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/07 17:46:05 by jegerman         ###   ########.fr       */
+/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/13 15:40:41 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T11_H
+#include "t12.h"
 
-# define T11_H
+int	test_output_format_str_with_c_specifier_bonus_flags_t0(void)
+{
+	int			ret;
+	char		*format;
 
-# include "ft_printf.h"
-# include <stdio.h>
-# include <assert.h>
-# include <stdarg.h>
+	format = "%c%0c%15c%-15c%------2c\n";
+	ret = PRINTF(format, 'z', 'x', 'a', 'm', 'l');
+	if (DEBUG
+		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		;
+	return (1);
+}
 
-#endif
+int	main(void)
+{
+	test_output_format_str_with_c_specifier_bonus_flags_t0();
+	return (0);
+}

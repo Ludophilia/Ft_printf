@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t01p01.c                                           :+:      :+:    :+:   */
+/*   t12.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 13:52:39 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/13 12:47:49 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t01.h"
+#ifndef T12_H
 
-int	test_empty_str_output0(void)
-{
-	int			ret;
-	const char	*format;
+# define T12_H
 
-	format = "\0";
-	ret = PRINTF(format);
-	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
-}
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
 
-int	main(void)
-{
-	if (test_empty_str_output0())
-		return (0);
-	return (1);
-}
+#endif

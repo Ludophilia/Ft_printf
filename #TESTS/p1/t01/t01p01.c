@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/06 16:42:49 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:52:39 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_empty_str_output0(void)
 	format = "\0";
 	ret = PRINTF(format);
 	if (DEBUG
-		&& dprintf(2, PRINTF_STR"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

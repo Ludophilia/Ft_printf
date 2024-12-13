@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 16:24:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:50:19 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ int	is_valid_specif(const char *spec, t_meta *meta)
 	int	i;
 
 	meta->flags = 0;
-	i = proc_flags(spec, meta);
-	i += proc_width_options(spec, meta);
+	i = 0;
+	i += proc_flags(spec + i, meta);
+	i += proc_width_options(spec + i, meta);
 	if (spec[i] && is_valid_conv(spec[i]))
 	{
 		*meta->i += (i - 1);

@@ -6,13 +6,12 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 18:55:28 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:56:53 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-// 13/12 - TEST width and left alignment management
 static void	process_character_specifier(t_meta *meta)
 {
 	int	c;
@@ -23,10 +22,10 @@ static void	process_character_specifier(t_meta *meta)
 		c = '%';
 	if (flags(FLG_FIEL | CV_CHR, meta) && !flag(CV_PRC, meta))
 		meta->field_v--;
-	if (flags(FLG_FIEL | CV_CHR, meta) && !flags(CV_PRC | FLG_DASH, meta))
+	if (flags(FLG_FIEL | CV_CHR, meta) && not_flags(CV_PRC | FLG_DASH, meta))
 		print_filler(NOZEROFILL, meta);
 	ft_putchar_cc(c, meta);
-	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, meta) && !flags(CV_PRC, meta))
+	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, meta) && !flag(CV_PRC, meta))
 		print_filler(NOZEROFILL, meta);
 	*meta->i += 1;
 }
@@ -67,9 +66,10 @@ static void	process_number_specifier(t_meta *meta)
 		ft_putnbr_base_cc(&nbr, BASE16_UP, meta);
 	*meta->i += 1;
 }
+
 void	process_specifier(const char *c, t_meta *meta)
 {
-	set_type(c, meta);
+	set_conv(*c, meta);
 	if (flag(CV_CHR | CV_PRC, meta))
 		process_character_specifier(meta);
 	else if (flag(CV_STR, meta))
