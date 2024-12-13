@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   processor_helpers_bonus.c                          :+:      :+:    :+:   */
+/*   t12.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 14:53:34 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 18:26:28 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/13 12:47:49 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#ifndef T12_H
 
-int	flags(unsigned int flags, t_meta *meta)
-{
-	return ((meta->flags & (flags)) == (flags));
-}
+# define T12_H
 
-int	not_flags(unsigned int flags, t_meta *meta)
-{
-	return ((meta->flags & (flags)) == 0);
-}
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
 
-int	flag(unsigned int flags, t_meta *meta)
-{
-	return (meta->flags & (flags));
-}
-
-int	not_flag(unsigned int flags, t_meta *meta)
-{
-	return (!(meta->flags & (flags)));
-}
+#endif

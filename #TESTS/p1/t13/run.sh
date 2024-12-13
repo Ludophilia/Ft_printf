@@ -21,8 +21,8 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="%%c - field and '-'"
-TEST_NB="12"
+MAIN_TITLE="%%s - field, '-' and '.'"
+TEST_NB="13"
 
 make -sC $LFTPF_DIR bonus
 
@@ -71,9 +71,9 @@ $CC $CFLAGS $MACR_FLG0 -o $NAME0 $SRCS0 $LFTPF \
 diff $OUT0 $OUT1 2>&1 1>/dev/null
 
 if [ $? -ne 0 ]; then
-	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;41m$KO\033[0m\n"
+	printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\033[1;41m$KO\033[0m\n"
 	exit 1;
-else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\t\033[1;32m$OK\033[0m\n"; fi
+else printf "\033[1m$NB\033[0m\t$SUB_TITLE\t\033[1;32m$OK\033[0m\n"; fi
 
 rm -f $NAME0 $NAME1 $OUT0 $OUT1
 

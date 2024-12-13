@@ -6,76 +6,91 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 15:56:53 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/13 18:45:29 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static void	process_character_specifier(t_meta *meta)
+static void	process_character_specifier(t_meta *m)
 {
 	int	c;
 
-	if (flag(CV_CHR, meta))
-		c = va_arg(meta->args, int);
-	if (flag(CV_PRC, meta))
-		c = '%';
-	if (flags(FLG_FIEL | CV_CHR, meta) && !flag(CV_PRC, meta))
-		meta->field_v--;
-	if (flags(FLG_FIEL | CV_CHR, meta) && not_flags(CV_PRC | FLG_DASH, meta))
-		print_filler(NOZEROFILL, meta);
-	ft_putchar_cc(c, meta);
-	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, meta) && !flag(CV_PRC, meta))
-		print_filler(NOZEROFILL, meta);
-	*meta->i += 1;
+	c = '%';
+	if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
+		c = va_arg(m->args, int);
+	if (flags(FLG_FIEL | CV_CHR, m) && not_flag(CV_PRC, m))
+		m->field_v--;
+	if (flags(FLG_FIEL | CV_CHR, m) && not_flags(CV_PRC | FLG_DASH, m))
+		print_filler(NOZEROFILL, m);
+	ft_putchar_cc(c, m);
+	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, m) && not_flag(CV_PRC, m))
+		print_filler(NOZEROFILL, m);
+	*m->i += 1;
 }
 
-static void	process_string_specifier(t_meta *meta)
+// 13/12 - field, precision, left
+static void	process_string_specifier(t_meta *m)
 {
 	char	*str;
+	int		i;
 
-	str = va_arg(meta->args, char *);
-	if (str == NULL)
+	str = va_arg(m->args, char *);
+	if (str == NULL && flag(FLG_PREC, m) && m->prec_v < 6)
+		str = "";
+	else if (str == NULL)
 		str = "(null)";
-	ft_putstr_cc(str, meta);
-	*meta->i += 1;
+	i = -1;
+	while (str[++i] && ((flags(FLG_FIEL | FLG_PREC, m) && i < m->prec_v)
+			|| (flag(FLG_FIEL, m) && not_flag(FLG_PREC, m))) && m->field_v)
+		m->field_v--;
+	if (not_flag(FLG_DASH, m) && m->field_v > 0)
+		print_filler(NOZEROFILL, m);
+	i = 0;
+	while (flag(FLG_PREC, m) && str[i] && i < m->prec_v)
+		ft_putchar_cc(str[i++], m);
+	if (not_flag(FLG_PREC, m))
+		ft_putstr_cc(str, m);
+	if (flag(FLG_DASH, m) && m->field_v > 0)
+		print_filler(NOZEROFILL, m);
+	*m->i += 1;
 }
 
-static void	process_number_specifier(t_meta *meta)
+static void	process_number_specifier(t_meta *m)
 {
 	t_usl			tmp;
 	t_nbr			nbr;
 
-	if (flag(CV_PTR, meta))
-		tmp.u = va_arg(meta->args, unsigned long);
-	else if (flag(CV_INT, meta))
-		tmp.s = va_arg(meta->args, int);
-	else if (flag(CV_UINT | CV_HEX, meta))
-		tmp.u = va_arg(meta->args, unsigned int);
-	if (flag(CV_PTR | CV_UINT | CV_HEX, meta))
+	if (flag(CV_PTR, m))
+		tmp.u = va_arg(m->args, unsigned long);
+	else if (flag(CV_INT, m))
+		tmp.s = va_arg(m->args, int);
+	else if (flag(CV_UINT | CV_HEX, m))
+		tmp.u = va_arg(m->args, unsigned int);
+	if (flag(CV_PTR | CV_UINT | CV_HEX, m))
 		nbr = (t_nbr){.sign = 0, .magn = tmp.u};
-	else if (flag(CV_INT, meta) && tmp.s < 0)
+	else if (flag(CV_INT, m) && tmp.s < 0)
 		nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
-	else if (flag(CV_INT, meta) && tmp.s >= 0)
+	else if (flag(CV_INT, m) && tmp.s >= 0)
 		nbr = (t_nbr){.sign = 0, .magn = tmp.s};
-	if (flag(CV_PTR | CV_HEXL, meta))
-		ft_putnbr_base_cc(&nbr, BASE16_LW, meta);
-	else if (flag(CV_INT | CV_UINT, meta))
-		ft_putnbr_base_cc(&nbr, BASE10, meta);
-	else if (flag(CV_HEXU, meta))
-		ft_putnbr_base_cc(&nbr, BASE16_UP, meta);
-	*meta->i += 1;
+	if (flag(CV_PTR | CV_HEXL, m))
+		ft_putnbr_base_cc(&nbr, BASE16_LW, m);
+	else if (flag(CV_INT | CV_UINT, m))
+		ft_putnbr_base_cc(&nbr, BASE10, m);
+	else if (flag(CV_HEXU, m))
+		ft_putnbr_base_cc(&nbr, BASE16_UP, m);
+	*m->i += 1;
 }
 
-void	process_specifier(const char *c, t_meta *meta)
+void	process_specifier(const char *c, t_meta *m)
 {
-	set_conv(*c, meta);
-	if (flag(CV_CHR | CV_PRC, meta))
-		process_character_specifier(meta);
-	else if (flag(CV_STR, meta))
-		process_string_specifier(meta);
-	else if (flag(CV_HEX | CV_INT | CV_PTR | CV_UINT, meta))
-		process_number_specifier(meta);
+	set_conv(*c, m);
+	if (flag(CV_CHR | CV_PRC, m))
+		process_character_specifier(m);
+	else if (flag(CV_STR, m))
+		process_string_specifier(m);
+	else if (flag(CV_HEX | CV_INT | CV_PTR | CV_UINT, m))
+		process_number_specifier(m);
 	else
-		*meta->i += 1;
+		*m->i += 1;
 }

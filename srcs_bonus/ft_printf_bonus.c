@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 16:31:03 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:00:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,24 @@
 // %[flags][width][precision]sp
 
 // SPECIFIER (sp)
-// c spdiuxX%
+// c s pdiuxX%
 
 // ---------------------------
 
 // -
 // width
+// . (s, d, i, u, x, X)
 
 // 0 (d, i, u, x, X)
 // # (x, X)
 // + (d, i)
 // space (d, i?)
 
-// . (s, d, i, u, x, X)
-
 // ---------------------------
 
 // NEXT TESTS
 // - Errors 
-// - %c with - and width
+// - %s with - and width and .
 
 int	ft_printf(const char *format, ...)
 {

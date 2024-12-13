@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printer_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:24:27 by jgermany          #+#    #+#             */
-/*   Updated: 2024/01/05 15:59:04 by jgermany         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:13:27 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,29 @@ void	print_str(char *str, t_flag *flags, int *count)
 		str = "";
 	else if (!str)
 		str = "(null)";
+
 	i = -1;
 	pi = 0;
+
 	if (flags->field_v && is_str(flags) && flags->prec_f)
 		while (str[++i] && flags->field_v && i < flags->prec_v)
 			flags->field_v--;
 	else if (flags->field_v && is_str(flags) && !flags->prec_f)
 		while (str[++i] && flags->field_v)
 			flags->field_v--;
+
 	if (!flags->dash_f && flags->field_v > 0)
 		print_filler(flags, false, count);
+
 	if (flags->prec_f)
 		while (str[pi] && pi < flags->prec_v)
 			putchar_cc(str[pi++], count);
 	if (!flags->prec_f)
 		putstr_cc(str, count);
+
 	if (flags->dash_f && flags->field_v > 0)
 		print_filler(flags, false, count);
+
 }
 
 static void	set_nbr_field_width(t_nbr nb, t_flag *flags, t_list **head)
