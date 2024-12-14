@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 18:45:29 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:40:34 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	process_character_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-// 13/12 - field, precision, left
 static void	process_string_specifier(t_meta *m)
 {
 	char	*str;
