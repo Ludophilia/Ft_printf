@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:24:27 by jgermany          #+#    #+#             */
-/*   Updated: 2024/12/13 16:13:27 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:01:17 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,37 @@ void	print_nbr(t_nbr nb, char *base, t_flag *flags, int *count)
 {
 	t_list	*start_node;
 
+	// Store the number in a buffer
 	start_node = writer_init_node(0);
 	if (!start_node)
 	{
 		ft_lstclear(&start_node, free);
-		errno = ENOMEM;
 		return ;
 	}
 	write_nbr_base(nb, base, flags, &start_node);
+
+	// Adds the precision, that is the appropriate nb of '0' before the number
 	if (flags->prec_f)
 		write_precision(flags, &start_node);
+
+
+	// Adjust the remaining field width for fillers
 	if (flags->field_f)
 		set_nbr_field_width(nb, flags, &start_node);
+
+	// Add the prefix before the number. 
 	if (flags->zero_f && !flags->prec_f && flags->field_f)
 		print_prefix(nb, flags, count);
 	if (!flags->dash_f && flags->field_v > 0)
 		print_nbr_filler(nb, flags, true, count);
 	if (!(flags->zero_f && !flags->prec_f && flags->field_f))
 		print_prefix(nb, flags, count);
+
+	// Print the precision and the number
 	writer_print_list(&start_node, count);
 	if (flags->dash_f && flags->field_v > 0)
 		print_nbr_filler(nb, flags, false, count);
+
+	// Free the nodes used
 	ft_lstclear(&start_node, free);
 }

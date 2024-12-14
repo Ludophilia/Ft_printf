@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/14 15:40:34 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/14 16:54:56 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static void	process_string_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-static void	process_number_specifier(t_meta *m)
+// Move it
+void	set_number(t_nbr *nbr, t_meta *m)
 {
-	t_usl			tmp;
-	t_nbr			nbr;
+	t_usl	tmp;
 
 	if (flag(CV_PTR, m))
 		tmp.u = va_arg(m->args, unsigned long);
@@ -67,17 +67,33 @@ static void	process_number_specifier(t_meta *m)
 	else if (flag(CV_UINT | CV_HEX, m))
 		tmp.u = va_arg(m->args, unsigned int);
 	if (flag(CV_PTR | CV_UINT | CV_HEX, m))
-		nbr = (t_nbr){.sign = 0, .magn = tmp.u};
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.u};
 	else if (flag(CV_INT, m) && tmp.s < 0)
-		nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
+		*nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
 	else if (flag(CV_INT, m) && tmp.s >= 0)
-		nbr = (t_nbr){.sign = 0, .magn = tmp.s};
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.s};
+}
+
+static void	process_number_specifier(t_meta *m)
+{
+	t_nbr	nbr;
+
+	set_number(&nbr, m);
+
+	// field value
+	// filler not zer0ofile if not '-'
+
+	
 	if (flag(CV_PTR | CV_HEXL, m))
 		ft_putnbr_base_cc(&nbr, BASE16_LW, m);
 	else if (flag(CV_INT | CV_UINT, m))
 		ft_putnbr_base_cc(&nbr, BASE10, m);
 	else if (flag(CV_HEXU, m))
 		ft_putnbr_base_cc(&nbr, BASE16_UP, m);
+
+	// filler not zer0ofile if '-'
+
+
 	*m->i += 1;
 }
 

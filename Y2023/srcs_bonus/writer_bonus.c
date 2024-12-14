@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writer_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:18:20 by jgermany          #+#    #+#             */
-/*   Updated: 2024/01/05 16:20:02 by jgermany         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:45:45 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	write_precision(t_flag *flags, t_list **head)
 {
 	t_list	*prec_node;
 
+	// Build a new node for precision only and add 0 before
 	prec_node = writer_init_node(0);
 	if (!prec_node)
 	{
@@ -47,6 +48,8 @@ void	write_precision(t_flag *flags, t_list **head)
 	flags->prec_v -= writer_cont_len(head);
 	while (flags->prec_v-- > 0)
 		write_char('0', &prec_node);
+
+	// Add 0 before
 	ft_lstlast(prec_node)->next = *head;
 	*head = prec_node;
 }
