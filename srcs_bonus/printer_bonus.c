@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 18:36:53 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:18:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,45 @@ int	ft_putstr_cc(const char *str, t_meta *meta)
 	return (1);
 }
 
-int	ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta)
+void	print_filler(bool zfill, t_meta *meta)
+{
+	while (meta->field_v-- > 0)
+		ft_putchar_cc((char [2]){' ', '0'}[zfill], meta);
+}
+
+// IMPROVE THIS, OF COURSE
+int	print_prefix(t_nbr *nbr, t_meta *meta)
+{
+	if (nbr->sign == 1 && nbr->magn < radix)
+		ft_putchar_cc('-', meta);
+	else if (nbr->magn < radix && flag(CV_PTR, meta))
+		ft_putstr_cc("0x", meta);
+
+	return (1);
+}
+
+// A new function 
+
+int	ft_putnbr_base_cc(t_nbr *nbr, t_meta *meta)
 {
 	size_t	radix;
 	t_nbr	*tmp;
 
 	if (flag(CV_PTR, meta) && nbr->magn == 0 && ft_putstr_cc("(nil)", meta))
 		return (1);
-	radix = ft_strlen(digits);
-	tmp = &(t_nbr){.magn = nbr->magn / radix, .sign = nbr->sign};
+	radix = ft_strlen(nbr->base);
+	tmp = &(t_nbr){.magn = nbr->magn / radix, .sign = nbr->sign,
+		.base = nbr->base};
 	if (nbr->magn >= radix)
-		ft_putnbr_base_cc(tmp, digits, meta);
-	if (nbr->sign == 1 && nbr->magn < radix)
-		ft_putchar_cc('-', meta);
-	else if (nbr->magn < radix && flag(CV_PTR, meta))
-		ft_putstr_cc("0x", meta);
+		ft_putnbr_base_cc(tmp, meta);
+
+	// Move somewhere else
+	// if (nbr->sign == 1 && nbr->magn < radix)
+	// 	ft_putchar_cc('-', meta);
+	// else if (nbr->magn < radix && flag(CV_PTR, meta))
+	// 	ft_putstr_cc("0x", meta);
+
+	// Replace with a function that writes into a buffer
 	ft_putchar_cc(digits[nbr->magn % radix], meta);
 	return (1);
 }

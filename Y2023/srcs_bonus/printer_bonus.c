@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:24:27 by jgermany          #+#    #+#             */
-/*   Updated: 2024/12/14 18:01:17 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 13:28:58 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	print_nbr(t_nbr nb, char *base, t_flag *flags, int *count)
 	// Adds the precision, that is the appropriate nb of '0' before the number
 	if (flags->prec_f)
 		write_precision(flags, &start_node);
-
 
 	// Adjust the remaining field width for fillers
 	if (flags->field_f)

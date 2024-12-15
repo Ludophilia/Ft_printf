@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/14 16:54:56 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:21:00 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	process_string_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-// Move it
+// Move it somewhere else?
 void	set_number(t_nbr *nbr, t_meta *m)
 {
 	t_usl	tmp;
@@ -66,33 +66,33 @@ void	set_number(t_nbr *nbr, t_meta *m)
 		tmp.s = va_arg(m->args, int);
 	else if (flag(CV_UINT | CV_HEX, m))
 		tmp.u = va_arg(m->args, unsigned int);
-	if (flag(CV_PTR | CV_UINT | CV_HEX, m))
-		*nbr = (t_nbr){.sign = 0, .magn = tmp.u};
+	if (flag(CV_PTR | CV_HEXL, m))
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.u, .base = BASE16_LW};
+	else if (flag(CV_HEXU, m))
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.u, .base = BASE16_UP};
+	else if (flag(CV_UINT, m))
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.u, .base = BASE10};
 	else if (flag(CV_INT, m) && tmp.s < 0)
-		*nbr = (t_nbr){.sign = 1, .magn = -tmp.s};
+		*nbr = (t_nbr){.sign = 1, .magn = -tmp.s, .base = BASE10};
 	else if (flag(CV_INT, m) && tmp.s >= 0)
-		*nbr = (t_nbr){.sign = 0, .magn = tmp.s};
+		*nbr = (t_nbr){.sign = 0, .magn = tmp.s, .base = BASE10};
 }
 
+// Number
+// [filler][prefix|sign][precision|filler_zero][magnitude][filler]
 static void	process_number_specifier(t_meta *m)
 {
 	t_nbr	nbr;
+	char	*magn;
 
 	set_number(&nbr, m);
-
+	// 
 	// field value
 	// filler not zer0ofile if not '-'
 
-	
-	if (flag(CV_PTR | CV_HEXL, m))
-		ft_putnbr_base_cc(&nbr, BASE16_LW, m);
-	else if (flag(CV_INT | CV_UINT, m))
-		ft_putnbr_base_cc(&nbr, BASE10, m);
-	else if (flag(CV_HEXU, m))
-		ft_putnbr_base_cc(&nbr, BASE16_UP, m);
+	ft_putnbr_base_cc(&nbr, m);
 
 	// filler not zer0ofile if '-'
-
 
 	*m->i += 1;
 }

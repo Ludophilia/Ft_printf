@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 18:26:39 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:05:06 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef enum e_type
 
 typedef struct s_nbr
 {
+	char			*base;
 	int				sign;
 	unsigned long	magn;
 }	t_nbr;
@@ -77,7 +78,7 @@ typedef struct s_meta
 
 int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
-int		ft_putnbr_base_cc(t_nbr *nbr, char *digits, t_meta *meta);
+int		ft_putnbr_base_cc(t_nbr *nbr, t_meta *meta);
 
 void	print_filler(bool zfill, t_meta *meta);
 
