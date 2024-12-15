@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/15 16:18:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:59:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,3 @@ int	print_prefix(t_nbr *nbr, t_meta *meta)
 }
 
 // A new function 
-
-int	ft_putnbr_base_cc(t_nbr *nbr, t_meta *meta)
-{
-	size_t	radix;
-	t_nbr	*tmp;
-
-	if (flag(CV_PTR, meta) && nbr->magn == 0 && ft_putstr_cc("(nil)", meta))
-		return (1);
-	radix = ft_strlen(nbr->base);
-	tmp = &(t_nbr){.magn = nbr->magn / radix, .sign = nbr->sign,
-		.base = nbr->base};
-	if (nbr->magn >= radix)
-		ft_putnbr_base_cc(tmp, meta);
-
-	// Move somewhere else
-	// if (nbr->sign == 1 && nbr->magn < radix)
-	// 	ft_putchar_cc('-', meta);
-	// else if (nbr->magn < radix && flag(CV_PTR, meta))
-	// 	ft_putstr_cc("0x", meta);
-
-	// Replace with a function that writes into a buffer
-	ft_putchar_cc(digits[nbr->magn % radix], meta);
-	return (1);
-}

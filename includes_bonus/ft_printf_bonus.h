@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/15 16:05:06 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:59:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_nbr
 	char			*base;
 	int				sign;
 	unsigned long	magn;
+	size_t			magn_len;
 }	t_nbr;
 
 typedef union u_usl
