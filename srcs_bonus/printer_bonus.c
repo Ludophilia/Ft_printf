@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 16:23:54 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:46:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,19 @@ void	print_filler(bool zfill, t_meta *meta)
 {
 	while (meta->field_v-- > 0)
 		ft_putchar_cc((char [2]){' ', '0'}[zfill], meta);
+}
+
+int	print_prefix(t_nbr *nbr, t_meta *m)
+{
+	if (nbr->sign == 1 && flag(CV_INT, m))
+		ft_putchar_cc('-', m);
+	else if (flags(CV_INT | FLG_PLUS, m))
+		ft_putchar_cc('+', m);
+	else if (flags(CV_INT | FLG_SPAC, m))
+		ft_putchar_cc(' ', m);
+	else if (nb.abs != 0 && (flag(CV_HEXL, m) || flag(CV_PTR, m)))
+		ft_putstr_cc("0x", m);
+	else if (nb.abs != 0 && flag(CV_HEXU, m))
+		ft_putstr_cc("0X", m);
+	return (1);
 }

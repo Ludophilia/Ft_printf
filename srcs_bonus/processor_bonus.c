@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 16:33:57 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:49:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,48 +55,6 @@ static void	process_string_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-// void	print_prefix(t_nbr nb, t_flag *flags, int *count)
-// {
-// 	if (is_int(flags))
-// 	{
-// 		if (!(nb.sign || flags->plus_f || flags->space_f))
-// 			return ;
-// 		if (nb.sign)
-// 			putchar_cc('-', count);
-// 		else
-// 		{
-// 			if (flags->plus_f)
-// 				putchar_cc('+', count);
-// 			else if (flags->space_f)
-// 				putchar_cc(' ', count);
-// 		}
-// 	}
-// 	else if ((is_hex(flags, 1, 1) || is_ptr(flags)) && nb.abs != 0 && !nb.sign)
-// 	{
-// 		if (!(flags->pound_f || is_ptr(flags)))
-// 			return ;
-// 		if (is_hex(flags, 1, 0) || is_ptr(flags))
-// 			putstr_cc("0x", count);
-// 		else if (is_hex(flags, 0, 1))
-// 			putstr_cc("0X", count);
-// 	}
-// }
-
-// For numbers, of course... You niggas should improve this.
-int	print_prefix(t_nbr *nbr, t_meta *m)
-{
-	if (nbr->sign == 1 && nbr->magn < radix)
-		ft_putchar_cc('-', m);
-	else if (nbr->magn < radix && flag(CV_PTR, m))
-		ft_putstr_cc("0x", m);
-	// ???
-
-	// 
-	return (1);
-}
-
-
-
 // Number
 // [filler][prefix|sign][precision|filler_zero][magnitude][filler]
 static void	process_number_specifier(t_meta *m)
@@ -120,23 +78,23 @@ static void	process_number_specifier(t_meta *m)
 		flags->field_v -= 2;
 
 	// Add prefix
-	if (flags->zero_f && !flags->prec_f && flags->field_f)
-
-	if (flags->zero_f && !flags->prec_f && flags->field_f)
-		print_prefix(nb, flags, count);
+	if (flags(FLG_ZERO | FLG_FIEL, m) && not_flag(FLG_PREC, m))
+		print_prefix(&nbr, m);
 	// Add filler
-	if (!flags->zero_f || (flags->zero_f && (flags->prec_f || (!nb.abs && is_ptr(flags)))))
+	if (not_flag(FLG_ZERO, m) || (flag(FLG_ZERO, m)
+			&& (flag(FLG_PREC, m) || (!nb.abs && flag(CV_PTR, m)))))
 		print_filler(NOZEROFILL, m);
-	else if (flags->zero_f && !flags->prec_f)
+	else if (flag(FLG_ZERO, m) && not_flag(FLG_PREC, m))
 		print_filler(ZEROFILL, m);
+
 	// Add prefix
-	if (!(flags->zero_f && !flags->prec_f && flags->field_f))
-		print_prefix(nb, flags, count);
+	if (flag(FLG_PREC) && not_flags(FLG_FIEL | FLG_ZERO))
+		print_prefix(&nbr, m);
+  
 	ft_putstr(magn, m);
-
-
+	
 	// Add filler
-	if (flags->dash_f && flags->field_v > 0)
+	if (flag(FLG_DASH, m))
 		print_filler(NOZEROFILL, m);
 
 	free(magn);

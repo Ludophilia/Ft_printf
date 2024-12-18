@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 13:50:19 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:23:27 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	proc_width_options(const char *spec, t_meta *meta)
 	}
 	while (spec[i] && ft_isdigit(spec[i]))
 		i++;
-	if (spec[i] == '.') // What about its implicit value?
+	if (spec[i] == '.')
 	{
 		meta->flags |= FLG_PREC;
 		i++;

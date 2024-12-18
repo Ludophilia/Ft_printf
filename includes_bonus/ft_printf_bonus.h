@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 14:37:33 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:48:02 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m);
 int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
 void	print_filler(bool zfill, t_meta *meta);
+int		print_prefix(t_nbr *nbr, t_meta *m);
 
 void	process_specifier(const char *c, t_meta *meta);
 
