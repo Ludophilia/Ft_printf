@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/15 17:59:04 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:37:33 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,13 @@ typedef struct s_meta
 	int				count;
 }	t_meta;
 
+int		buffer_str(char *str, char *buffer, int *i);
+int		buffer_char(char c, char *buffer, int *i);
+int		buffer_nbr_base(t_nbr *nbr, char *buffer, int *i, t_meta *meta);
+char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m);
+
 int		ft_putchar_cc(const char c, t_meta *meta);
 int		ft_putstr_cc(const char *str, t_meta *meta);
-int		ft_putnbr_base_cc(t_nbr *nbr, t_meta *meta);
-
 void	print_filler(bool zfill, t_meta *meta);
 
 void	process_specifier(const char *c, t_meta *meta);

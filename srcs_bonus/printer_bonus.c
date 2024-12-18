@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/15 17:59:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:23:54 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,3 @@ void	print_filler(bool zfill, t_meta *meta)
 	while (meta->field_v-- > 0)
 		ft_putchar_cc((char [2]){' ', '0'}[zfill], meta);
 }
-
-// IMPROVE THIS, OF COURSE
-int	print_prefix(t_nbr *nbr, t_meta *meta)
-{
-	if (nbr->sign == 1 && nbr->magn < radix)
-		ft_putchar_cc('-', meta);
-	else if (nbr->magn < radix && flag(CV_PTR, meta))
-		ft_putstr_cc("0x", meta);
-
-	return (1);
-}
-
-// A new function 
