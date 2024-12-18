@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 18:46:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:54:59 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	print_prefix(t_nbr *nbr, t_meta *m)
 		ft_putchar_cc('+', m);
 	else if (flags(CV_INT | FLG_SPAC, m))
 		ft_putchar_cc(' ', m);
-	else if (nb.abs != 0 && (flag(CV_HEXL, m) || flag(CV_PTR, m)))
+	else if (nbr->magn != 0 && (flag(CV_HEXL, m) || flag(CV_PTR, m)))
 		ft_putstr_cc("0x", m);
-	else if (nb.abs != 0 && flag(CV_HEXU, m))
+	else if (nbr->magn != 0 && flag(CV_HEXU, m))
 		ft_putstr_cc("0X", m);
 	return (1);
 }
