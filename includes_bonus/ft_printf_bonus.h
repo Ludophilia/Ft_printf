@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:34:33 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:56:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <stdbool.h>
-// # include <stdio.h>
 
 # include "../libs/libft/libft.h"
 
@@ -51,7 +50,8 @@ typedef enum e_type
 	CV_PTR = (1 << 12),
 	CV_STR = (1 << 13),
 	CV_CHR = (1 << 14),
-	CV_PRC = (1 << 15)
+	CV_PRC = (1 << 15),
+	CV_NBR = CV_INT | CV_UINT | CV_PTR | CV_HEX
 }	t_type;
 
 typedef struct s_nbr
@@ -91,8 +91,8 @@ int		flags(unsigned int flags, t_meta *meta);
 int		flag(unsigned int flags, t_meta *meta);
 int		not_flags(unsigned int flags, t_meta *meta);
 int		not_flag(unsigned int flags, t_meta *meta);
-void	process_filler_width(void *data, t_meta *m);
 
+void	process_filler_width(void *data, t_meta *m);
 void	process_specifier(const char *c, t_meta *meta);
 
 int		set_conv(char c, t_meta *meta);

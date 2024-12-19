@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 15:37:04 by jegerman          #+#    #+#              #
-#    Updated: 2024/12/19 13:37:31 by jegerman         ###   ########.fr        #
+#    Updated: 2024/12/19 15:42:10 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS_BON += $(SRCSB_DIR)/processor_bonus.c
 SRCS_BON += $(SRCSB_DIR)/parser_bonus.c
 SRCS_BON += $(SRCSB_DIR)/parser_helpers_bonus.c
 SRCS_BON += $(SRCSB_DIR)/processor_helpers_bonus.c
+SRCS_BON += $(SRCSB_DIR)/flag_helpers_bonus.c
 SRCS_BON += $(SRCSB_DIR)/bufferer_bonus.c
 SRCS_BON += $(SRCSB_DIR)/bufferer_helpers_bonus.c
 
