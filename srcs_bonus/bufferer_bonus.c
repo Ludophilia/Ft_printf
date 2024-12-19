@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:33:43 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 14:35:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:54:10 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,43 +34,46 @@ static void	set_number(t_nbr *nbr, t_meta *m)
 		*nbr = (t_nbr){.sign = 0, .magn = tmp.s, .base = BASE10};
 }
 
-static size_t	get_magnitude_len(t_nbr *nbr, t_meta *m)
+static int	get_magnitude_len(t_nbr *nbr, t_meta *m)
 {
-	size_t			magn_len;
-	size_t			radix;
+	int				magn_len;
+	int				radix;
 	unsigned long	magn;
 
 	magn_len = 0;
-	if (nbr->magn == 0)
+	if (nbr->magn == 0 && not_flag(CV_PTR, m))
 		magn_len = 1;
+	else if (nbr->magn == 0 && flag(CV_PTR, m))
+		magn_len = 5;
 	radix = ft_strlen(nbr->base);
 	magn = nbr->magn;
 	while (magn && ++magn_len)
 		magn /= radix;
 	nbr->magn_len = magn_len;
-	if (flag(FL_PREC, m) && m->prec_v > magn_len)
+	if (flag(FLG_PREC, m) && m->prec_v > magn_len)
 		magn_len += (m->prec_v - magn_len);
 	return (magn_len);
 }
 
 char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m)
 {
-	char 			*buffer;
-	int				i;
-	size_t			mgn_len;
+	char	*buffer;
+	int		i;
+	int		magn_len;
 
-	set_number(&nbr, m);
-	mgn_len = get_magnitude_len(nbr, m);
-	buffer = ft_calloc(mgn_len + 1, sizeof(char));
+	set_number(nbr, m);
+	magn_len = get_magnitude_len(nbr, m);
+	buffer = ft_calloc(magn_len + 1, sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
 	i = 0;
-	if (flag(FL_PREC, m) && m->prec_v > nbr->magn_len)
+	if (flag(FLG_PREC, m) && m->prec_v > nbr->magn_len)
 	{
 		m->prec_v -= nbr->magn_len;
 		while (m->prec_v-- > 0)
 			buffer[i++] = '0';
 	}
 	buffer_nbr_base(nbr, buffer, &i, m);
+	nbr->prc_magn = buffer;
 	return (buffer);
 }

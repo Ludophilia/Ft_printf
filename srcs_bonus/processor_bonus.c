@@ -6,11 +6,38 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 18:49:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:04:11 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+static void	process_filler_width(void *data, t_meta *m)
+{
+	int	i;
+
+	if (flag(CV_STR, m) && data != NULL)
+	{
+		i = -1;
+		while (((char *)data)[++i] && ((flag(FLG_PREC, m) && i < m->prec_v)
+				|| (not_flag(FLG_PREC, m))) && m->field_v > 0)
+			m->field_v -= 1;
+	}
+	else if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
+	{
+		m->field_v -= 1;
+	}
+	else if (flag(CV_INT | CV_HEX | CV_PTR | CV_UINT, m) && data != NULL)
+	{
+		m->field_v -= ft_strlen(((t_nbr *)data)->prc_magn);
+		if (flag(CV_INT, m)
+			&& (((t_nbr *)data)->sign || flag(FLG_PLUS | FLG_SPAC, m)))
+			m->field_v -= 1;
+		if ((flag(CV_PTR, m) || flags(CV_HEX | FLG_POUN, m))
+			&& ((t_nbr *)data)->magn != 0)
+			m->field_v -= 2;
+	}
+}
 
 static void	process_character_specifier(t_meta *m)
 {
@@ -19,8 +46,8 @@ static void	process_character_specifier(t_meta *m)
 	c = '%';
 	if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
 		c = va_arg(m->args, int);
-	if (flags(FLG_FIEL | CV_CHR, m) && not_flag(CV_PRC, m))
-		m->field_v -= 1;
+	if (flag(FLG_FIEL, m))
+		process_filler_width(NULL, m);
 	if (flags(FLG_FIEL | CV_CHR, m) && not_flags(CV_PRC | FLG_DASH, m))
 		print_filler(NOZEROFILL, m);
 	ft_putchar_cc(c, m);
@@ -39,10 +66,8 @@ static void	process_string_specifier(t_meta *m)
 		str = "";
 	else if (str == NULL)
 		str = "(null)";
-	i = -1;
-	while (str[++i] && ((flags(FLG_FIEL | FLG_PREC, m) && i < m->prec_v)
-			|| (flag(FLG_FIEL, m) && not_flag(FLG_PREC, m))) && m->field_v)
-		m->field_v -= 1;
+	if (flag(FLG_FIEL, m))
+		process_filler_width(str, m);
 	if (not_flag(FLG_DASH, m) && m->field_v > 0)
 		print_filler(NOZEROFILL, m);
 	i = 0;
@@ -55,49 +80,28 @@ static void	process_string_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-// Number
-// [filler][prefix|sign][precision|filler_zero][magnitude][filler]
 static void	process_number_specifier(t_meta *m)
 {
 	t_nbr	nbr;
-	char	*magn;
 
-	// Store the number and the precision in a buffer
-	magn = set_magnitude_buffer(&nbr, m);
-	if (magn == NULL)
+	if (set_magnitude_buffer(&nbr, m) == NULL)
 		return ;
-
-	// Adjust the field width for the fillers
-	if (flag(FLG_FIEL))
-		m->field_v -= ft_strlen(magn);
-	if (flags(FLG_FIEL | CV_INT, m)
-		&& (nbr.sign || flag(FLG_PLUS | FLG_SPAC, m)))
-		flags->field_v -= 1;
-	else if (flag(FLG_FIEL) && nb.abs != 0
-		&& (flags(CV_PTR, m) || flags(CV_HEX | FLG_POUN, m)))
-		flags->field_v -= 2;
-
-	// Add prefix
-	if (flags(FLG_ZERO | FLG_FIEL, m) && not_flag(FLG_PREC, m))
+	if (flag(FLG_FIEL, m))
+		process_filler_width(&nbr, m);
+	if (flag(CV_PTR | FLG_PLUS | FLG_SPAC, m) || nbr.sign
+		|| (flags(FLG_ZERO | FLG_FIEL, m) && not_flag(FLG_PREC, m)))
 		print_prefix(&nbr, m);
-	// Add filler
-	if (not_flag(FLG_ZERO, m) || (flag(FLG_ZERO, m)
-			&& (flag(FLG_PREC, m) || (!nb.abs && flag(CV_PTR, m)))))
-		print_filler(NOZEROFILL, m);
-	else if (flag(FLG_ZERO, m) && not_flag(FLG_PREC, m))
+	if (flag(FLG_ZERO, m) && not_flag(FLG_PREC, m))
 		print_filler(ZEROFILL, m);
-
-	// Add prefix
-	if (flag(FLG_PREC) && not_flags(FLG_FIEL | FLG_ZERO))
+	else if (not_flag(FLG_ZERO, m) || (flag(FLG_ZERO, m)
+			&& (flag(FLG_PREC, m) || (!nbr.magn && flag(CV_PTR, m)))))
+		print_filler(NOZEROFILL, m);
+	if (flag(FLG_PREC, m) && not_flags(FLG_FIEL | FLG_ZERO, m))
 		print_prefix(&nbr, m);
-  
-	ft_putstr(magn, m);
-	
-	// Add filler
+	ft_putstr_cc(nbr.prc_magn, m);
 	if (flag(FLG_DASH, m))
 		print_filler(NOZEROFILL, m);
-
-	free(magn);
+	free(nbr.prc_magn);
 	*m->i += 1;
 }
 

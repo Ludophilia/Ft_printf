@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/14 16:14:17 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:04:40 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 // - Errors 
 // - %s with - and width and .
 
+// [filler][prefix|sign][precision|filler_zero][magnitude][filler]
+
 int	ft_printf(const char *format, ...)
 {
 	t_meta	meta;
@@ -44,8 +46,7 @@ int	ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	i = 0;
-	meta = (t_meta){.i = &i, .count = 0, .flags = 0, .field_v = -1,
-		.prec_v = -1};
+	meta = (t_meta){.i = &i, .count = 0};
 	va_start(meta.args, format);
 	while (format[i])
 	{

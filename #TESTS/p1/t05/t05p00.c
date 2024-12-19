@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/12 15:15:29 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:51:53 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	test_format_str_with_ptr_specifier_return_value_t0(void)
 	int			ret[2];
 	char		*format;
 
-	format = "%p";
+	format = "%p\n";
 	ret[0] = printf(format, NULL);
 	ret[1] = ft_printf(format, NULL);
 	if (DEBUG
@@ -33,7 +33,7 @@ int	test_format_str_with_ptr_specifier_return_value_t1(void)
 	int			ret[2];
 	char		*format;
 
-	format = "%p";
+	format = "%p\n";
 	ret[0] = printf(format, (void *)0xf);
 	ret[1] = ft_printf(format, (void *)0xf);
 	if (DEBUG

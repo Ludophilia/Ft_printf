@@ -6,22 +6,22 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:24:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 14:47:21 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:18:00 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	buffer_str(char *str, char *buffer, int *i)
+static int	buffer_str(char *str, char *buffer, int *i)
 {
 	while (*str)
-		buffer[*i++] = *str++;
+		buffer[(*i)++] = *str++;
 	return (1);
 }
 
-int	buffer_char(char c, char *buffer, int *i)
+static int	buffer_char(char c, char *buffer, int *i)
 {
-	buffer[*i++] = c;
+	buffer[(*i)++] = c;
 	return (1);
 }
 
@@ -37,6 +37,6 @@ int	buffer_nbr_base(t_nbr *nbr, char *buffer, int *i, t_meta *meta)
 		.base = nbr->base};
 	if (nbr->magn >= radix)
 		buffer_nbr_base(tmp, buffer, i, meta);
-	buffer_char(digits[nbr->magn % radix], buffer, i);
+	buffer_char(nbr->base[nbr->magn % radix], buffer, i);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/18 18:48:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:00:02 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <stdbool.h>
+// # include <stdio.h>
 
 # include "../libs/libft/libft.h"
 
@@ -58,7 +59,8 @@ typedef struct s_nbr
 	char			*base;
 	int				sign;
 	unsigned long	magn;
-	size_t			magn_len;
+	char			*prc_magn;
+	int				magn_len;
 }	t_nbr;
 
 typedef union u_usl
@@ -77,8 +79,6 @@ typedef struct s_meta
 	int				count;
 }	t_meta;
 
-int		buffer_str(char *str, char *buffer, int *i);
-int		buffer_char(char c, char *buffer, int *i);
 int		buffer_nbr_base(t_nbr *nbr, char *buffer, int *i, t_meta *meta);
 char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m);
 
@@ -87,16 +87,16 @@ int		ft_putstr_cc(const char *str, t_meta *meta);
 void	print_filler(bool zfill, t_meta *meta);
 int		print_prefix(t_nbr *nbr, t_meta *m);
 
+int		flags(unsigned int flags, t_meta *meta);
+int		flag(unsigned int flags, t_meta *meta);
+int		not_flags(unsigned int flags, t_meta *meta);
+int		not_flag(unsigned int flags, t_meta *meta);
+
 void	process_specifier(const char *c, t_meta *meta);
 
 int		set_conv(char c, t_meta *meta);
 bool	is_valid_flg(char c);
 bool	is_valid_conv(char c);
-
-int		flags(unsigned int flags, t_meta *meta);
-int		flag(unsigned int flags, t_meta *meta);
-int		not_flags(unsigned int flags, t_meta *meta);
-int		not_flag(unsigned int flags, t_meta *meta);
 
 int		is_valid_specif(const char *spec, t_meta *meta);
 
