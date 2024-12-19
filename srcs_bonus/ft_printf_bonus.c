@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:35:51 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:23:11 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // %[flags][width][precision]sp
 
 // SPECIFIER (sp)
-// cs p diuxX%
+// csp di uxX%
 
 // ---------------------------
 
@@ -36,7 +36,7 @@
 
 // NEXT TESTS
 // - Errors 
-// - %s with - and width and .
+// - %d/%i with '-', width, '.', '0', ' '
 
 
 int	ft_printf(const char *format, ...)

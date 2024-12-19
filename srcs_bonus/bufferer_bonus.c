@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:33:43 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 16:22:49 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:55:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ static int	get_magnitude_len(t_nbr *nbr, t_meta *m)
 	int				radix;
 	unsigned long	magn;
 
+	if (m->prec_v == 0)
+	{
+		nbr->magn_len = 0;
+		return (0);
+	}
 	magn_len = 0;
 	if (nbr->magn == 0 && not_flag(CV_PTR, m))
 		magn_len = 1;
@@ -67,13 +72,14 @@ char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m)
 	if (buffer == NULL)
 		return (NULL);
 	i = 0;
-	if (flag(FLG_PREC, m) && m->prec_v > nbr->magn_len)
+	if (flag(FLG_PREC, m) && m->prec_v > 0 && m->prec_v > nbr->magn_len)
 	{
 		m->prec_v -= nbr->magn_len;
 		while (m->prec_v-- > 0)
 			buffer[i++] = '0';
 	}
-	buffer_nbr_base(nbr, buffer, &i, m);
+	if (not_flag(FLG_PREC, m) || (flag(FLG_PREC, m) && m->prec_v > 0))
+		buffer_nbr_base(nbr, buffer, &i, m);
 	nbr->pad_magn = buffer;
 	return (buffer);
 }
