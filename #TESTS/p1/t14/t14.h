@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t12p01.c                                           :+:      :+:    :+:   */
+/*   t14.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:47 by jegerman          #+#    #+#             */
+/*   Updated: 2024/12/19 16:11:05 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t12.h"
+#ifndef T14_H
 
-int	test_output_format_str_with_c_specifier_bonus_flags_t0(void)
-{
-	int			ret;
-	char		*format;
+# define T14_H
 
-	format = "%c%0c%15c%-15c%------2c\n";
-	ret = PRINTF(format, 'z', 'x', 'a', 'm', 'l');
-	if (DEBUG
-		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
-}
+# include "ft_printf.h"
+# include <stdio.h>
+# include <assert.h>
+# include <stdarg.h>
 
-int	main(void)
-{
-	test_output_format_str_with_c_specifier_bonus_flags_t0();
-	return (0);
-}
+#endif

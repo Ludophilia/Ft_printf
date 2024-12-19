@@ -1,51 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t07p01.c                                           :+:      :+:    :+:   */
+/*   t14p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:42:09 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t07.h"
+#include "t14.h"
 
-int	test_format_str_with_unsigned_specifier_return_value_t0(void)
+int	test_p_bonus_flags_output_comparison_t0(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%u";
-	ret = PRINTF(format, 0);
+	format = "%0p %1p %3p %11p %-15p\n";
+	ret = PRINTF(format, NULL, NULL, NULL, NULL, NULL);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
 
-int	test_format_str_with_unsigned_specifier_return_value_t1(void)
+int	test_p_bonus_flags_output_comparison_t1(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%u%u%u%u%u%u";
-	ret = PRINTF(format, 0, 10, 1000, 1001, 0xFFFFFFFF, 0xFFFFFFFFl + 2);
-	if (DEBUG
-		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
-		;
-	return (1);
-}
-
-int	test_format_str_with_unsigned_specifier_return_value_t2(void)
-{
-	int			ret;
-	char		*format;
-
-	format = "\r%u\xa%u\xb%u\t%u\n%u\x7f%u.%u?%u";
-	ret = PRINTF(format, -2147483648, -500, -10, 0, 10, 42, 2147483647,
-			2147483647l + 1);
+	format = "%0p %4p %9p %-12p\n";
+	ret = PRINTF(format, (void *)0x12345, (void *)0x12345,
+			(void *)0x12345, (void *)0x12345);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
@@ -54,8 +41,7 @@ int	test_format_str_with_unsigned_specifier_return_value_t2(void)
 
 int	main(void)
 {
-	test_format_str_with_unsigned_specifier_return_value_t0();
-	test_format_str_with_unsigned_specifier_return_value_t1();
-	test_format_str_with_unsigned_specifier_return_value_t2();
+	test_p_bonus_flags_output_comparison_t0();
+	test_p_bonus_flags_output_comparison_t1();
 	return (0);
 }

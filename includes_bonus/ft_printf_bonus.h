@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:56:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:56:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define BASE16_UP "0123456789ABCDEF"
 
 # define ZEROFILL 1
-# define NOZEROFILL 0
+# define SPACEFILL 0
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -59,8 +59,8 @@ typedef struct s_nbr
 	char			*base;
 	int				sign;
 	unsigned long	magn;
-	char			*prc_magn;
 	int				magn_len;
+	char			*pad_magn;
 }	t_nbr;
 
 typedef union u_usl

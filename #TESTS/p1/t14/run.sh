@@ -21,8 +21,8 @@ CFLAGS+=" -DDEBUG=$DEBUG_STATUS"
 
 # PRE-TESTING
 
-MAIN_TITLE="%%c - field and '-'"
-TEST_NB="12"
+MAIN_TITLE="%%p - field and '-'"
+TEST_NB="14"
 
 make -sC $LFTPF_DIR bonus
 

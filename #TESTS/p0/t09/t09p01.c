@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 13:52:39 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_format_str_with_uppercase_hex_specifier_return_value_t0(void)
 	format = "%X";
 	ret = PRINTF(format, 0);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -33,7 +33,7 @@ int	test_format_str_with_uppercase_hex_specifier_return_value_t1(void)
 	format = "%X%X%X%X%X%X";
 	ret = PRINTF(format, 10, 0, -1, 1001, 0xFFFFFFFF, 0xFFFFFFFFl + 42);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -47,7 +47,7 @@ int	test_format_str_with_uppercase_hex_specifier_return_value_t2(void)
 	ret = PRINTF(format, -2147483648, -500, -10, 0, 10, 42, 2147483647,
 			2147483647l + 1);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

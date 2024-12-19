@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:40:37 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 16:01:49 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:22:49 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ static void	process_str_width(char *str, t_meta *m)
 
 static void	process_nbr_width(t_nbr *nbr, t_meta *m)
 {
-	m->field_v -= ft_strlen(nbr->prc_magn);
-	if (flag(CV_INT, m)
-		&& ((nbr->sign || flag(FLG_PLUS | FLG_SPAC, m))))
+	m->field_v -= ft_strlen(nbr->pad_magn);
+	if (flag(CV_INT, m) && (nbr->sign || flag(FLG_PLUS | FLG_SPAC, m)))
 		m->field_v -= 1;
-	if ((flag(CV_PTR, m) || flags(CV_HEX | FLG_POUN, m))
-		&& (nbr->magn != 0))
+	if ((flag(CV_PTR, m) || flags(CV_HEX | FLG_POUN, m)) && (nbr->magn != 0))
 		m->field_v -= 2;
 }
 

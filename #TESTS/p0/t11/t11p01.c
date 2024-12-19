@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 15:55:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	test_format_str_with_every_specifier_return_value_t0(void)
 			(void *)0x2A, 0, "miam", "", 2147483648, -10, 0xFFFFFFFF,
 			0, 0xFFFFFFFF);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

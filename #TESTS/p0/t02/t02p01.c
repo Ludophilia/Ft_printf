@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/13 13:52:39 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	test_format_str_without_spec_output_comparison(const char *format)
 
 	ret = PRINTF(format);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

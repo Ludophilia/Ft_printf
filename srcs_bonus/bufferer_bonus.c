@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:33:43 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 14:54:10 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:22:49 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m)
 			buffer[i++] = '0';
 	}
 	buffer_nbr_base(nbr, buffer, &i, m);
-	nbr->prc_magn = buffer;
+	nbr->pad_magn = buffer;
 	return (buffer);
 }

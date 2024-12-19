@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/14 15:30:56 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p0_return_value_t0(void)
 	format = "%0s %1s %10s %-10s\n";
 	ret = PRINTF(format, "12345", "12345", "12345", "12345");
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -33,7 +33,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p1_return_value_t1(void)
 	format = "%.5s%.6s\n";
 	ret = PRINTF(format, NULL, NULL);
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -47,7 +47,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p1_return_value_t2(void)
 	ret = PRINTF(
 			format, NULL, "12" "12345", "12345", NULL, NULL, "12345");
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }
@@ -61,7 +61,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p0p1_return_value_t3(void)
 	ret = PRINTF(
 			format, NULL, "12" "12345", "12345", NULL, NULL, "12345");
 	if (DEBUG
-		&& dprintf(2, DBG_PF_NAME"(\"%s\", ...) -> %i\n", format, ret))
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
 	return (1);
 }

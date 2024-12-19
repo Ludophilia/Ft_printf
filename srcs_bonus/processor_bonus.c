@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:58:10 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:44:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	process_character_specifier(t_meta *m)
 	if (flag(FLG_FIEL, m))
 		process_filler_width(NULL, m);
 	if (flags(FLG_FIEL | CV_CHR, m) && not_flags(CV_PRC | FLG_DASH, m))
-		print_filler(NOZEROFILL, m);
+		print_filler(SPACEFILL, m);
 	ft_putchar_cc(c, m);
 	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, m) && not_flag(CV_PRC, m))
-		print_filler(NOZEROFILL, m);
+		print_filler(SPACEFILL, m);
 	*m->i += 1;
 }
 
@@ -42,14 +42,14 @@ static void	process_string_specifier(t_meta *m)
 	if (flag(FLG_FIEL, m))
 		process_filler_width(str, m);
 	if (not_flag(FLG_DASH, m) && m->field_v > 0)
-		print_filler(NOZEROFILL, m);
+		print_filler(SPACEFILL, m);
 	i = 0;
 	while (flag(FLG_PREC, m) && str[i] && i < m->prec_v)
 		ft_putchar_cc(str[i++], m);
 	if (not_flag(FLG_PREC, m))
 		ft_putstr_cc(str, m);
 	if (flag(FLG_DASH, m) && m->field_v > 0)
-		print_filler(NOZEROFILL, m);
+		print_filler(SPACEFILL, m);
 	*m->i += 1;
 }
 
@@ -61,20 +61,21 @@ static void	process_number_specifier(t_meta *m)
 		return ;
 	if (flag(FLG_FIEL, m))
 		process_filler_width(&nbr, m);
-	if (flag(CV_PTR | FLG_PLUS | FLG_SPAC, m) || nbr.sign
-		|| (flags(FLG_ZERO | FLG_FIEL, m) && not_flag(FLG_PREC, m)))
+
+	if (flags(FLG_ZERO, m) && not_flag(FLG_PREC, m))
 		print_prefix(&nbr, m);
-	if (flag(FLG_ZERO, m) && not_flag(FLG_PREC, m))
+
+	if (not_flag(FLG_DASH | FLG_PREC, m) && flags(FLG_ZERO, m))
 		print_filler(ZEROFILL, m);
-	else if (not_flag(FLG_ZERO, m) || (flag(FLG_ZERO, m)
-			&& (flag(FLG_PREC, m) || (!nbr.magn && flag(CV_PTR, m)))))
-		print_filler(NOZEROFILL, m);
-	if (flag(FLG_PREC, m) && not_flags(FLG_FIEL | FLG_ZERO, m))
+	if (not_flag(FLG_DASH | FLG_ZERO, m) || flags(FLG_ZERO | FLG_PREC, m)) // (nbr.magn == 0 && flag(CV_PTR, m))
+		print_filler(SPACEFILL, m);
+
+	if (not_flag(FLG_ZERO, m) || flags(FLG_ZERO | FLG_PREC, m))
 		print_prefix(&nbr, m);
-	ft_putstr_cc(nbr.prc_magn, m);
+	ft_putstr_cc(nbr.pad_magn, m);
 	if (flag(FLG_DASH, m))
-		print_filler(NOZEROFILL, m);
-	free(nbr.prc_magn);
+		print_filler(SPACEFILL, m);
+	free(nbr.pad_magn);
 	*m->i += 1;
 }
 
