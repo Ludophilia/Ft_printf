@@ -6,38 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:04:11 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:35:01 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-
-static void	process_filler_width(void *data, t_meta *m)
-{
-	int	i;
-
-	if (flag(CV_STR, m) && data != NULL)
-	{
-		i = -1;
-		while (((char *)data)[++i] && ((flag(FLG_PREC, m) && i < m->prec_v)
-				|| (not_flag(FLG_PREC, m))) && m->field_v > 0)
-			m->field_v -= 1;
-	}
-	else if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
-	{
-		m->field_v -= 1;
-	}
-	else if (flag(CV_INT | CV_HEX | CV_PTR | CV_UINT, m) && data != NULL)
-	{
-		m->field_v -= ft_strlen(((t_nbr *)data)->prc_magn);
-		if (flag(CV_INT, m)
-			&& (((t_nbr *)data)->sign || flag(FLG_PLUS | FLG_SPAC, m)))
-			m->field_v -= 1;
-		if ((flag(CV_PTR, m) || flags(CV_HEX | FLG_POUN, m))
-			&& ((t_nbr *)data)->magn != 0)
-			m->field_v -= 2;
-	}
-}
 
 static void	process_character_specifier(t_meta *m)
 {

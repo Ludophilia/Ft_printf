@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 15:00:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:34:33 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		flags(unsigned int flags, t_meta *meta);
 int		flag(unsigned int flags, t_meta *meta);
 int		not_flags(unsigned int flags, t_meta *meta);
 int		not_flag(unsigned int flags, t_meta *meta);
+void	process_filler_width(void *data, t_meta *m);
 
 void	process_specifier(const char *c, t_meta *meta);
 
