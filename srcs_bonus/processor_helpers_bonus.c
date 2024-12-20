@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:40:37 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 13:30:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:42:37 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	process_str_width(char *str, t_meta *m)
 
 	i = -1;
 	while (str[++i] && m->field_v > 0
-			&& ((flag(FLG_PREC, m) && i < m->prec_v) || not_flag(FLG_PREC, m)))
+		&& ((flag(FLG_PREC, m) && i < m->prec_v) || not_flag(FLG_PREC, m)))
 		m->field_v -= 1;
 }
 

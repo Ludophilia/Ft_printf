@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 16:17:16 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:58:51 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,23 @@ static void	process_number_specifier(t_meta *m)
 		return ;
 	if (flag(FLG_FIEL, m))
 		process_filler_width(&nbr, m);
-
 	if (flags(FLG_ZERO, m) && not_flag(FLG_PREC, m))
 		print_prefix(&nbr, m);
-
 	if (flag(FLG_ZERO, m) && not_flag(FLG_DASH | FLG_PREC | CV_PTR, m))
 		print_filler(ZEROFILL, m);
-	if (not_flag(FLG_DASH | FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m))
+	if (not_flag(FLG_DASH, m)
+		&& (not_flag(FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m)))
 		print_filler(SPACEFILL, m);
-
-	if (not_flag(FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m))
+	if (not_flag(FLG_ZERO, m) || (flags(FLG_PREC | FLG_ZERO, m)))
 		print_prefix(&nbr, m);
-
 	ft_putstr_cc(nbr.pad_magn, m);
 	if (flag(FLG_DASH, m))
 		print_filler(SPACEFILL, m);
 	free(nbr.pad_magn);
 	*m->i += 1;
 }
+
+// 21/12 - Ohohohohoh, no set_conv...
 
 void	process_specifier(const char *c, t_meta *m)
 {

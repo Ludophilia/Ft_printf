@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 16:28:23 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:58:26 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ static int	proc_width_options(const char *spec, t_meta *meta)
 		i++;
 	return (i);
 }
+
+// 21/12 - NEXT UP. Filter the flags that are not compatible with some conversions
+// Need a way to know the conversion
+
 
 int	is_valid_specif(const char *spec, t_meta *meta)
 {
