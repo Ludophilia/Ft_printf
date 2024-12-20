@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 17:36:04 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:49:58 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,10 @@ int	test_format_str_with_decimanl_specifier_return_value_t4(void)
 
 int	main(void)
 {
-	if (test_format_str_with_decimanl_specifier_return_value_t0()
-		&& test_format_str_with_decimanl_specifier_return_value_t1()
-		&& test_format_str_with_decimanl_specifier_return_value_t2()
-		&& test_format_str_with_decimanl_specifier_return_value_t3()
-		&& test_format_str_with_decimanl_specifier_return_value_t4())
-		return (0);
-	return (1);
+	test_format_str_with_decimanl_specifier_return_value_t0();
+	test_format_str_with_decimanl_specifier_return_value_t1();
+	test_format_str_with_decimanl_specifier_return_value_t2();
+	test_format_str_with_decimanl_specifier_return_value_t3();
+	test_format_str_with_decimanl_specifier_return_value_t4();
+	return (0);
 }

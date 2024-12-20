@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 12:10:47 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:28:23 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ static int	proc_width_options(const char *spec, t_meta *meta)
 		meta->flags |= FLG_FIEL;
 		meta->field_v = ft_atoi(spec);
 	}
-	while (spec[i] && ft_isdigit(spec[i]))
+	while (spec[i] && flag(FLG_FIEL, meta) && ft_isdigit(spec[i]))
 		i++;
 	if (spec[i] == '.')
 	{
 		meta->flags |= FLG_PREC;
 		i++;
 	}
-	if (spec[i] && ft_isdigit(spec[i]))
+	if (spec[i] && flag(FLG_PREC, meta) && is_valid_conv(spec[i]))
+		meta->prec_v = 0;
+	else if (spec[i] && flag(FLG_PREC, meta) && ft_isdigit(spec[i]))
 		meta->prec_v = ft_atoi(spec + i);
 	while (spec[i] && ft_isdigit(spec[i]))
 		i++;

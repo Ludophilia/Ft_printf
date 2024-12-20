@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 17:44:04 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:17:16 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ static void	process_number_specifier(t_meta *m)
 	if (flags(FLG_ZERO, m) && not_flag(FLG_PREC, m))
 		print_prefix(&nbr, m);
 
-	if (not_flag(FLG_DASH | FLG_PREC, m) && flags(FLG_ZERO, m))
+	if (flag(FLG_ZERO, m) && not_flag(FLG_DASH | FLG_PREC | CV_PTR, m))
 		print_filler(ZEROFILL, m);
-	if (not_flag(FLG_DASH | FLG_ZERO, m) || flags(FLG_ZERO | FLG_PREC, m)) // (nbr.magn == 0 && flag(CV_PTR, m))
+	if (not_flag(FLG_DASH | FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m))
 		print_filler(SPACEFILL, m);
 
-	if (not_flag(FLG_ZERO, m) || flags(FLG_ZERO | FLG_PREC, m))
+	if (not_flag(FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m))
 		print_prefix(&nbr, m);
+
 	ft_putstr_cc(nbr.pad_magn, m);
 	if (flag(FLG_DASH, m))
 		print_filler(SPACEFILL, m);

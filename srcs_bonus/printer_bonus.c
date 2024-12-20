@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 18:08:59 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:38:34 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_putchar_cc(const char c, t_meta *meta)
 
 int	ft_putstr_cc(const char *str, t_meta *meta)
 {
-	size_t	len;
+	int	len;
 
 	len = ft_strlen(str);
 	if (len == 0)
