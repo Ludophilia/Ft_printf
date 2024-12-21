@@ -6,30 +6,15 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 17:49:48 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:39:58 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-// [filler][prefix|sign][precision|filler_zero][magnitude][filler]
-
-// FORMAT
-// %[flags][width][precision]sp
-
-// SPECIFIER (sp)
-// csp di u xX%
-
-// ---------------------------
-
-// -
-// width
-
-// . (s, d, i, u, x, X)
-// 0 (d, i, u, x, X)
-
-// # (x, X)
-
+// TOMORROW - 22/12 - FINAL DAY
+// 	- Do % anyway with '-' and width. 
+// 	- Don't forget the ultimate mix (start from t11)
 int	ft_printf(const char *format, ...)
 {
 	t_meta	meta;

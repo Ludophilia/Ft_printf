@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t16p01.c                                           :+:      :+:    :+:   */
+/*   t17p01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 18:31:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:36:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t16.h"
+#include "t17.h"
 
-int	test_u_bonus_flags_return_values_t0(void)
+int	test_xX_bonus_flags_return_values_t0(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%0u %1u %4u%-4u %11u %-15u%-20u\n";
+	format = "%0x %1X %4x%-4X %11x %-15X%-20x\n";
 	ret = PRINTF(format, -1, -10, -42, -42, 2147483647, 2147483647,
 		-2147483648);
 	if (DEBUG
@@ -26,12 +26,12 @@ int	test_u_bonus_flags_return_values_t0(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t1(void)
+int	test_xX_bonus_flags_return_values_t1(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%.u%.0u%.1u %.3u%.9u%.17u %.20u%.20u\n";
+	format = "%.x%.0X%.1X %.3X%.9x%.17x %.20x%.20x\n";
 	ret = PRINTF(format, 0, 0, -10, -10, -42, -42, 0, 42);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
@@ -39,12 +39,12 @@ int	test_u_bonus_flags_return_values_t1(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t2(void)
+int	test_xX_bonus_flags_return_values_t2(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%00u%00u%03u|%04u%05u%06u\n";
+	format = "%00x%00X%03x|%04X%05x%06X\n";
 	ret = PRINTF(format, 0, 10, -10, -10, -10, 10);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
@@ -52,12 +52,12 @@ int	test_u_bonus_flags_return_values_t2(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t3(void)
+int	test_xX_bonus_flags_return_values_t3(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%-00u%-00u%0-3u|%-04u%-05u%-06u\n";
+	format = "%-00X%-00X%0-3X|%-04x%-05x%-06x\n";
 	ret = PRINTF(format, 0, 10, -10, -10, -10, 10);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
@@ -65,12 +65,12 @@ int	test_u_bonus_flags_return_values_t3(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t4(void)
+int	test_xX_bonus_flags_return_values_t4(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%00.u%00.u|%00.3u|%03.u|%04.u%05.u%06.u\n";
+	format = "%00.X%00.X|%00.3X|%03.x|%04.x%05.x%06.x\n";
 	ret = PRINTF(format, 0, 10, 0, 10, -10, -10, 10);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
@@ -78,13 +78,27 @@ int	test_u_bonus_flags_return_values_t4(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t5(void)
+int	test_xX_bonus_flags_return_values_t5(void)
 {
 	int			ret;
 	char		*format;
 
-	format = "%-00.u%-00.u|%0-0.3u|%0-3.u|%0-4.u%-05.u%0-6.u\n";
+	format = "%-00.x%-00.x|%0-0.3X|%0-3.X|%0-4.x%-05.x%0-6.X\n";
 	ret = PRINTF(format, 0, 10, 0, 10, -10, -10, 10);
+	if (DEBUG
+		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
+		;
+	return (1);
+}
+
+int	test_xX_bonus_flags_return_values_t6(void)
+{
+	int			ret;
+	char		*format;
+
+	format = "%-#00x%-#00x|%-#00.x%-#00.X%-0#0.x|%#0-0.3X"
+		"|%0-#3.X|%#0-4.x%-#05.x%0-#6.X\n";
+	ret = PRINTF(format, 0, 0, 0, 0, 10, 0, 10, -10, -10, 10);
 	if (DEBUG
 		&& dprintf(2, DBG_PRINTF"(\"%s\", ...) -> %i\n", format, ret))
 		;
@@ -93,11 +107,12 @@ int	test_u_bonus_flags_return_values_t5(void)
 
 int	main(void)
 {
-	test_u_bonus_flags_return_values_t0();
-	test_u_bonus_flags_return_values_t1();
-	test_u_bonus_flags_return_values_t2();
-	test_u_bonus_flags_return_values_t3();
-	test_u_bonus_flags_return_values_t4();
-	test_u_bonus_flags_return_values_t5();
+	test_xX_bonus_flags_return_values_t0();
+	test_xX_bonus_flags_return_values_t1();
+	test_xX_bonus_flags_return_values_t2();
+	test_xX_bonus_flags_return_values_t3();
+	test_xX_bonus_flags_return_values_t4();
+	test_xX_bonus_flags_return_values_t5();
+	test_xX_bonus_flags_return_values_t6();
 	return (0);
 }

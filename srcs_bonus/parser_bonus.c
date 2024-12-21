@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 16:23:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:58:45 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static int	pre_proc_flags(const char *spec, int limit, t_meta *m)
 {
-	int	i;
+	int	j;
 
-	i = -1;
-	while (spec[++i] && i < limit)
+	j = -1;
+	while (spec[++j] && j < limit)
 	{
-		if (spec[i] == '-' && not_flag(CV_PRC, m))
+		if (spec[j] == '-' && not_flag(CV_PRC, m))
 			m->flags |= FLG_DASH;
-		else if (spec[i] == '.' && flag(CV_STR | CV_NBR, m)
-			&& (is_valid_conv(spec[i + 1]) || ft_isdigit(spec[i + 1])))
+		else if (spec[j] == '.' && flag(CV_STR | CV_NBR, m)
+			&& (is_valid_conv(spec[j + 1]) || ft_isdigit(spec[j + 1])))
 			m->flags |= FLG_PREC;
 	}
 	return (1);
