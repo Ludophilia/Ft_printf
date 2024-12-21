@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 18:58:51 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:48:07 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,8 @@ static void	process_number_specifier(t_meta *m)
 	*m->i += 1;
 }
 
-// 21/12 - Ohohohohoh, no set_conv...
-
-void	process_specifier(const char *c, t_meta *m)
+void	process_specifier(t_meta *m)
 {
-	set_conv(*c, m);
 	if (flag(CV_CHR | CV_PRC, m))
 		process_character_specifier(m);
 	else if (flag(CV_STR, m))

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/19 16:56:30 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:40:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,12 @@ int		not_flags(unsigned int flags, t_meta *meta);
 int		not_flag(unsigned int flags, t_meta *meta);
 
 void	process_filler_width(void *data, t_meta *m);
-void	process_specifier(const char *c, t_meta *meta);
+void	process_specifier(t_meta *meta);
 
 int		set_conv(char c, t_meta *meta);
 bool	is_valid_flg(char c);
 bool	is_valid_conv(char c);
+int		pre_proc_prec(const char *spec, int limit, t_meta *meta);
 
 int		is_valid_specif(const char *spec, t_meta *meta);
 

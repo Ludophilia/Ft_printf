@@ -6,11 +6,27 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:05:44 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 18:58:26 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:56:51 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+static int	pre_proc_specif(const char *spec, t_meta *meta)
+{
+	int	i;
+
+	i = 0;
+	while (spec[i] && is_valid_conv(spec[i]) == 0)
+		i++;
+	if (spec[i] && is_valid_conv(spec[i]) && set_conv(spec[i], meta))
+	{
+		pre_proc_prec(spec, i, meta);
+		return (1);
+	}
+	meta->flags = 0;
+	return (0);
+}
 
 static int	proc_flags(const char *spec, t_meta *meta)
 {
@@ -19,15 +35,16 @@ static int	proc_flags(const char *spec, t_meta *meta)
 	i = 0;
 	while (spec[i] && is_valid_flg(spec[i]))
 	{
-		if (spec[i] == ' ')
-			meta->flags |= FLG_SPAC;
-		else if (spec[i] == '+')
-			meta->flags |= FLG_PLUS;
-		else if (spec[i] == '-')
+		if (spec[i] == '-')
 			meta->flags |= FLG_DASH;
-		else if (spec[i] == '#')
+		else if (spec[i] == ' ' && flag(CV_INT, meta))
+			meta->flags |= FLG_SPAC;
+		else if (spec[i] == '+' && flag(CV_INT, meta))
+			meta->flags |= FLG_PLUS;
+		else if (spec[i] == '#' && flag(CV_HEX, meta))
 			meta->flags |= FLG_POUN;
-		else if (spec[i] == '0')
+		else if (spec[i] == '0' && not_flag(FLG_DASH | FLG_PREC, meta)
+			&& flag(CV_INT | CV_UINT | CV_HEX, meta))
 			meta->flags |= FLG_ZERO;
 		i++;
 	}
@@ -47,10 +64,7 @@ static int	proc_width_options(const char *spec, t_meta *meta)
 	while (spec[i] && flag(FLG_FIEL, meta) && ft_isdigit(spec[i]))
 		i++;
 	if (spec[i] == '.')
-	{
-		meta->flags |= FLG_PREC;
 		i++;
-	}
 	if (spec[i] && flag(FLG_PREC, meta) && is_valid_conv(spec[i]))
 		meta->prec_v = 0;
 	else if (spec[i] && flag(FLG_PREC, meta) && ft_isdigit(spec[i]))
@@ -60,15 +74,13 @@ static int	proc_width_options(const char *spec, t_meta *meta)
 	return (i);
 }
 
-// 21/12 - NEXT UP. Filter the flags that are not compatible with some conversions
-// Need a way to know the conversion
-
-
 int	is_valid_specif(const char *spec, t_meta *meta)
 {
 	int	i;
 
 	meta->flags = 0;
+	if (pre_proc_specif(spec, meta) == 0)
+		return (0);
 	meta->field_v = -1;
 	meta->prec_v = -1;
 	i = 0;
@@ -76,7 +88,7 @@ int	is_valid_specif(const char *spec, t_meta *meta)
 	i += proc_width_options(spec + i, meta);
 	if (spec[i] && is_valid_conv(spec[i]))
 	{
-		*meta->i += (i - 1);
+		*meta->i += (i);
 		return (1);
 	}
 	return (0);

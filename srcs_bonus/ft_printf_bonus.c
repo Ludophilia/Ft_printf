@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 15:39:53 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:40:32 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 // width
 
 // . (s, d, i, u, x, X)
-
 // 0 (d, i, u, x, X)
+
 // # (x, X)
 // + (d, i)
 // space (d, i?)
@@ -51,7 +51,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_specif(format + ++i, &meta))
-			process_specifier(format + ++i, &meta);
+			process_specifier(&meta);
 		else
 			ft_putchar_cc(format[i++], &meta);
 	}
