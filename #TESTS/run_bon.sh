@@ -10,7 +10,7 @@ export LFTPF_DIR="../../..";
 
 cd p1
 
-for i in {00..15}; do
+for i in {00..16}; do
 	cd t$i
 	./run.sh
 	cd ..
