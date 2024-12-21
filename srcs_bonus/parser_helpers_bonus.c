@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:26:51 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 14:57:09 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:10:15 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,25 @@ bool	is_valid_conv(char c)
 	return (0);
 }
 
-int	pre_proc_prec(const char *spec, int limit, t_meta *meta)
-{
-	int	i;
-
-	i = -1;
-	while (spec[++i] && i < limit)
-	{
-		if (spec[i] == '.' && flag(CV_STR | CV_INT | CV_UINT | CV_HEX, meta)
-			&& (is_valid_conv(spec[i + 1]) || ft_isdigit(spec[i + 1])))
-		{
-			meta->flags |= FLG_PREC;
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	set_conv(char c, t_meta *meta)
+int	set_conv(char c, t_meta *m)
 {
 	if (c == 'c')
-		meta->flags |= CV_CHR;
+		m->flags |= CV_CHR;
 	else if (c == 's')
-		meta->flags |= CV_STR;
+		m->flags |= CV_STR;
 	else if (c == 'p')
-		meta->flags |= CV_PTR;
+		m->flags |= CV_PTR;
 	else if (c == 'd' || c == 'i')
-		meta->flags |= CV_INT;
+		m->flags |= CV_INT;
 	else if (c == 'u')
-		meta->flags |= CV_UINT;
+		m->flags |= CV_UINT;
 	else if (c == 'x' || c == 'X')
-		meta->flags |= CV_HEX;
+		m->flags |= CV_HEX;
 	else if (c == '%')
-		meta->flags |= CV_PRC;
+		m->flags |= CV_PRC;
 	if (c == 'x')
-		meta->flags |= CV_HEXL;
+		m->flags |= CV_HEXL;
 	else if (c == 'X')
-		meta->flags |= CV_HEXU;
+		m->flags |= CV_HEXU;
 	return (1);
 }

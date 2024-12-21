@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:40:37 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 18:42:37 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:14:38 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	process_filler_width(void *data, t_meta *m)
 		process_str_width(data, m);
 	else if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
 		process_chr_width(m);
-	else if (flag(CV_NBR, m) && data != NULL)
+	else if (flag(CV_NBR | CV_PTR, m) && data != NULL)
 		process_nbr_width(data, m);
 }

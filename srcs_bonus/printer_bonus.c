@@ -6,20 +6,20 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:12 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 15:38:34 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:10:15 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	ft_putchar_cc(const char c, t_meta *meta)
+int	ft_putchar_cc(const char c, t_meta *m)
 {
 	write(1, &c, 1);
-	meta->count++;
+	m->count++;
 	return (1);
 }
 
-int	ft_putstr_cc(const char *str, t_meta *meta)
+int	ft_putstr_cc(const char *str, t_meta *m)
 {
 	int	len;
 
@@ -27,14 +27,14 @@ int	ft_putstr_cc(const char *str, t_meta *meta)
 	if (len == 0)
 		return (1);
 	write(1, str, len);
-	meta->count += len;
+	m->count += len;
 	return (1);
 }
 
-void	print_filler(bool zfill, t_meta *meta)
+void	print_filler(bool zfill, t_meta *m)
 {
-	while (meta->field_v-- > 0)
-		ft_putchar_cc((char [2]){' ', '0'}[zfill], meta);
+	while (m->field_v-- > 0)
+		ft_putchar_cc((char [2]){' ', '0'}[zfill], m);
 }
 
 int	print_prefix(t_nbr *nbr, t_meta *m)

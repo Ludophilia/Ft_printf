@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:50 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 14:40:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:19:10 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef enum e_type
 	CV_STR = (1 << 13),
 	CV_CHR = (1 << 14),
 	CV_PRC = (1 << 15),
-	CV_NBR = CV_INT | CV_UINT | CV_PTR | CV_HEX
+	CV_NBR = CV_INT | CV_UINT | CV_HEX
 }	t_type;
 
 typedef struct s_nbr
@@ -79,28 +79,27 @@ typedef struct s_meta
 	int				count;
 }	t_meta;
 
-int		buffer_nbr_base(t_nbr *nbr, char *buffer, int *i, t_meta *meta);
+int		buffer_nbr_base(t_nbr *nbr, char *buffer, int *i, t_meta *m);
 char	*set_magnitude_buffer(t_nbr *nbr, t_meta *m);
 
-int		ft_putchar_cc(const char c, t_meta *meta);
-int		ft_putstr_cc(const char *str, t_meta *meta);
-void	print_filler(bool zfill, t_meta *meta);
+int		ft_putchar_cc(const char c, t_meta *m);
+int		ft_putstr_cc(const char *str, t_meta *m);
+void	print_filler(bool zfill, t_meta *m);
 int		print_prefix(t_nbr *nbr, t_meta *m);
 
-int		flags(unsigned int flags, t_meta *meta);
-int		flag(unsigned int flags, t_meta *meta);
-int		not_flags(unsigned int flags, t_meta *meta);
-int		not_flag(unsigned int flags, t_meta *meta);
+int		flags(unsigned int flags, t_meta *m);
+int		flag(unsigned int flags, t_meta *m);
+int		not_flags(unsigned int flags, t_meta *m);
+int		not_flag(unsigned int flags, t_meta *m);
 
 void	process_filler_width(void *data, t_meta *m);
-void	process_specifier(t_meta *meta);
+void	process_specifier(t_meta *m);
 
-int		set_conv(char c, t_meta *meta);
+int		set_conv(char c, t_meta *m);
 bool	is_valid_flg(char c);
 bool	is_valid_conv(char c);
-int		pre_proc_prec(const char *spec, int limit, t_meta *meta);
 
-int		is_valid_specif(const char *spec, t_meta *meta);
+int		is_valid_specif(const char *spec, t_meta *m);
 
 int		ft_printf(const char *format, ...);
 

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:11:36 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 14:48:07 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:26:53 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@ static void	process_character_specifier(t_meta *m)
 	int	c;
 
 	c = '%';
-	if (flag(CV_CHR, m) && not_flag(CV_PRC, m))
+	if (flag(CV_CHR, m))
 		c = va_arg(m->args, int);
 	if (flag(FLG_FIEL, m))
 		process_filler_width(NULL, m);
-	if (flags(FLG_FIEL | CV_CHR, m) && not_flags(CV_PRC | FLG_DASH, m))
+	if (flags(FLG_FIEL, m) && not_flag(FLG_DASH, m))
 		print_filler(SPACEFILL, m);
 	ft_putchar_cc(c, m);
-	if (flags(FLG_FIEL | CV_CHR | FLG_DASH, m) && not_flag(CV_PRC, m))
+	if (flags(FLG_FIEL | FLG_DASH, m))
 		print_filler(SPACEFILL, m);
-	*m->i += 1;
 }
 
 static void	process_string_specifier(t_meta *m)
@@ -41,16 +40,15 @@ static void	process_string_specifier(t_meta *m)
 		str = "(null)";
 	if (flag(FLG_FIEL, m))
 		process_filler_width(str, m);
-	if (not_flag(FLG_DASH, m) && m->field_v > 0)
+	if (flag(FLG_FIEL, m) && not_flag(FLG_DASH, m))
 		print_filler(SPACEFILL, m);
 	i = 0;
 	while (flag(FLG_PREC, m) && str[i] && i < m->prec_v)
 		ft_putchar_cc(str[i++], m);
 	if (not_flag(FLG_PREC, m))
 		ft_putstr_cc(str, m);
-	if (flag(FLG_DASH, m) && m->field_v > 0)
+	if (flags(FLG_FIEL | FLG_DASH, m))
 		print_filler(SPACEFILL, m);
-	*m->i += 1;
 }
 
 static void	process_number_specifier(t_meta *m)
@@ -61,20 +59,18 @@ static void	process_number_specifier(t_meta *m)
 		return ;
 	if (flag(FLG_FIEL, m))
 		process_filler_width(&nbr, m);
-	if (flags(FLG_ZERO, m) && not_flag(FLG_PREC, m))
+	if (flags(FLG_ZERO, m))
 		print_prefix(&nbr, m);
-	if (flag(FLG_ZERO, m) && not_flag(FLG_DASH | FLG_PREC | CV_PTR, m))
+	if (flags(FLG_FIEL | FLG_ZERO, m))
 		print_filler(ZEROFILL, m);
-	if (not_flag(FLG_DASH, m)
-		&& (not_flag(FLG_ZERO, m) || flags(FLG_PREC | FLG_ZERO, m)))
+	if (flag(FLG_FIEL, m) && not_flag(FLG_ZERO | FLG_DASH, m))
 		print_filler(SPACEFILL, m);
-	if (not_flag(FLG_ZERO, m) || (flags(FLG_PREC | FLG_ZERO, m)))
+	if (not_flag(FLG_ZERO, m))
 		print_prefix(&nbr, m);
 	ft_putstr_cc(nbr.pad_magn, m);
 	if (flag(FLG_DASH, m))
 		print_filler(SPACEFILL, m);
 	free(nbr.pad_magn);
-	*m->i += 1;
 }
 
 void	process_specifier(t_meta *m)
@@ -85,6 +81,5 @@ void	process_specifier(t_meta *m)
 		process_string_specifier(m);
 	else if (flag(CV_HEX | CV_INT | CV_PTR | CV_UINT, m))
 		process_number_specifier(m);
-	else
-		*m->i += 1;
+	*m->i += 1;
 }
