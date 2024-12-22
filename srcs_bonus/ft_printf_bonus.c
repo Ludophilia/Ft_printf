@@ -6,15 +6,12 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:58:13 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/22 16:27:06 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:48:29 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-// 22/12 - FINAL DAY
-//	- Try implementing flag deactivation in your parser with & and ~, just so
-//	you can have a trace of that technique for the future...
 int	ft_printf(const char *format, ...)
 {
 	t_meta	meta;
