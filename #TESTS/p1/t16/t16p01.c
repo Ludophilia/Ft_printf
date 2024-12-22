@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 18:31:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:20:48 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t16.h"
 
-int	test_u_bonus_flags_return_values_t0(void)
+int	test_u_bonus_flags_output_comparison_t0(void)
 {
 	int			ret;
 	char		*format;
@@ -26,7 +26,7 @@ int	test_u_bonus_flags_return_values_t0(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t1(void)
+int	test_u_bonus_flags_output_comparison_t1(void)
 {
 	int			ret;
 	char		*format;
@@ -39,7 +39,7 @@ int	test_u_bonus_flags_return_values_t1(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t2(void)
+int	test_u_bonus_flags_output_comparison_t2(void)
 {
 	int			ret;
 	char		*format;
@@ -52,7 +52,7 @@ int	test_u_bonus_flags_return_values_t2(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t3(void)
+int	test_u_bonus_flags_output_comparison_t3(void)
 {
 	int			ret;
 	char		*format;
@@ -65,7 +65,7 @@ int	test_u_bonus_flags_return_values_t3(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t4(void)
+int	test_u_bonus_flags_output_comparison_t4(void)
 {
 	int			ret;
 	char		*format;
@@ -78,7 +78,7 @@ int	test_u_bonus_flags_return_values_t4(void)
 	return (1);
 }
 
-int	test_u_bonus_flags_return_values_t5(void)
+int	test_u_bonus_flags_output_comparison_t5(void)
 {
 	int			ret;
 	char		*format;
@@ -93,11 +93,11 @@ int	test_u_bonus_flags_return_values_t5(void)
 
 int	main(void)
 {
-	test_u_bonus_flags_return_values_t0();
-	test_u_bonus_flags_return_values_t1();
-	test_u_bonus_flags_return_values_t2();
-	test_u_bonus_flags_return_values_t3();
-	test_u_bonus_flags_return_values_t4();
-	test_u_bonus_flags_return_values_t5();
+	test_u_bonus_flags_output_comparison_t0();
+	test_u_bonus_flags_output_comparison_t1();
+	test_u_bonus_flags_output_comparison_t2();
+	test_u_bonus_flags_output_comparison_t3();
+	test_u_bonus_flags_output_comparison_t4();
+	test_u_bonus_flags_output_comparison_t5();
 	return (0);
 }

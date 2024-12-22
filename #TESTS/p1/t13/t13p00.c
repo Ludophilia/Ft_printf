@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 13:02:29 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:20:07 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t13.h"
 
-int	test_format_str_with_str_specifier_bonus_flags_p0_return_value_t0(void)
+int	test_s_bonus_flags_return_values_t0(void)
 {
 	int			ret[2];
 	char		*format;
@@ -28,7 +28,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p0_return_value_t0(void)
 	return (1);
 }
 
-int	test_format_str_with_str_specifier_bonus_flags_p1_return_value_t1(void)
+int	test_s_bonus_flags_return_values_t1(void)
 {
 	int			ret[2];
 	char		*format;
@@ -46,7 +46,7 @@ int	test_format_str_with_str_specifier_bonus_flags_p1_return_value_t1(void)
 	return (1);
 }
 
-int	test_format_str_with_str_specifier_bonus_flags_p01_return_value_t2(void)
+int	test_s_bonus_flags_return_values_t2(void)
 {
 	int			ret[2];
 	char		*format;
@@ -66,8 +66,8 @@ int	test_format_str_with_str_specifier_bonus_flags_p01_return_value_t2(void)
 
 int	main(void)
 {
-	test_format_str_with_str_specifier_bonus_flags_p0_return_value_t0();
-	test_format_str_with_str_specifier_bonus_flags_p1_return_value_t1();
-	test_format_str_with_str_specifier_bonus_flags_p01_return_value_t2();
+	test_s_bonus_flags_return_values_t0();
+	test_s_bonus_flags_return_values_t1();
+	test_s_bonus_flags_return_values_t2();
 	return (0);
 }

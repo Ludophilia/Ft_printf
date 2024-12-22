@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/20 18:48:12 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:20:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t15.h"
 
-int	test_di_bonus_flags_return_values_t0(void)
+int	test_di_bonus_flags_output_comparison_t0(void)
 {
 	int			ret;
 	char		*format;
@@ -26,7 +26,7 @@ int	test_di_bonus_flags_return_values_t0(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t1(void)
+int	test_di_bonus_flags_output_comparison_t1(void)
 {
 	int			ret;
 	char		*format;
@@ -39,7 +39,7 @@ int	test_di_bonus_flags_return_values_t1(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t2(void)
+int	test_di_bonus_flags_output_comparison_t2(void)
 {
 	int			ret;
 	char		*format;
@@ -52,7 +52,7 @@ int	test_di_bonus_flags_return_values_t2(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t3(void)
+int	test_di_bonus_flags_output_comparison_t3(void)
 {
 	int			ret;
 	char		*format;
@@ -65,7 +65,7 @@ int	test_di_bonus_flags_return_values_t3(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t4(void)
+int	test_di_bonus_flags_output_comparison_t4(void)
 {
 	int			ret;
 	char		*format;
@@ -78,7 +78,7 @@ int	test_di_bonus_flags_return_values_t4(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t5(void)
+int	test_di_bonus_flags_output_comparison_t5(void)
 {
 	int			ret;
 	char		*format;
@@ -91,7 +91,7 @@ int	test_di_bonus_flags_return_values_t5(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t6(void)
+int	test_di_bonus_flags_output_comparison_t6(void)
 {
 	int			ret;
 	char		*format;
@@ -104,7 +104,7 @@ int	test_di_bonus_flags_return_values_t6(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t7(void)
+int	test_di_bonus_flags_output_comparison_t7(void)
 {
 	int			ret;
 	char		*format;
@@ -117,7 +117,7 @@ int	test_di_bonus_flags_return_values_t7(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t8(void)
+int	test_di_bonus_flags_output_comparison_t8(void)
 {
 	int			ret;
 	char		*format;
@@ -130,7 +130,7 @@ int	test_di_bonus_flags_return_values_t8(void)
 	return (1);
 }
 
-int	test_di_bonus_flags_return_values_t9(void)
+int	test_di_bonus_flags_output_comparison_t9(void)
 {
 	int			ret;
 	char		*format;
@@ -145,15 +145,15 @@ int	test_di_bonus_flags_return_values_t9(void)
 
 int	main(void)
 {
-	test_di_bonus_flags_return_values_t0();
-	test_di_bonus_flags_return_values_t1();
-	test_di_bonus_flags_return_values_t2();
-	test_di_bonus_flags_return_values_t3();
-	test_di_bonus_flags_return_values_t4();
-	test_di_bonus_flags_return_values_t5();
-	test_di_bonus_flags_return_values_t6();
-	test_di_bonus_flags_return_values_t7();
-	test_di_bonus_flags_return_values_t8();
-	test_di_bonus_flags_return_values_t9();
+	test_di_bonus_flags_output_comparison_t0();
+	test_di_bonus_flags_output_comparison_t1();
+	test_di_bonus_flags_output_comparison_t2();
+	test_di_bonus_flags_output_comparison_t3();
+	test_di_bonus_flags_output_comparison_t4();
+	test_di_bonus_flags_output_comparison_t5();
+	test_di_bonus_flags_output_comparison_t6();
+	test_di_bonus_flags_output_comparison_t7();
+	test_di_bonus_flags_output_comparison_t8();
+	test_di_bonus_flags_output_comparison_t9();
 	return (0);
 }

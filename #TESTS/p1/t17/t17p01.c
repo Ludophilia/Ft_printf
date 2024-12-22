@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:35:45 by jegerman          #+#    #+#             */
-/*   Updated: 2024/12/21 18:36:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:20:52 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t17.h"
 
-int	test_xX_bonus_flags_return_values_t0(void)
+int	test_xX_bonus_flags_output_comparison_t0(void)
 {
 	int			ret;
 	char		*format;
@@ -26,7 +26,7 @@ int	test_xX_bonus_flags_return_values_t0(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t1(void)
+int	test_xX_bonus_flags_output_comparison_t1(void)
 {
 	int			ret;
 	char		*format;
@@ -39,7 +39,7 @@ int	test_xX_bonus_flags_return_values_t1(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t2(void)
+int	test_xX_bonus_flags_output_comparison_t2(void)
 {
 	int			ret;
 	char		*format;
@@ -52,7 +52,7 @@ int	test_xX_bonus_flags_return_values_t2(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t3(void)
+int	test_xX_bonus_flags_output_comparison_t3(void)
 {
 	int			ret;
 	char		*format;
@@ -65,7 +65,7 @@ int	test_xX_bonus_flags_return_values_t3(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t4(void)
+int	test_xX_bonus_flags_output_comparison_t4(void)
 {
 	int			ret;
 	char		*format;
@@ -78,7 +78,7 @@ int	test_xX_bonus_flags_return_values_t4(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t5(void)
+int	test_xX_bonus_flags_output_comparison_t5(void)
 {
 	int			ret;
 	char		*format;
@@ -91,7 +91,7 @@ int	test_xX_bonus_flags_return_values_t5(void)
 	return (1);
 }
 
-int	test_xX_bonus_flags_return_values_t6(void)
+int	test_xX_bonus_flags_output_comparison_t6(void)
 {
 	int			ret;
 	char		*format;
@@ -107,12 +107,12 @@ int	test_xX_bonus_flags_return_values_t6(void)
 
 int	main(void)
 {
-	test_xX_bonus_flags_return_values_t0();
-	test_xX_bonus_flags_return_values_t1();
-	test_xX_bonus_flags_return_values_t2();
-	test_xX_bonus_flags_return_values_t3();
-	test_xX_bonus_flags_return_values_t4();
-	test_xX_bonus_flags_return_values_t5();
-	test_xX_bonus_flags_return_values_t6();
+	test_xX_bonus_flags_output_comparison_t0();
+	test_xX_bonus_flags_output_comparison_t1();
+	test_xX_bonus_flags_output_comparison_t2();
+	test_xX_bonus_flags_output_comparison_t3();
+	test_xX_bonus_flags_output_comparison_t4();
+	test_xX_bonus_flags_output_comparison_t5();
+	test_xX_bonus_flags_output_comparison_t6();
 	return (0);
 }
